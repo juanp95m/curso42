@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 20:41:27 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/05/06 18:43:37 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/05/06 17:10:08 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/05/06 19:55:03 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t			i;
-	unsigned char	*temp1;
-	unsigned char	*temp2;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
-	temp1 = (unsigned char *) s1;
-	temp2 = (unsigned char *) s2;
+	ptr1 = (unsigned char *)s1;
+	ptr2 = (unsigned char *)s2;
 	i = 0;
-	while ((temp1[i] || temp2[i]) && i < n)
+	while (i < n)
 	{
-		if (temp1[i] != temp2[i])
-			return (temp1[i] - temp2[i]);
+		if (ptr1[i] != ptr2[i])
+			return (ptr1[i] - ptr2[i]);
 		i++;
 	}
 	return (0);

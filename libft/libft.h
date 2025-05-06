@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 15:41:01 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/05/05 18:52:54 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/05/06 21:05:24 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char*s, int c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+void	*ft_memchr(const void *s, int c, size_t n);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
 #endif
