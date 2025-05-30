@@ -33,4 +33,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-ft_print_unsigned(n / 10);

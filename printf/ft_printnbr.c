@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 19:17:10 by paguiler          #+#    #+#             */
-/*   Updated: 2025/05/22 19:03:42 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/05/20 19:17:10 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/05/29 17:49:44 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,22 @@
 
 int	ft_printnbr(int n)
 {
-	long	max_min_int;
-	int		print_int;
-	char	c;
+	long	num;
+	int		count;
+	char	digit;
 
-	max_min_int = n;
-	print_int = 0;
-	if (max_min_int < 0)
+	num = n;
+	count = 0;
+	if (num < 0)
 	{
 		write(1, "-", 1);
-		print_int++;
-		max_min_int = -max_min_int;
+		count++;
+		num = -num;
 	}
-	if (max_min_int > 9)
-	{
-		print_int += ft_printnbr(max_min_int / 10);
-		print_int += ft_printnbr(max_min_int % 10);
-	}
-	else
-	{
-		c = max_min_int + '0';
-		write(1, &c, 1);
-		print_int++;
-	}
-	return (print_int);
+	if (num > 9)
+		count += ft_printnbr(num / 10);
+	digit = (num % 10) + '0';
+	write(1, &digit, 1);
+	count++;
+	return (count);
 }

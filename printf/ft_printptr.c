@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/21 16:55:11 by paguiler          #+#    #+#             */
-/*   Updated: 2025/05/22 19:03:44 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/05/21 16:55:11 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/05/29 17:18:02 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ int	ft_printptr(void *ptr)
 		return (write (1, "(nil)", 5));
 	len = 0;
 	len += write(1, "0x", 2);
-	if (ptr == NULL)
-	{
-		len += write(1, "0", 1);
-		return (len);
-	}
 	len += ft_puthex((unsigned long)ptr);
 	return (len);
 }
