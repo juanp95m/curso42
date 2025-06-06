@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 20:43:26 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/05 17:26:39 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/06/05 20:17:45 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/06/06 20:35:56 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-
-# include <stdarg.h>
+#ifndef	GET_NEXT_LINE.H
+# define GET_NEXT_LINE.H
+ 
+# include <stdio.h>
+# include <string.h> 
+# include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
-int	ft_printf(const char *format, ...);
-int	ft_format(va_list args, const char format);
-int	ft_printchar(char c);
-int	ft_printstr(char *s);
-int	ft_printptr(void *ptr);
-int	ft_printnbr(int n);
-int	ft_print_unsigned(unsigned int n);
-int	ft_printhex(unsigned int n, char format);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 
+# endif
 
-#endif
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char *s1, char *s2)
+
+# endif
