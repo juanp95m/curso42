@@ -64,3 +64,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	end[j] = '\0';
 	return (end);
 }
+//prueba para hacer 
