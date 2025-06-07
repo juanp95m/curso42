@@ -18,7 +18,7 @@ static char	*extract_line(char *stash)
 	char	*line;
 
 	i = 0;
-	if (!stash[i] || !stash[i])
+	if (!stash || !stash[i])
 		return (NULL);
 	while (stash[i] && stash[i] != '\n')
 		i++;

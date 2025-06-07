@@ -51,8 +51,10 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
+	if (!s2)
 		return (NULL);
+	if (!s1)
+		s1 = "";
 	end = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!end)
 		return (NULL);
@@ -64,4 +66,3 @@ char	*ft_strjoin(char *s1, char *s2)
 	end[j] = '\0';
 	return (end);
 }
-//prueba para hacer 
