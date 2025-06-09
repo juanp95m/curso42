@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:22:17 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/06 20:37:19 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/06/09 11:32:26 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ size_t	ft_strlen(const char *s)
 	i = 0;
 	if (!s)
 		return (0);
-
 	while (s[i])
 		i++;
 	return (i);

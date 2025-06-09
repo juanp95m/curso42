@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:22:08 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/06 22:04:35 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/06/09 11:27:52 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ static char	*read_and_stash(int fd, char *stash, char *buf)
 		temp = ft_strjoin(stash, buf);
 		free(stash);
 		stash = temp;
-		if (!stash)
-			return (NULL);
 	}
 	return (stash);
 }
