@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:22:08 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/16 17:20:24 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/06/19 13:36:40 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,29 +117,18 @@ char	*get_next_line(int fd)
 	stash = ft_update_stash(stash);
 	return (line);
 }
-/*int main(void)
+
+/*int	main(void)
 {
-    int		fd;
-    char	*line;
+	int		fd;
+	char	*line;
 
-    // Abre un archivo de prueba
-    fd = open("texto.txt", O_RDONLY);
-    if (fd == -1)
-    {
-        printf("Error: No se pudo abrir el archivo test.txt\n");
-        return (1);
-    }
-
-    printf("=== PROBANDO GET_NEXT_LINE ===\n");
-
-    // Lee línea por línea hasta el final del archivo
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        printf("Línea: %s", line);
-    }
-
-    printf("=== FIN DE ARCHIVO ===\n");
-
-    close(fd);
-    return (0);
+	fd = open("mierdapura.txt", O_RDONLY);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
+	return (0);
 }*/
