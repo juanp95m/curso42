@@ -6,13 +6,13 @@
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:22:08 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/25 18:47:58 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/06/26 17:31:42 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-static char	*read_and_stash(int fd, char *stash, char *buf)
+char	*read_and_stash(int fd, char *stash, char *buf)
 {
 	int		read_bytes;
 	char	*temp;
@@ -41,7 +41,7 @@ static char	*read_and_stash(int fd, char *stash, char *buf)
 	return (stash);
 }
 
-static char	*extract_line(char *stash)
+char	*extract_line(char *stash)
 {
 	int		i;
 	char	*line;
@@ -69,7 +69,7 @@ static char	*extract_line(char *stash)
 	return (line);
 }
 
-static char	*ft_update_stash(char *stash)
+char	*ft_update_stash(char *stash)
 {
 	int		i;
 	int		j;
@@ -116,4 +116,35 @@ char	*get_next_line(int fd)
 	line = extract_line(stash[fd]);
 	stash[fd] = ft_update_stash(stash[fd]);
 	return (line);
+}
+
+int	main(void)
+{
+	int		fd1;
+	int		fd2;
+	char	*line1;
+	char	*line2;
+
+	fd1 = open("caca.txt", O_RDONLY);
+	fd2 = open("coco.txt", O_RDONLY);
+	while (1)
+	{
+		line1 = get_next_line(fd1);
+		if (line1)
+		{
+			printf("%s", line1);
+			free (line1);
+		}
+		line2 = get_next_line(fd2);
+		if (line2)
+		{
+			printf("%s", line2);
+			free (line2);
+		}
+		if (!line1 && !line2)
+			break ;
+	}
+	close(fd1);
+	close(fd2);
+	return (0);
 }

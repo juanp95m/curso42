@@ -6,13 +6,13 @@
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:22:08 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/25 18:48:51 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/06/26 17:27:10 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*read_and_stash(int fd, char *stash, char *buf)
+char	*read_and_stash(int fd, char *stash, char *buf)
 {
 	int		read_bytes;
 	char	*temp;
@@ -41,7 +41,7 @@ static char	*read_and_stash(int fd, char *stash, char *buf)
 	return (stash);
 }
 
-static char	*extract_line(char *stash)
+char	*extract_line(char *stash)
 {
 	int		i;
 	char	*line;
@@ -69,7 +69,7 @@ static char	*extract_line(char *stash)
 	return (line);
 }
 
-static char	*ft_update_stash(char *stash)
+char	*ft_update_stash(char *stash)
 {
 	int		i;
 	int		j;
@@ -116,4 +116,19 @@ char	*get_next_line(int fd)
 	line = extract_line(stash);
 	stash = ft_update_stash(stash);
 	return (line);
+}
+
+int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	fd = open("caca.txt", O_RDONLY);
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free (line);
+	}
+	close(fd);
+	return (0);
 }
