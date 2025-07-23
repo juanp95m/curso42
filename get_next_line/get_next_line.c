@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 15:22:08 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/26 17:27:10 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:20:19 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	main(void)
 	int		fd;
 	char	*line;
 
-	fd = open("caca.txt", O_RDONLY);
+	fd = open("coco.txt", O_RDONLY);
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("%s", line);
