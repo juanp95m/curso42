@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putostr.c                                          :+:      :+:    :+:   */
+/*   lcm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/18 17:12:01 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/18 17:30:31 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/07/24 17:57:32 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/07/24 18:06:21 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-
-void	ft_putstr(char *str)
+unsigned int	lcm(unsigned int a, unsigned int b)
 {
-	int	i;
-	i = 0;
-	while (str[i])
+	unsigned int	n;
+	
+	if (a == 0 || b == 0)
+	       return (0);
+	if (a > b)
+		n = a;
+	else
+		n = b;
+	while (1)
 	{
-		write (1, &str[i], 1);
-		i++;
+		if (n % a == 0 && n % b == 0)
+			return (n);
+		n++;	
 	}
-}
-
-int	main (void)
-{
-	char	string[20] = "holaaa";
-	ft_putstr(string);
-	return (0);
 }

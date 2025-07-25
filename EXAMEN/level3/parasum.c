@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   parasum.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jperez-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:54:40 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/17 18:15:36 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/07/24 17:14:22 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/07/24 17:24:29 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_strlen(char *str)
+void ft_putnbr(int n)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
+	if (n > 9)
+		ft_putnbr(n / 10);
+	char digit = (n % 10) + '0';
+	write (1, &digit, 1);
 }
 
-int	main (void)
+int main (int argc, char **argv)
 {
-	char	cadena[] = "hola precioso";
-	int	longitud = ft_strlen(cadena);
-	printf("%d", longitud);
-	return 0;
+	(void)argv;
+
+	ft_putnbr(argc - 1);
+	write (1, "\n", 1);
+	return (0);
 }
