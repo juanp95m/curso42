@@ -11,15 +11,25 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 
-int	prints_bits(unsigned char octet)
+void	prints_bits(unsigned char octet)
 {
-	int		i = 0;
-	unsigned char	octet = 8;
+	int	i = 7;
 
-	while (i--)
+	while (i >= 0)
 	{
-		bit = (octet >> i & 1) + 48;
-		write (1, &bit, 1);
+		if ((octet >> i) & 1)
+			write (1, "1", 1);
+		else
+			write (1, "0", 1);
+		i--;
 	}
+}
+
+int main ()
+{
+	unsigned char octet = 2;
+	prints_bits(octet);
+	return (0);
 }
