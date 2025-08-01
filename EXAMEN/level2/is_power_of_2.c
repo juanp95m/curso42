@@ -24,9 +24,18 @@ int	is_power_of_2(unsigned int n)
 	}
 	return (0);
 }
-while (test < n)
-	test *= 2;
-return (test == n)
+// otrA FORMA DE HACERLO ES ESTA
+//while (test < n)
+//	test *= 2;
+//return (test == n)
+
+// otrA FORMA DE HACERLO ES ESTA
+//int is_power_of_2(unsigned int n)
+//{
+//	return (n != 0 && (n & (n - 1) == 0));
+//}
+
+
 int main ()
 {
 	int x = is_power_of_2(15);
