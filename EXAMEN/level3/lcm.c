@@ -16,7 +16,7 @@ unsigned int	lcm(unsigned int a, unsigned int b)
 	
 	if (a == 0 || b == 0)
 	       return (0);
-	if (a > b)
+	else if (a > b)
 		n = a;
 	else
 		n = b;
