@@ -25,7 +25,7 @@ void	putnbr(int n)
 int main (void)
 {
 	int	i;
-	i = 0;
+	i = 1;
 	while (i <= 100)
 	{
 		if (i % 15 == 0)
@@ -37,7 +37,7 @@ int main (void)
 		else
 			putnbr(i);
 		write (1, "\n", 1);
-		i+;
+		i++;
 	}
 	return (0);
 }
