@@ -1,40 +1,48 @@
 #include <stdlib.h>
 
-char    *ft_itoa(int nbr)
+char	*ft_itoa(int nbr)
 {
-    int len = (nbr <= 0); // Contar espacio para signo o 0
-    int temp = nbr;
-    char *result;
+	int	n = nbr;
+	int	len = 0;
+	char * result;
+	
+	if (nbr <= 0)
+		len++;
+	while (n)
+	{
+		n = n / 10;
+		len++;
+	}
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (NULL);
+	result[len] = '\0';
+	if (nbr == 0)
+	{
+		result[0] = '0';
+		return (result);
+	}
+	if (nbr < 0)
+	{
+		result[0] = '-';
+		nbr = -nbr;
+	}
+	while (nbr)
+	{
+		result[--len] = nbr % 10 + '0';
+		nbr = nbr / 10;
 
-    while (temp && ++len)
-        temp /= 10;
-
-    result = malloc(sizeof(char) * (len + 1));
-    if (!result)
-        return (NULL);
-
-    result[len] = '\0';
-    if (nbr < 0)
-    {
-        result[0] = '-';
-        nbr = -nbr;
-    }
-    else if (nbr == 0)
-        result[0] = '0';
-
-    while (nbr)
-    {
-        result[--len] = (nbr % 10) + '0';
-        nbr /= 10;
-    }
-
-    return (result);
+	}
+	return (result);
 }
 
 #include <stdio.h>
 #include <limits.h>
 
-int main (void)
+int	main(void)
 {
-    printf("%s\n", ft_itoa(INT_MAX));
+	printf("%s\n", ft_itoa(INT_MAX));
+    printf("123: %s\n", ft_itoa(123));
+    printf("-456: %s\n", ft_itoa(-456));
+    printf("0: %s\n", ft_itoa(0));
 }

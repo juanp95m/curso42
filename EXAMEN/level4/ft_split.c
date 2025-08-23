@@ -3,7 +3,7 @@
 
 char  **ft_split(char *str)
 {
-    char **split = malloc(sizeof(char *) * 1000); // Limitar el número de palabras a 1000
+    char **split = malloc(sizeof(char *) * 1000);
     int i = 0;
 
     if (!split)
@@ -21,7 +21,7 @@ char  **ft_split(char *str)
         int len = str - start;
         split[i] = malloc(sizeof(char) * (len + 1));
         if (!split[i])
-            return (NULL); // Manejo de error
+            return (NULL);
         int j = 0;
         while (j < len)
         {
