@@ -6,7 +6,7 @@
 /*   By: jperez-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:49:27 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/06/17 21:11:37 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/08/26 12:11:49 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ int main (int argc, char **argv)
 		i = 0;
 		while (argv[1][i])
 		{
-			if (argv[1][i] >= 65 && argv[1][i] <= 77 || argv[1][i] >= 97 && argv[1][i] <= 109)
-				arv[1][i]
+			if ((argv[1][i] >= 'A' && argv[1][i] <= 'M') || (argv[1][i] >= 'a'  && argv[1][i] <= 'm'))
+				argv[1][i] += 13;
+			else if ((argv[1][i] >= 'N' && argv[1][i] <= 'Z') || (argv[1][i] >= 'n' && argv[1][i] <= 'z'))
+				argv[1][i] -= 13;
+			write (1, &argv[1][i], 1);
+			i++;
 		}
 	}
 	write(1, "\n", 1);
