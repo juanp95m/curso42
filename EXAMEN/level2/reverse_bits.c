@@ -17,7 +17,7 @@ unsigned char reverse_bits(unsigned char octet)
 {
 	octet = (octet >> 4) | (octet << 4);
 	octet = ((0b11001100 & octet) >> 2) | ((0b00110011 & octet) << 2);
-    octet = ((0b10101010 & octet) >> 1) | ((0b01010101 & octet) << 1);
+    	octet = ((0b10101010 & octet) >> 1) | ((0b01010101 & octet) << 1);
 	return (octet);	
 }
 int main() 

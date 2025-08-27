@@ -26,9 +26,12 @@ char *rev_print(char *str)
 	return (str);
 }
 
- int main ()
+#include <stdio.h>
+ int main (void)
 {
-	rev_print("hola");
+	char *str;
+	str = rev_print("hola");
+	printf("\n%s", str);
 	write(1, "\n", 1);
 	return (0);
 }

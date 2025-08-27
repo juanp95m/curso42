@@ -41,7 +41,7 @@ char	*ft_itoa(int nbr)
 
 int	main(void)
 {
-	printf("%s\n", ft_itoa(INT_MAX));
+	printf("%s\n", ft_itoa(INT_MIN));
     printf("123: %s\n", ft_itoa(123));
     printf("-456: %s\n", ft_itoa(-456));
     printf("0: %s\n", ft_itoa(0));
