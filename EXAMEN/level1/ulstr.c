@@ -25,9 +25,8 @@ int main (int argc, char **argv)
 			else if (argv[1][i] >= 97 && argv[1][i] <= 122)
 				argv[1][i] -= 32;
 			write(1, &argv[1][i], 1);
-				i++;
+			i++;
 		}
-		write (1, "\n", 1);
 	}
 	write(1, "\n", 1);
 	return (0);

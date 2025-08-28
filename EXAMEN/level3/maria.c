@@ -1,41 +1,57 @@
 #include <stdio.h>
 
-int	ft_atoi_base(const char *str, int str_base)
+int	ft_isspace(char c)
 {
-    int neg = 1;
-    int result = 0;
-    int digit;
-
-    while (*str < 33)
-        str++;
-    
-    if (*str == '+' || *str == '-')
-    {
-        if (*str == '-')
-            neg = -neg;
-        str++;
-    }
-
-    while (*str)
-    {
-        if (*str >= 'A' && *str <= 'F')
-            digit = *str - 'A' + 10;
-        else if (*str >= 'a' && *str <= 'f')
-            digit = *str - 'a' + 10;
-        else if (*str >= '0' && *str <= '9')
-            digit = *str - '0';
-        else
-            break ;
-        
-        if (digit >= str_base)
-            break ;
-
-        result = result * str_base + digit;
-        str++;
-    }
-    return (result * neg);
+	return (c == 32 || c == '\t');
 }
 
+int	ft_isdigit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+int	ft_isalpha(int c)
+{
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}
+
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
+}
+
+int	ft_atoi_base(char *str, int str_base)
+{
+	int	i = 0;
+	int	sign = 1;
+	int	num = 0;
+	int	result = 0;
+
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]))
+			num = str[i] - '0';
+		else if (ft_isalpha(str[i]))
+			num = ft_tolower(str[i]) - 'a' + 10;
+		else
+			break ;
+		if (num >= str_base)
+			break ;
+		result = result * str_base + num;
+		i++;
+	}
+	return (result * sign);
+}
 
 #include <stdio.h>
 

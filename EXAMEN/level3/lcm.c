@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lcm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 17:57:32 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/07/24 18:06:21 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:06:40 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,12 @@ unsigned int	lcm(unsigned int a, unsigned int b)
 			return (n);
 		n++;	
 	}
+}
+
+#include <stdio.h>
+
+int main(void)
+{
+	printf("%d\n", lcm(6, 8));
+	return 0;
 }
