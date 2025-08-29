@@ -18,3 +18,13 @@ size_t	ft_strspn(const char *s, const char *accept)
         i++;
     return (i);
 }
+#include <stdio.h>
+
+int main(void)
+{
+    const char *s = "abcde123";
+    const char *accept = "abcde";
+    size_t result = ft_strspn(s, accept);
+    printf("Resultado: %zu\n", result); // Debería imprimir 5
+    return 0;
+}

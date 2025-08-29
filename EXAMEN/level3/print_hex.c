@@ -9,7 +9,7 @@ void print_hex(int n)
 
 int ft_atoi(char *str)
 {
-    int result;
+    int result = 0;
 
     if (*str >= '0' && *str <= '9')
     {
