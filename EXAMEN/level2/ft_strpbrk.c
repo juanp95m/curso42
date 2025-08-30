@@ -22,7 +22,7 @@ char	*ft_strpbrk(const char *s1, const char *s2)
 int main ()
 {
     const char  *s = "hola mundo";
-    const char  *a = "aeiou";
+    const char  *a = "aeiu";
     char *result = ft_strpbrk(s, a);
     printf("%s\n", result);
     return (0);

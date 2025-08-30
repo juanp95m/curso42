@@ -1,6 +1,6 @@
 #include <string.h>
 
-char *ft_strchr(const char *s, int c)
+char ft_strchr(const char *s, int c)
 {
     while (*s)
     {
@@ -11,7 +11,7 @@ char *ft_strchr(const char *s, int c)
     return (0);
 }
 
-size_t	ft_strcspn(const char *s, const char *accept)
+size_t	ft_strspn(const char *s, const char *accept)
 {
     size_t i = 0;
     while (s[i] && ft_strchr(accept, s[i]))

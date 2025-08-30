@@ -3,7 +3,7 @@
 int	ft_atoi_base(const char *str, int str_base)
 {
     int neg = 1;
-    int result;
+    int result = 0;
     int digit;
 
     while (*str < 33)
@@ -27,7 +27,7 @@ int	ft_atoi_base(const char *str, int str_base)
         else
             break;
         
-        if (*str >= str_base)
+        if (digit >= str_base)
             break;
 
         result = result * str_base + digit;

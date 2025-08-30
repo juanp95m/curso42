@@ -3,7 +3,7 @@
 void    ft_inter(char *s1, char *s2)
 {
     int i = 0;
-    int j ;
+    int j;
     char    array[128] = {0};
 
     while (s1[i])
