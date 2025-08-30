@@ -24,8 +24,8 @@ void	ft_putnbr(int n)
 
 int	ft_atoi(const char *str)
 {
-	char result = 0;
-	if (*str >= '0' && *str <= '9')
+	int result = 0;
+	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
 		str++;
