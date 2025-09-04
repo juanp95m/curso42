@@ -1,10 +1,13 @@
 #include "list.h"
+#include <stddef.h>
 
 t_list *sort_list(t_list* lst, int (*cmp)(int, int))
 {
     int overflow;
     t_list *temp;
 
+    if (!lst)
+        return NULL;
     temp = lst;
     while (lst->next)
     {
@@ -18,5 +21,5 @@ t_list *sort_list(t_list* lst, int (*cmp)(int, int))
         else
             lst = lst->next;
     }
-    return (lst);
+    return (temp);
 }
