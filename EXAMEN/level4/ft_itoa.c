@@ -2,9 +2,9 @@
 
 char	*ft_itoa(int nbr)
 {
-	int	n = nbr;
+	long long	n = nbr;
 	int	len = 0;
-	char * result;
+	char *result;
 	
 	if (nbr <= 0)
 		len++;
@@ -22,15 +22,16 @@ char	*ft_itoa(int nbr)
 		result[0] = '0';
 		return (result);
 	}
-	if (nbr < 0)
+	n = nbr;
+	if (n < 0)
 	{
 		result[0] = '-';
-		nbr = -nbr;
+		n = -n;
 	}
-	while (nbr)
+	while (n)
 	{
-		result[--len] = nbr % 10 + '0';
-		nbr = nbr / 10;
+		result[--len] = n % 10 + '0';
+		n = n / 10;
 
 	}
 	return (result);
@@ -42,7 +43,8 @@ char	*ft_itoa(int nbr)
 int	main(void)
 {
 	printf("%s\n", ft_itoa(INT_MAX));
-    printf("123: %s\n", ft_itoa(123));
-    printf("-456: %s\n", ft_itoa(-456));
-    printf("0: %s\n", ft_itoa(0));
+	printf("%s\n", ft_itoa(INT_MIN));
+    printf("%s\n", ft_itoa(123));
+    printf("%s\n", ft_itoa(-456));
+    printf("%s\n", ft_itoa(0));
 }
