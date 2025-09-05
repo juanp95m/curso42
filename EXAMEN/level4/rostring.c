@@ -18,7 +18,7 @@ void    rostring(char *str)
 
     while (str[i] == 9 || str[i] == 32)
         i++;
-    while (str[i]);
+    while (str[i])
     {
         if (str[i] == 9 || str[i] == 32)
             space = 1;
@@ -35,8 +35,10 @@ void    rostring(char *str)
         i++;
     }
     if (str[i] == 0 && word == 1)
-    {
         write(1, " ", 1);
+    while (start <= end)
+    {
+        write(1, &str[start], 1);
         start++;
     }
 }
