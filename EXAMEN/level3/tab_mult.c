@@ -11,21 +11,22 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
 void	ft_putnbr(int n)
 {
 	if (n > 9)
 		ft_putnbr(n / 10);
-	
 	char digit = (n % 10) + '0';
-       	write (1, &digit, 1);
+	write(1, &digit, 1);
 }
 
 int	ft_atoi(const char *str)
 {
-	char result = 0;
-	if (*str >= '0' && *str <= '9')
+	int result = 0;
+	// Opcional: saltar espacios y tabs iniciales
+	while (*str == ' ' || *str == '\t')
+		str++;
+	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
 		str++;
@@ -37,20 +38,20 @@ int	main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		int	i = 1;
-		int	num = ft_atoi(argv[1]);
-
+		int i = 1;
+		int num = ft_atoi(argv[1]);
 		while (i <= 9)
 		{
 			ft_putnbr(i);
-			write (1, " x ", 3);
+			write(1, " x ", 3);
 			ft_putnbr(num);
-			write (1, " = ", 3);
+			write(1, " = ", 3);
 			ft_putnbr(i * num);
-			write (1, "\n", 1);
+			write(1, "\n", 1);
 			i++;
 		}
 	}
-	write (1, "\n", 1);
+	else
+		write(1, "\n", 1);
 	return (0);
 }
