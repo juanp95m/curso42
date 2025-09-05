@@ -18,3 +18,13 @@ size_t	ft_strspn(const char *s, const char *accept)
         i++;
     return (i);
 }
+
+#include <stdio.h>
+
+int main (void)
+{
+    const char *s1 = "abcdef";
+    const char *accept = "aeiou";
+    size_t result = ft_strspn(s1, accept);
+    printf("%lu", (unsigned long)result);
+}

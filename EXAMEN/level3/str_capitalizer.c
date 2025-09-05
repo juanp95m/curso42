@@ -11,19 +11,24 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
 void	str_capitalizer(char *str)
 {
 	int	i = 0;
+	int	new_word = 1;
 	while (str[i])
 	{
+		// Convertir a minúscula si es letra mayuscula
 		if (str[i] >= 'A' && str[i] <= 'Z')
 			str[i] = str[i] + 32;
-		if (str[i] >= 'a' && str[i] <= 'z' && str[i + 1] < 33 && str[i - 1] < 33)
+		// Capitalizar si es inicio de palabra
+		if (str[i] >= 'a' && str[i] <= 'z' && new_word)
 			str[i] = str[i] - 32;
-		if ((str[i] >= 'a' && str[i] <= 'z') && (str[i - 1] < 33))
-			str[i] = str[i] - 32;
+		// Detectar separador para próxima palabra
+		if (str[i] == ' ' || str[i] == '\t')
+			new_word = 1;
+		else
+			new_word = 0;
 		write(1, &str[i], 1);
 		i++;
 	}
