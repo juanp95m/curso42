@@ -8,3 +8,6 @@ typedef struct s_list
 }                 t_list;
 
 #endif
+
+if caca
+    var = 1
