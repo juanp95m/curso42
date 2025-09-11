@@ -1,6 +1,6 @@
                                          
 #include "push_swap.h"
- // incluir tu cabecera hola soy hacker
+ // incluir tu cabecera
 
  //Comprueba si una cadena es un número entero válido.
 int is_valid_integer(const char *str)
