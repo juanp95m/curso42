@@ -15,7 +15,7 @@ typedef struct s_stack
 {
     int             value;       // integer num
     int             index;       // simply index for Radix
-    struct s_stack  *next;       // poniter to the next node
+    struct s_stack  *next;       // pointer to the next node
 }   t_stack;
 
 // --- PROTOTIPES OF FUNCTIONS ---
