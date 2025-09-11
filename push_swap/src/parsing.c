@@ -1,6 +1,6 @@
                                          
 #include "push_swap.h"
- // incluir tu cabecera
+ // incluir tu cabecera hola soy hacker
 
  //Comprueba si una cadena es un número entero válido.
 int is_valid_integer(const char *str)
@@ -74,7 +74,6 @@ int has_duplicates(t_stack *stack)
         // Avanza 'current' al siguiente nodo para la próxima iteración.
         current = current->next;
     }
-    // Si se recorre todo el stack sin encontrar duplicados, devuelve 0.
     return (0); // Devuelve 0 (falso).
 }
 
