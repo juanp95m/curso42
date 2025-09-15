@@ -29,9 +29,18 @@ void parse_arguments(int argc, char **argv, t_stack **stack_a);
 
 
 // operations_*.c
+// Operaciones de stacks
 void    sa(t_stack **stack_a, int print);
+void    sb(t_stack **stack_b, int print);
+void    ss(t_stack **stack_a, t_stack **stack_b, int print);
+void    pa(t_stack **stack_a, t_stack **stack_b, int print);
 void    pb(t_stack **stack_a, t_stack **stack_b, int print);
-// ...  ...
+void    ra(t_stack **stack_a, int print);
+void    rb(t_stack **stack_b, int print);
+void    rr(t_stack **stack_a, t_stack **stack_b, int print);
+void    rra(t_stack **stack_a, int print);
+void    rrb(t_stack **stack_b, int print);
+void    rrr(t_stack **stack_a, t_stack **stack_b, int print);
 
 // algorithm.c
 void    sort_stack(t_stack **stack_a, t_stack **stack_b);
@@ -41,6 +50,6 @@ t_stack *ft_stack_new(int value);
 void    ft_stack_add_back(t_stack **stack, t_stack *new_node);
 int     ft_stack_size(t_stack *stack);
 void    free_stack(t_stack **stack);
-// ... more prototipes ...
+// ... 
 
 #endif

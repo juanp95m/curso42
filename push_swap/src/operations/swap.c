@@ -22,9 +22,9 @@ static void	swap(t_stack **stack)
 	if (!stack || !*stack || !(*stack)->next) 
 		return; // Si el stack es nulo o tiene menos de dos elementos, no hace nada
 	first = *stack; // Guarda el primer elemento del stack
-	second = (*stack)->next; // Guarda el segundo elemento del stack
-	first->next = second->next; // El primer elemento ahora apunta al tercero
-	second->next = first; // El segundo elemento ahora apunta al primero
+	second = first->next; // Guarda el segundo elemento del stack
+	first->next = second->next; // El enganche del primer nodo ahora apunta al tercero
+	second->next = first; // El enganche del segundo nodo ahora apunta al primero
 	*stack = second; // El stack ahora comienza en el segundo elemento
 }
 

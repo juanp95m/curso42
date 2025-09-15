@@ -20,7 +20,7 @@ static void	push(t_stack **src, t_stack **dest)
 	if (!src || !*src)
 		return;
 	node_to_push = *src;
-	*src = (*src)->next;
+	*src = node_to_push->next;
 	node_to_push->next = *dest;
 	*dest = node_to_push;
 }
