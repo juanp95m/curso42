@@ -21,15 +21,20 @@ typedef struct s_stack
 // --- PROTOTIPES OF FUNCTIONS ---
 
 // main.c
-
+void print_stack(t_stack *stack);
 
 // parsing.c
 
+
 void parse_arguments(int argc, char **argv, t_stack **stack_a);
+void process_split_args(char **args, t_stack **stack_a);
+int is_valid_integer(const char *str);
+int has_duplicates(t_stack *stack);
+void free_stack_and_error(t_stack **stack);
 
 
 // operations_*.c
-// Operaciones de stacks
+
 void    sa(t_stack **stack_a, int print);
 void    sb(t_stack **stack_b, int print);
 void    ss(t_stack **stack_a, t_stack **stack_b, int print);
@@ -49,6 +54,7 @@ void    sort_stack(t_stack **stack_a, t_stack **stack_b);
 t_stack *ft_stack_new(int value);
 void    ft_stack_add_back(t_stack **stack, t_stack *new_node);
 int     ft_stack_size(t_stack *stack);
+t_stack *ft_stack_last(t_stack *stack);
 void    free_stack(t_stack **stack);
 // ... 
 

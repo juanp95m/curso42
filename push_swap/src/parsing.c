@@ -97,34 +97,46 @@ void free_stack_and_error(t_stack **stack)
     // Termina el programa con un código de error.
     exit(1);
 }
-
-// Procesa los argumentos, valida los datos y crea el stack 'a'.
-void parse_arguments(int argc, char **argv, t_stack **stack_a)
+void	process_split_args(char **args, t_stack **stack_a)
 {
-    int i;         // Contador para el bucle de argumentos.
-    long nbr;      // Variable para almacenar el número convertido.
-    t_stack *new;  // Puntero para el nuevo nodo a crear.
+	int		i;
+	long	nbr;
+	t_stack	*new;
 
-    i = 1; // Inicia en 1 para saltar el nombre del programa (argv[0]).
-    // Recorre todos los argumentos pasados al programa.
-    while (i < argc)
-    {
-        // 1. Valida que la cadena contenga solo dígitos y un posible signo.
-        if (!is_valid_integer(argv[i]))
-            free_stack_and_error(stack_a); // Si no es válido, libera y sale.
-        // 2. Convierte la cadena a 'long' para la validación de rango.
-        nbr = ft_atol(argv[i]);
-        // 3. Comprueba si el número está fuera del rango de un 'int'.
-        if (nbr < INT_MIN || nbr > INT_MAX)
-            free_stack_and_error(stack_a); // Si hay desbordamiento, libera y sale.
-        // 4. Crea un nuevo nodo con el número validado.
-        new = ft_stack_new((int)nbr);
-        // Añade el nuevo nodo al final del stack 'a'.
-        ft_stack_add_back(stack_a, new);
-        // Incrementa el contador para pasar al siguiente argumento.
-        i++;
-    }
-    // 5. Una vez creado el stack, comprueba si hay duplicados.
-    if (has_duplicates(*stack_a))
-        free_stack_and_error(stack_a); // Si hay duplicados, libera y sale.
+	i = 0;
+	while (args[i])
+	{
+		if (!is_valid_integer(args[i]))
+			free_stack_and_error(stack_a);
+		nbr = ft_atol(args[i]);
+		if (nbr < INT_MIN || nbr > INT_MAX)
+			free_stack_and_error(stack_a);
+		new = ft_stack_new((int)nbr);
+		ft_stack_add_back(stack_a, new);
+		i++;
+	}
+	if (has_duplicates(*stack_a))
+		free_stack_and_error(stack_a);
+}
+//para una unica cadena
+void	parse_arguments(int argc, char **argv, t_stack **stack_a)
+{
+	int		i;
+	long	nbr;
+	t_stack	*new;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (!is_valid_integer(argv[i]))
+			free_stack_and_error(stack_a);
+		nbr = ft_atol(argv[i]);
+		if (nbr < INT_MIN || nbr > INT_MAX)
+			free_stack_and_error(stack_a);
+		new = ft_stack_new((int)nbr);
+		ft_stack_add_back(stack_a, new);
+		i++;
+	}
+	if (has_duplicates(*stack_a))
+		free_stack_and_error(stack_a);
 }

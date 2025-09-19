@@ -12,7 +12,6 @@
 
 #include "push_swap.h"
 
-// Crea un nuevo nodo para el stack
 t_stack *ft_stack_new(int value)
 {
     t_stack *new_node; // Declara un puntero para el nuevo nodo
@@ -49,4 +48,16 @@ void    ft_stack_add_back(t_stack **stack, t_stack *new_node)
     }
     last = ft_stack_last(*stack); // Busca el último nodo de la pila
     last->next = new_node; // Enlaza el nuevo nodo al final de la pila
+}
+
+// Cuenta el número de nodos en el stack
+int ft_stack_size(t_stack *stack)
+{
+    int count = 0;
+    while (stack)
+    {
+        count++;
+        stack = stack->next;
+    }
+    return count;
 }

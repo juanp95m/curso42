@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-// --- 1. Función para comprobar si la pila ya está ordenada ---
-// Recorre la pila y devuelve 1 si está ordenada, 0 si no.
 static int	is_sorted(t_stack *stack)
 {
 	while (stack && stack->next)
@@ -25,10 +23,6 @@ static int	is_sorted(t_stack *stack)
 	return (1); // Está ordenada
 }
 
-// --- 2. Algoritmos para casos pequeños ---
-
-// Ordena una pila de 3 elementos.
-// Identifica el caso específico y aplica la combinación óptima de movimientos.
 static void	sort_three(t_stack **a)
 {
 	int	first;
