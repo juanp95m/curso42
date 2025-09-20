@@ -12,46 +12,7 @@
 
 #include "push_swap.h"
 
-static int	is_sorted(t_stack *stack)
-{
-	while (stack && stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (0); // No está ordenada
-		stack = stack->next;
-	}
-	return (1); // Está ordenada
-}
-
-static void	sort_three(t_stack **a)
-{
-	int	first;
-	int	second;
-	int	third;
-
-	first = (*a)->value;
-	second = (*a)->next->value;
-	third = (*a)->next->next->value;
-	if (first > second && second < third && first < third)
-		sa(a, 1);
-	else if (first > second && second > third)
-	{
-		sa(a, 1);
-		rra(a, 1);
-	}
-	else if (first > second && second < third && first > third)
-		ra(a, 1);
-	else if (first < second && second > third && first < third)
-	{
-		sa(a, 1);
-		ra(a, 1);
-	}
-	else if (first < second && second > third && first > third)
-		rra(a, 1);
-}
-
-// --- 3. La función "directora" del algoritmo ---
-// Decide qué algoritmo usar según el tamaño de la pila.
+// --- FUNCIÓN 'sort_stack' ACTUALIZADA ---
 void	sort_stack(t_stack **stack_a)
 {
 	t_stack	*stack_b;
@@ -59,18 +20,16 @@ void	sort_stack(t_stack **stack_a)
 
 	stack_b = NULL;
 	size = ft_stack_size(*stack_a);
-	// Si la pila ya está ordenada, no hacemos nada.
 	if (is_sorted(*stack_a))
 		return;
-	// Decide qué especialista llamar.
 	if (size == 2)
 		sa(stack_a, 1);
 	else if (size == 3)
 		sort_three(stack_a);
-	// else if (size <= 5)
-	//	sort_five(stack_a, &stack_b); // Lo haremos después
-	// else
-	// 	sort_large(stack_a, &stack_b); // El algoritmo Radix, para el final
+	else if (size <= 5)
+		sort_five(stack_a, &stack_b);
+	else
+		radix_sort(stack_a, &stack_b);
 }
 
 
