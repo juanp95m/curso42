@@ -1,16 +1,13 @@
-###
-# Makefile para push_swap (incluye automáticamente todas las fuentes)
-###
 
-# Nombre del ejecutable final
+# Name's proyect
 NAME = push_swap
 
-# Herramientas
+# Tools
 CC      = gcc
 CFLAGS  = -Wall -Wextra -Werror -I. -I./libft -MMD -MP
 RM      = rm -f
 
-# Directorios
+# Directories
 LIBFT_DIR   = ./libft
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 SRC_DIR     = src
@@ -19,7 +16,7 @@ OPS_DIR     = $(SRC_DIR)/operations
 PARS_DIR    = $(SRC_DIR)/parsing
 UTILS_DIR   = $(SRC_DIR)/utils
 
-# Fuentes (recogidas automáticamente de subcarpetas)
+# Sources
 SRCS = \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/parsing.c \
@@ -28,7 +25,7 @@ SRCS = \
 	$(wildcard $(PARS_DIR)/*.c) \
 	$(wildcard $(UTILS_DIR)/*.c)
 
-# Objetos
+# Objets
 OBJS = $(SRCS:.c=.o)
 
 # Enlazado contra libft

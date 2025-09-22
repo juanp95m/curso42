@@ -4,7 +4,7 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h> //  malloc, free, atoi
-# include <stdio.h>  // printf (temporal, para debugging)
+# include <stdio.h>  // printf (debugging)
 # include <unistd.h> // write
 # include <stddef.h> // NULL
 # include <limits.h>
@@ -20,10 +20,8 @@ typedef struct s_stack
 
 // --- PROTOTIPES OF FUNCTIONS ---
 
-// main.c (solo funciones internas)
 
 // parsing.c
-
 
 void parse_arguments(int argc, char **argv, t_stack **stack_a);
 void process_split_args(char **args, t_stack **stack_a);
@@ -63,6 +61,5 @@ void    ft_stack_add_back(t_stack **stack, t_stack *new_node);
 int     ft_stack_size(t_stack *stack);
 t_stack *ft_stack_last(t_stack *stack);
 void    free_stack(t_stack **stack);
-// ... 
 
 #endif
