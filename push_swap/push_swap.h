@@ -19,7 +19,8 @@ typedef struct s_stack
 }   t_stack;
 
 // --- PROTOTIPES OF FUNCTIONS ---
-
+//main
+void    print_stack(t_stack *stack);
 
 // parsing.c
 

@@ -1,9 +1,6 @@
 
 #include "push_swap.h"
 
-
-// --- 3. ALGORITMO RADIX PARA CASOS GRANDES ---
-
 // Asigna a cada nodo un "índice" o ranking según su valor.
 // El número más pequeño tendrá índice 0, el siguiente 1, y así sucesivamente.
 static void	assign_indexes(t_stack *stack)

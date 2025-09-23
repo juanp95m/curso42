@@ -5,43 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 18:21:15 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/09/22 12:18:46 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/09/22 12:36:40 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/09/23 13:06:40 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-// --- Función temporal para imprimir la pila ---
-void    print_stack(t_stack *stack)
+
+void	print_stack(t_stack *stack)
 {
-    printf("--- Contenido del Stack ---\n");
-    if (!stack)
-    {
-        printf("(Vacío)\n");
-        return;
-    }
-    while (stack)
-    {
-        printf("Valor: %d\n", stack->value);
-        stack = stack->next;
-    }
-    printf("---------------------------\n");
+	printf("--- Contenido del Stack ---\n");
+	if (!stack)
+	{
+		printf("(Vacío)\n");
+		return ;
+	}
+	while (stack)
+	{
+		printf("Valor: %d\n", stack->value);
+		stack = stack->next;
+	}
+	printf("---------------------------\n");
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack *stack_a;
+	t_stack	*stack_a;
 
 	stack_a = NULL;
 	if (argc < 2)
 		return (0);
-
-	// Un único flujo de parsing: cada argv[i] puede contener uno o varios números
 	parse_arguments(argc, argv, &stack_a);
-
 	if (stack_a)
 		sort_stack(&stack_a);
-
+	print_stack(stack_a);
 	free_stack(&stack_a);
 	return (0);
 }
