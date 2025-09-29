@@ -1,65 +1,73 @@
-
-# Name's proyect
+# Project name
 NAME = push_swap
 
 # Tools
-CC      = gcc
-CFLAGS  = -Wall -Wextra -Werror -I. -I./libft -MMD -MP
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror -I. -I./libft
 RM      = rm -f
 
 # Directories
 LIBFT_DIR   = ./libft
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 SRC_DIR     = src
-ALGO_DIR    = $(SRC_DIR)/algorithm
-OPS_DIR     = $(SRC_DIR)/operations
-PARS_DIR    = $(SRC_DIR)/parsing
-UTILS_DIR   = $(SRC_DIR)/utils
 
 # Sources
-SRCS = \
-	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/parsing.c \
-	$(wildcard $(ALGO_DIR)/*.c) \
-	$(wildcard $(OPS_DIR)/*.c) \
-	$(wildcard $(PARS_DIR)/*.c) \
-	$(wildcard $(UTILS_DIR)/*.c)
+SRC_FILES = main.c\
+algorithm.c \
+algorithm_utils.c \
+free_stack.c \
+parsing.c \
+parsing_utils.c \
+push.c \
+radix_sort.c \
+reverse_rotate.c \
+rotate.c \
+small_sort.c \
+stack_utils.c \
+swap.c \
+validation.c \
 
-# Objets
+SRCS := $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+
+# Objects
 OBJS = $(SRCS:.c=.o)
 
-# Enlazado contra libft
+# Link against libft
 LDFLAGS = -L$(LIBFT_DIR) -lft
 
-# Objetivo por defecto
+# Default target
 all: $(NAME)
 
-# Enlazado del ejecutable
+# Executable linking
 $(NAME): $(OBJS) $(LIBFT_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@echo "✅ $(NAME) compiled successfully"
 
-# Construcción de libft
+# Build libft
 $(LIBFT_LIB):
-	$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
 
-# Regla genérica de compilación
+.SUFFIXES: .c .o
+
+# Generic compilation rule
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Incluir dependencias generadas automáticamente
+# Include automatically generated dependencies
 -include $(OBJS:.o=.d)
 
-# Limpieza de objetos
+# Clean objects
 clean:
-	$(RM) $(OBJS) $(OBJS:.o=.d)
-	$(MAKE) -C $(LIBFT_DIR) clean # Limpia también libft
+	@$(RM) $(OBJS) $(OBJS:.o)
+	@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory
+	echo $(OBJS)
 
-# Limpieza total
+# Full clean
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(RM) $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory
 
-# Recompilar desde cero
+# Recompile from scratch
 re: fclean all
 
 .PHONY: all clean fclean re

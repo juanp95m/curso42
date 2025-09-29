@@ -29,20 +29,21 @@ all: $(NAME)
 
 # como crear libft.a a partir de los .o
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
+	@echo "✅ libft.a compiled successfully"
 
 # Regla generica para compilar cada .c en .o
 
 %.o: %.c $(INCLUDE) 
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	
 # Elimina los .c y .o
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 # Elimina los .o y la libreria
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 # Vuelve a compilar desde cero
 re: fclean all
