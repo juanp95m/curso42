@@ -1,0 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 15:37:51 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/10/01 17:07:23 by jperez-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PIPEX_H
+# define PIPEX_H
+
+# include <unistd.h> // Para las funciones principales
+# include <sys/types.h> // pid_t, size_t, ssize_t
+# include <sys/wait.h> // wait y waitpid
+# include <stdio.h> // perror(), printf, NULL
+# include <stdlib.h> // malloc, free y exit
+# include <fcntl.h>  // Para open
+# include "libft.h"
+
+typedef struct s_pipex
+{
+    int     infile_fd;
+    int     outfile_fd;
+    int     pipe_fd[2];
+    pid_t   pid1;
+    pid_t   pid2;
+
+    char    *cmd1_path; // Ruta completa a cmd1 (ej: /bin/ls)
+    char    **cmd1_args; // Array de argumentos para cmd1 (ej: {"ls", "-l", NULL})
+
+    char    *cmd2_path;
+    char    **cmd2_args;
+
+    char    **env_paths; // Array con las rutas del PATH
+    char    **envp;      // Puntero al envp original
+
+} t_pipex;
+
+// Funciones principales
+void    init_pipex_data(t_pipex *data, int argc, char **argv, char **envp);
+void    execute_child_one(t_pipex data); // Pasamos la struct por copia
+void    execute_child_two(t_pipex data);
+
+// Funciones auxiliares
+char    *find_command_path(char *cmd, char **envp);
+void    perror_and_exit(char *msg);
+void    free_and_exit(t_pipex *data);
+
+#endif
