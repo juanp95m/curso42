@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:37:42 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/01 17:53:09 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:05:01 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ static void init_commands(t_pipex *data, char **argv, char **envp)
 {
     data->cmd1_args = ft_split(argv[2], ' ');
     if (!data->cmd1_args)
-        // gestionar error (ej: free_and_exit(data))
-    
+        perror_and_exit("Error: Failed to split cmd1");
+        
     data->cmd1_path = find_command_path(data->cmd1_args[0], envp);
     if (!data->cmd1_path)
-        // gestionar error y mostrar "command not found"
+        perror_and_exit("cmd1: command not found");
 
     data->cmd2_args = ft_split(argv[3], ' ');
     if (!data->cmd2_args)
-        // gestionar error
+        perror_and_exit("Error: Failed to split cmd2");
         
     data->cmd2_path = find_command_path(data->cmd2_args[0], envp);
     if (!data->cmd2_path)
-        // gestionar error
+        perror_and_exit("cmd2: command not found");
 }
 
 //función principal de inicialización
@@ -47,10 +47,7 @@ void init_pipex_data(t_pipex *data, char **argv, char **envp)
     }
 
     if (pipe(data->pipe_fd) == -1)
-    {
-        // cerrar ficheros y salir
         perror_and_exit("pipe");
-    }
     
     data->envp = envp;
     init_commands(data, argv, envp);

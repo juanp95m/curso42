@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:37:46 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/01 15:51:11 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:11:27 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **envp)
     }
     
     // 1. Inicializa la estructura con todos los datos necesarios
-    init_pipex_data(&data, argc, argv, envp);
+    init_pipex_data(&data, argv, envp);
 
     // 2. Lanza los procesos hijos
     // (Esta función contendrá los forks y las llamadas a las funciones de los hijos)

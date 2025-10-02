@@ -6,14 +6,14 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:37:51 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/01 17:07:23 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:14:03 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <unistd.h> // Para las funciones principales
+# include <unistd.h> // fork
 # include <sys/types.h> // pid_t, size_t, ssize_t
 # include <sys/wait.h> // wait y waitpid
 # include <stdio.h> // perror(), printf, NULL
@@ -41,7 +41,7 @@ typedef struct s_pipex
 } t_pipex;
 
 // Funciones principales
-void    init_pipex_data(t_pipex *data, int argc, char **argv, char **envp);
+void    init_pipex_data(t_pipex *data, char **argv, char **envp);
 void    execute_child_one(t_pipex data); // Pasamos la struct por copia
 void    execute_child_two(t_pipex data);
 
@@ -49,5 +49,8 @@ void    execute_child_two(t_pipex data);
 char    *find_command_path(char *cmd, char **envp);
 void    perror_and_exit(char *msg);
 void    free_and_exit(t_pipex *data);
+void    execute_processes(t_pipex *data);
+void    cleanup(t_pipex *data);
+void    free_split(char **array);
 
 #endif
