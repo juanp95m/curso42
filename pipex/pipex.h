@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:37:51 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/02 19:14:03 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/03 18:26:32 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_pipex
     char    *cmd2_path;
     char    **cmd2_args;
 
-    char    **env_paths; // Array con las rutas del PATH
     char    **envp;      // Puntero al envp original
 
 } t_pipex;
@@ -52,5 +51,6 @@ void    free_and_exit(t_pipex *data);
 void    execute_processes(t_pipex *data);
 void    cleanup(t_pipex *data);
 void    free_split(char **array);
+void    command_not_found(const char *cmd_label, const char *cmd);
 
 #endif

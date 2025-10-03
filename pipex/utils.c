@@ -6,13 +6,21 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:38:01 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/02 19:02:03 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:04:24 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+/*
+Resolución de rutas de comandos:
+ - get_path_variable: devuelve el valor de PATH (sin el prefijo "PATH=")
+ - check_paths: concatena directorios de PATH con el comando y prueba X_OK
+ - find_command_path: coordina la búsqueda y libera recursos auxiliares
+*/
+
 //solo busca y devuelve la línea PATH=... de envp
+// Busca la variable PATH en envp y devuelve el puntero al valor tras "PATH="
 static char *get_path_variable(char **envp)
 {
     int i = 0;
@@ -25,6 +33,7 @@ static char *get_path_variable(char **envp)
     return (NULL);
 }
 
+// Recorre cada ruta de PATH, construye candidato y devuelve la primera ejecutable
 static char *check_paths(char **all_paths, char *command)
 {
     char    *temp_path;
@@ -53,6 +62,7 @@ static char *check_paths(char **all_paths, char *command)
     return (NULL); // No se encontró en ninguna ruta
 }
 
+// Orquesta la búsqueda de la ruta ejecutable a partir del nombre del comando
 char *find_command_path(char *command, char **envp)
 {
     char    *path_variable;

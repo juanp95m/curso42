@@ -6,12 +6,20 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:37:53 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/02 18:47:32 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:04:24 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+/*
+Ejecución de procesos (pipeline):
+ - execute_child_one: infile -> cmd1 -> pipe write
+ - execute_child_two: pipe read -> cmd2 -> outfile
+ - execute_processes: orquesta forks, cierra pipe en padre y espera
+*/
+
+// Configura stdin desde infile y stdout hacia la pipe, luego execve(cmd1)
 void execute_child_one(t_pipex data)
 {
     // 1. Redirigimos la entrada estándar (0) para que lea del infile.
@@ -45,6 +53,7 @@ void execute_child_one(t_pipex data)
 
 // En processes.c, añade esta nueva función
 
+// Configura stdin desde la pipe y stdout hacia outfile, luego execve(cmd2)
 void execute_child_two(t_pipex data)
 {
     // 1. Redirigimos la entrada estándar (0) para que lea de la pipe.
@@ -76,6 +85,7 @@ void execute_child_two(t_pipex data)
 
 // (Aquí ya tienes execute_child_one y execute_child_two)
 
+// Crea dos hijos, cierra extremos de pipe en el padre y espera a ambos
 void execute_processes(t_pipex *data)
 {
     // 1. Creamos el primer proceso hijo (pid1)
