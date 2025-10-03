@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:38:01 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/03 20:04:24 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/03 23:08:27 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,14 @@ char *find_command_path(char *command, char **envp)
         return (NULL); // No existe la variable PATH
 
     // 2. Divide la variable en un array de strings
+    printf("path = %s\n", path_variable);
     all_paths = ft_split(path_variable, ':');
     if (!all_paths)
         return (NULL); // Fallo de malloc en ft_split
 
     // 3. Llama a la función trabajadora para que busque
     executable_path = check_paths(all_paths, command);
+    printf("ubicacion = %s\n", executable_path);
 
     // 4. Libera el array de rutas que ya no necesitamos
     free_split(all_paths); // (Tu función para liberar el array 2D)
