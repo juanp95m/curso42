@@ -28,19 +28,6 @@ void perror_and_exit(char *message)
     exit(1);         // Cierra el programa con un código de error
 }
 
-// Mensaje específico para 'command not found' sin usar perror
-// Salida estándar de error y código 127 (convención de shells)
-// Mensaje específico de comando no encontrado y salida con código 127
-void command_not_found(const char *cmd_label, const char *cmd)
-{
-    if (cmd_label && cmd)
-        fprintf(stderr, "%s: %s: command not found\n", cmd_label, cmd); //cambiar printf por write
-    else if (cmd)
-        fprintf(stderr, "%s: command not found\n", cmd);
-    else
-        fprintf(stderr, "command not found\n");
-    exit(127);
-}
 // Libera array de punteros a char (terminado en NULL)
 void free_split(char **array)
 {
@@ -57,15 +44,23 @@ void free_split(char **array)
     free(array);
 }
 
-// Ahora la función principal de limpieza
-// Limpieza para el flujo normal: cierra fds y libera paths/args
-void cleanup(t_pipex *data)
+// Función base de limpieza común (sin exit)
+static void cleanup_base(t_pipex *data, int close_pipes)
 {
-    // Cierra todos los descriptores de fichero que puedan estar abiertos
+    // Cierra archivos de entrada y salida
     if (data->infile_fd >= 0)
         close(data->infile_fd);
     if (data->outfile_fd >= 0)
         close(data->outfile_fd);
+    
+    // Cierra pipes solo si se solicita
+    if (close_pipes)
+    {
+        if (data->pipe_fd[0] >= 0)
+            close(data->pipe_fd[0]);
+        if (data->pipe_fd[1] >= 0)
+            close(data->pipe_fd[1]);
+    }
 
     // Libera la memoria de los comandos
     free_split(data->cmd1_args);
@@ -74,22 +69,15 @@ void cleanup(t_pipex *data)
     free(data->cmd2_path);
 }
 
-// Libera de forma segura lo que haya y sale con código de error genérico 1
-// Útil si falla algo después de reservar memoria pero antes de ejecutar procesos
-// Limpieza en error: cierra todo lo que exista y sale con código 1
+// Limpieza para el flujo normal (no cierra pipes, no hace exit)
+void cleanup(t_pipex *data)
+{
+    cleanup_base(data, 0); // 0 = no cerrar pipes
+}
+
+// Limpieza para errores (cierra todo y hace exit con código 1)
 void free_and_exit(t_pipex *data)
 {
-    if (data->infile_fd >= 0)
-        close(data->infile_fd);
-    if (data->outfile_fd >= 0)
-        close(data->outfile_fd);
-    if (data->pipe_fd[0] >= 0)
-        close(data->pipe_fd[0]);
-    if (data->pipe_fd[1] >= 0)
-        close(data->pipe_fd[1]);
-    free_split(data->cmd1_args);
-    free_split(data->cmd2_args);
-    free(data->cmd1_path);
-    free(data->cmd2_path);
+    cleanup_base(data, 1); // 1 = cerrar pipes también
     exit(1);
 }

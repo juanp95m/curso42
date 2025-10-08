@@ -20,6 +20,7 @@
 # include <stdlib.h> // malloc, free y exit
 # include <fcntl.h>  // Para open
 # include "libft.h"
+# include "ft_printf.h"
 
 typedef struct s_pipex
 {
@@ -52,5 +53,6 @@ void    execute_processes(t_pipex *data);
 void    cleanup(t_pipex *data);
 void    free_split(char **array);
 void    command_not_found(const char *cmd_label, const char *cmd);
+void    close_opened_files(t_pipex *data);
 
 #endif

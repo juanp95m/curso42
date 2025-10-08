@@ -13,11 +13,11 @@
 #include "pipex.h"
 
 /*
-Flujo de inicialización (setup):
- 1) init_defaults      -> Inicializa la struct con valores seguros (fds=-1, punteros=NULL)
- 2) open_files         -> Abre infile (lectura) y outfile (escritura/crea/trunca)
- 3) create_pipe_or_fail-> Crea el pipe; si falla, cierra fds y aborta
- 4) data->envp = envp   -> Guarda el puntero al entorno para uso posterior
+ * Flujo de inicialización de setup:
+ * 1) init_defaults      -> Inicializa la struct con valores seguros (fds=-1, punteros=NULL)
+ * 2) open_files         -> Abre infile (lectura) y outfile (escritura/crea/trunca)
+ * 3) create_pipe_or_fail-> Crea el pipe; si falla, cierra fds y aborta
+ * 4) data->envp = envp   -> Guarda el puntero al entorno para uso posterior
  5) init_commands       -> Prepara args y rutas ejecutables de cmd1 y cmd2
 */
 
@@ -43,8 +43,7 @@ static void open_files(t_pipex *data, char **argv)
     data->outfile_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (data->outfile_fd < 0)
     {
-        if (data->infile_fd >= 0)
-            close(data->infile_fd);
+        close_opened_files(data);
         perror_and_exit("outfile");
     }
 }
@@ -54,10 +53,7 @@ static void create_pipe_or_fail(t_pipex *data)
 {
     if (pipe(data->pipe_fd) == -1)
     {
-        if (data->infile_fd >= 0)
-            close(data->infile_fd);
-        if (data->outfile_fd >= 0)
-            close(data->outfile_fd);
+        close_opened_files(data);
         perror_and_exit("pipe");
     }
 }
@@ -70,13 +66,19 @@ static void init_commands(t_pipex *data, char **argv, char **envp)
         free_and_exit(data);
     data->cmd1_path = find_command_path(data->cmd1_args[0], envp);
     if (!data->cmd1_path)
+    {
+        command_not_found("pipex", data->cmd1_args[0]);
         free_and_exit(data);
+    }
     data->cmd2_args = ft_split(argv[3], ' ');
     if (!data->cmd2_args)
         free_and_exit(data);
     data->cmd2_path = find_command_path(data->cmd2_args[0], envp);
     if (!data->cmd2_path)
+    {
+        command_not_found("pipex", data->cmd2_args[0]);
         free_and_exit(data);
+    }
 }
 
 // función principal

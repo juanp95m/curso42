@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **envp)
 
     if (argc != 5)
     {
-        write(2, "Uso: ./pipex infile cmd1 cmd2 outfile\n", 38);
+        ft_printf("Uso: ./pipex infile cmd1 cmd2 outfile\n");
         return (1);
     }
     

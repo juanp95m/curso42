@@ -75,14 +75,12 @@ char *find_command_path(char *command, char **envp)
         return (NULL); // No existe la variable PATH
 
     // 2. Divide la variable en un array de strings
-    printf("path = %s\n", path_variable);
     all_paths = ft_split(path_variable, ':');
     if (!all_paths)
         return (NULL); // Fallo de malloc en ft_split
 
     // 3. Llama a la función trabajadora para que busque
     executable_path = check_paths(all_paths, command);
-    printf("ubicacion = %s\n", executable_path);
 
     // 4. Libera el array de rutas que ya no necesitamos
     free_split(all_paths); // (Tu función para liberar el array 2D)
@@ -90,3 +88,25 @@ char *find_command_path(char *command, char **envp)
     // 5. Devuelve el resultado (la ruta encontrada o NULL)
     return (executable_path);
 }
+
+// Helper para cerrar archivos abiertos durante setup (evita duplicación)
+void close_opened_files(t_pipex *data)
+{
+    if (data->infile_fd >= 0)
+        close(data->infile_fd);
+    if (data->outfile_fd >= 0)
+        close(data->outfile_fd);
+}
+
+// Mensaje específico para 'command not found'
+// Imprime el mensaje de error pero no hace exit (para permitir cleanup)
+void command_not_found(const char *cmd_label, const char *cmd)
+{
+    if (cmd_label && cmd)
+        ft_printf("%s: %s: command not found\n", cmd_label, cmd);
+    else if (cmd)
+        ft_printf("%s: command not found\n", cmd);
+    else
+        ft_printf("command not found\n");
+}
+

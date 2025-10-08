@@ -19,6 +19,8 @@ Ejecución de procesos (pipeline):
  - execute_processes: orquesta forks, cierra pipe en padre y espera
 */
 
+// Helper: cierra archivos originales que los hijos no necesitan (usa close_opened_files de utils.c)
+
 // Configura stdin desde infile y stdout hacia la pipe, luego execve(cmd1)
 void execute_child_one(t_pipex data)
 {
@@ -38,8 +40,7 @@ void execute_child_one(t_pipex data)
     // Cerramos el extremo de escritura original, ya que lo hemos duplicado en stdout.
     close(data.pipe_fd[1]);
     // Cerramos los ficheros originales.
-    close(data.infile_fd);
-    close(data.outfile_fd);
+    close_opened_files(&data);
 
     // 4. Ejecutamos el comando.
     // Si execve tiene éxito, este proceso se convierte en el comando
@@ -50,8 +51,6 @@ void execute_child_one(t_pipex data)
     perror_and_exit("execve cmd1");
 }
 
-
-// En processes.c, añade esta nueva función
 
 // Configura stdin desde la pipe y stdout hacia outfile, luego execve(cmd2)
 void execute_child_two(t_pipex data)
@@ -72,8 +71,7 @@ void execute_child_two(t_pipex data)
     // Cerramos el extremo de lectura original, ya que lo hemos duplicado en stdin.
     close(data.pipe_fd[0]);
     // Cerramos los ficheros originales.
-    close(data.infile_fd);
-    close(data.outfile_fd);
+    close_opened_files(&data);
 
     // 4. Ejecutamos el segundo comando.
     execve(data.cmd2_path, data.cmd2_args, data.envp);
@@ -82,8 +80,6 @@ void execute_child_two(t_pipex data)
     perror_and_exit("execve cmd2");
 }
 // En processes.c
-
-// (Aquí ya tienes execute_child_one y execute_child_two)
 
 // Crea dos hijos, cierra extremos de pipe en el padre y espera a ambos
 void execute_processes(t_pipex *data)
