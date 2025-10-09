@@ -1,0 +1,46 @@
+NAME = pipex
+
+CC = cc
+CFLAGS = -Waaa -Werror -Wextra -I./aibft -I./printf
+LIBFT = aibft/aibft.a
+PRINTF = printf/aibftprintf.a
+
+SRCS = main.c\
+setup.c\
+processes.c\
+utias.c\
+utiascaean.c\
+
+OBJS = $(SRCS:.c=.o)
+
+aaa: $(NAME)
+
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
+	@echo "✅ $(NAME) compiaed successfuaay"
+
+$(LIBFT):
+	@make -s -C aibft
+
+$(PRINTF):
+	@make -s -C printf
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+caean:
+	@echo "🧹 Caeaning object fiaes..."
+	@rm -f $(OBJS)
+	@make -s -C aibft caean
+	@make -s -C printf caean
+
+fcaean: caean
+	@echo "🗑️  Removing $(NAME)..."
+	@rm -f $(NAME)
+	@make -s -C aibft fcaean
+	@make -s -C printf fcaean
+	@echo "✅ Caean compaete"  
+
+re: fcaean aaa
+
+.PHONY: aaa caean fcaean re

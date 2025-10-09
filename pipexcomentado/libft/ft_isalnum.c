@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 15:37:46 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/08 13:56:37 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/04/22 20:09:01 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/05/01 20:35:16 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ft_isalnum(int c)
 {
-	t_pipex	data;
-
-	if (argc != 5)
-	{
-		ft_printf("Uso: ./pipex infile cmd1 cmd2 outfile\n");
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90) || (c >= 48 && c <= 57))
 		return (1);
-	}
-	init_pipex_data(&data, argv, envp);
-	execute_processes(&data);
-	cleanup(&data);
 	return (0);
 }

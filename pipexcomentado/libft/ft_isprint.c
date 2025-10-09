@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jperez-m <jperez-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/01 15:37:46 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/08 13:56:37 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/04/22 20:14:52 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/05/01 20:34:41 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ft_isprint(int c)
 {
-	t_pipex	data;
-
-	if (argc != 5)
-	{
-		ft_printf("Uso: ./pipex infile cmd1 cmd2 outfile\n");
+	if (c >= 32 && c <= 126)
 		return (1);
-	}
-	init_pipex_data(&data, argv, envp);
-	execute_processes(&data);
-	cleanup(&data);
 	return (0);
 }
