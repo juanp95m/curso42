@@ -13,36 +13,44 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-//libreries
-# include <math.h>
-# include <stdbool.h>
-# include <stdint.h>
-# include "libft/libft.h"
 # include "MLX42/MLX42.h"
+# include "libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <math.h>
 
-// Definimos las dimensiones de la ventana
 # define WIDTH 800
 # define HEIGHT 600
-#define MAX_ITERATIONS 100
+# define MAX_ITERATIONS 100
 
 typedef struct s_fractal
 {
-	mlx_t		*mlx; // El puntero a la instancia de MLX42
-	mlx_image_t	*img; // El puntero a la imagen que dibujaremos
-	char		*name; // El nombre del fractal ("mandelbrot" o "julia")
-
-	// Aquí guardaremos los límites del fractal que se ven en la pantalla
-	double		min_r; // La parte real mínima (esquina izquierda)
-	double		max_r; // La parte real máxima (esquina derecha)
-	double		min_i; // La parte imaginaria mínima (parte de arriba)
-	double		max_i; // La parte imaginaria máxima (parte de abajo)
-
-	// Para el fractal de Julia, necesitaremos guardar la constante C
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	char		*name;
+	double		min_r;
+	double		max_r;
+	double		min_i;
+	double		max_i;
 	double		julia_r;
 	double		julia_i;
-
 }	t_fractal;
 
+// --- Prototipos de funciones ---
+
+// init.c
+void	init_fractal(t_fractal *fractal);
+
+// render.c
 void	render_fractal(t_fractal *fractal);
+
+// mandelbrot.c
+int		calculate_mandelbrot(double c_r, double c_i);
+
+// hooks.c
+void	key_hook(mlx_key_data_t keydata, void *param);
+
+// utils.c
+double	map(double unscaled_num, double new_min, double new_max, double old_max);
 
 #endif

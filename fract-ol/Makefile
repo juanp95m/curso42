@@ -20,6 +20,13 @@ CFLAGS = -Wall -Wextra -Werror -I. -Ilibft -IMLX42/include
 # Archivos fuente y objeto
 SRCS = main.c \
 render.c \
+init.c \
+hooks.c \
+utils.c \
+mandelbrot.c \
+julia.c \
+events.c \
+colors.c \
 		
 OBJS = $(SRCS:.c=.o)
 
