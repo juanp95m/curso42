@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 10:57:52 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/18 00:00:00 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/20 12:08:23 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	scroll_hook(double xdelta, double ydelta, void *param)
 	(void)xdelta;
 	fractal = (t_fractal *)param;
 	if (ydelta > 0)
-		zoom(fractal, 0.9);
+		zoom(fractal, ZOOM_IN_FACTOR);
 	else if (ydelta < 0)
-		zoom(fractal, 1.1);
+		zoom(fractal, ZOOM_OUT_FACTOR);
 	fractal->needs_render = 1;
 }
 

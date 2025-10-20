@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:31:08 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/15 13:25:12 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/20 12:28:54 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ static void	parse_args(int argc, char **argv, t_fractal *fractal)
 	if (argc == 2 && ft_strncmp(argv[1], "mandelbrot", 10) == 0)
 	{
 		fractal->name = "mandelbrot";
+		fractal->type = FRACTAL_MANDELBROT;
+		fractal->julia_r = 0.0;
+		fractal->julia_i = 0.0;
 	}
 	else if (argc == 4 && ft_strncmp(argv[1], "julia", 5) == 0)
 	{
 		fractal->name = "julia";
+		fractal->type = FRACTAL_JULIA;
 		fractal->julia_r = ft_atof(argv[2]);
 		fractal->julia_i = ft_atof(argv[3]);
 	}
@@ -50,6 +54,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(fractal.mlx, &render_loop, &fractal);
 	mlx_key_hook(fractal.mlx, &key_hook, &fractal);
 	mlx_scroll_hook(fractal.mlx, &scroll_hook, &fractal);
+	mlx_close_hook(fractal.mlx, &close_hook, &fractal);
 	mlx_loop(fractal.mlx);
 	mlx_terminate(fractal.mlx);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:00:41 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/16 11:00:42 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/20 12:28:54 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	init_fractal(t_fractal *fractal)
 		mlx_terminate(fractal->mlx);
 		exit(EXIT_FAILURE);
 	}
-	fractal->min_r = -2.0;
-	fractal->max_r = 2.0;
-	fractal->min_i = -2.0;
-	fractal->max_i = 2.0;
+	fractal->min_r = DEFAULT_MIN_R;
+	fractal->max_r = DEFAULT_MAX_R;
+	fractal->min_i = DEFAULT_MIN_I;
+	fractal->max_i = DEFAULT_MAX_I;
 	fractal->needs_render = 1;
 }
