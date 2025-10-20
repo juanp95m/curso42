@@ -11,3 +11,25 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	calculate_julia(double z_r, double z_i, t_fractal *fractal)
+{
+	double	temp;
+	int		i;
+
+	i = 0;
+	while (i < MAX_ITERATIONS)
+	{
+		if ((z_r * z_r + z_i * z_i) > 4.0)
+			return (i);
+		temp = z_r * z_r - z_i * z_i;
+		z_i = 2 * z_r * z_i;
+		z_r = temp;
+		
+		// Aquí está la diferencia clave: sumamos la C constante del struct
+		z_r += fractal->julia_r;
+		z_i += fractal->julia_i;
+		i++;
+	}
+	return (MAX_ITERATIONS);
+}

@@ -34,6 +34,7 @@ typedef struct s_fractal
 	double		max_i;
 	double		julia_r;
 	double		julia_i;
+	int			needs_render;
 }	t_fractal;
 
 // --- Prototipos de funciones ---
@@ -47,10 +48,19 @@ void	render_fractal(t_fractal *fractal);
 // mandelbrot.c
 int		calculate_mandelbrot(double c_r, double c_i);
 
+// julia.c
+int		calculate_julia(double z_r, double z_i, t_fractal *fractal);
+
 // hooks.c
 void	key_hook(mlx_key_data_t keydata, void *param);
 
+// events.c
+void	zoom(t_fractal *fractal, double zoom_factor);
+void	scroll_hook(double xdelta, double ydelta, void *param);
+void	render_loop(void *param);
+
 // utils.c
 double	map(double unscaled_num, double new_min, double new_max, double old_max);
+double	ft_atof(const char *str);
 
 #endif

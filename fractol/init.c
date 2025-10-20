@@ -27,4 +27,5 @@ void	init_fractal(t_fractal *fractal)
 	fractal->max_r = 2.0;
 	fractal->min_i = -2.0;
 	fractal->max_i = 2.0;
+	fractal->needs_render = 1;
 }
