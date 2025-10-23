@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:31:05 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/23 16:24:00 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:49:13 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	scroll_hook(double xdelta, double ydelta, void *param);
 void	render_loop(void *param);
 
 /* utils.c */
-double	map(double unscaled_num, double new_min, double new_max, double old_max);
+double	map(double unscaled_num, double new_min,
+			double new_max, double old_max);
 double	ft_atof(const char *str);
 
 /* colors.c */

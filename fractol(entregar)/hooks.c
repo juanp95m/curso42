@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:00:34 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/23 16:17:07 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:49:39 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 void	close_hook(void *param)
 {
 	t_fractal	*fractal;
-	
+
 	fractal = (t_fractal *)param;
 	mlx_close_window(fractal->mlx);
 }
