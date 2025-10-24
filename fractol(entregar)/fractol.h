@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:31:05 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/23 19:49:13 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/24 12:20:21 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		calculate_julia(double z_r, double z_i, t_fractal *fractal);
 
 /* hooks.c */
 void	key_hook(mlx_key_data_t keydata, void *param);
-void	close_hook(void *param);
 
 /* events.c */
 void	zoom(t_fractal *fractal, double zoom_factor);

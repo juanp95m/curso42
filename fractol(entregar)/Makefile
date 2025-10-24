@@ -6,7 +6,7 @@
 #    By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/15 10:47:28 by jperez-m          #+#    #+#              #
-#    Updated: 2025/10/23 17:13:31 by jperez-m         ###   ########.fr        #
+#    Updated: 2025/10/24 11:10:47 by jperez-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ CFLAGS = -Wall -Wextra -Werror -I. -Ilibft -IMLX42/include
 
 # Libraries and linking flags
 LDFLAGS = -L$(LIBFT_DIR) -lft -LMLX42/build -lmlx42
-LIBS = -lglfw -ldl -lm -lpthread
-LIBS_X11 = -lX11 -lXrandr -lXi -lXxf86vm -lXcursor
+LIBS = -lglfw -lm
 
 # Source and object files
 SRCS = main.c \
@@ -48,7 +47,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIBS) $(LIBS_X11)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIBS)
 	@echo "compiled successfully"
 
 $(LIBFT):

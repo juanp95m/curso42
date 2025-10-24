@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:31:08 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/23 19:49:55 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/24 12:20:21 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(fractal.mlx, &render_loop, &fractal);
 	mlx_key_hook(fractal.mlx, &key_hook, &fractal);
 	mlx_scroll_hook(fractal.mlx, &scroll_hook, &fractal);
-	mlx_close_hook(fractal.mlx, &close_hook, &fractal);
 	mlx_loop(fractal.mlx);
 	mlx_terminate(fractal.mlx);
 	return (EXIT_SUCCESS);
