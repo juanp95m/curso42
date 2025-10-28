@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:31:05 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/24 12:20:21 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:18:51 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define WIDTH 1400
-# define HEIGHT 1000
+# define WIDTH 800
+# define HEIGHT 800
 # define MAX_ITERATIONS 100
 
 /* Zoom constants */
@@ -31,6 +31,9 @@
 # define DEFAULT_MAX_R 2.0
 # define DEFAULT_MIN_I -2.0
 # define DEFAULT_MAX_I 2.0
+
+/* Validation limits */
+# define MAX_DECIMALS 12 /* Máximo de decimales permitidos en parámetros numéricos */
 
 /* Enum for fractal type */
 typedef enum e_fractal_type
@@ -69,8 +72,6 @@ int		calculate_julia(double z_r, double z_i, t_fractal *fractal);
 
 /* hooks.c */
 void	key_hook(mlx_key_data_t keydata, void *param);
-
-/* events.c */
 void	zoom(t_fractal *fractal, double zoom_factor);
 void	scroll_hook(double xdelta, double ydelta, void *param);
 void	render_loop(void *param);
@@ -79,6 +80,7 @@ void	render_loop(void *param);
 double	map(double unscaled_num, double new_min,
 			double new_max, double old_max);
 double	ft_atof(const char *str);
+int		is_valid_number(const char *str);
 
 /* colors.c */
 int		get_color(int iterations);

@@ -6,7 +6,7 @@
 #    By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/15 10:47:28 by jperez-m          #+#    #+#              #
-#    Updated: 2025/10/24 11:10:47 by jperez-m         ###   ########.fr        #
+#    Updated: 2025/10/28 15:02:12 by jperez-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,14 @@ NAME = fractol
 
 # Variables
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I. -Ilibft -IMLX42/include
+# MLX42 directory
+MLX_DIR = MLX42
+
+CFLAGS = -Wall -Wextra -Werror -I. -Ilibft -I$(MLX_DIR)/include
 
 # Libraries and linking flags
-LDFLAGS = -L$(LIBFT_DIR) -lft -LMLX42/build -lmlx42
-LIBS = -lglfw -lm
+LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR)/build -lmlx42
+LIBS = -lglfw -lm -ldl -pthread
 
 # Source and object files
 SRCS = main.c \
@@ -29,7 +32,6 @@ hooks.c \
 utils.c \
 mandelbrot.c \
 julia.c \
-events.c \
 colors.c \
 		
 OBJS = $(SRCS:.c=.o)
@@ -46,12 +48,17 @@ LIBFT = $(LIBFT_DIR)/libft.a
 # Main rule
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LDFLAGS) $(LIBS)
+$(NAME): $(OBJS) $(LIBFT) $(MLX_DIR)/build/libmlx42.a
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LIBS) -o $(NAME)
 	@echo "compiled successfully"
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) > /dev/null
+
+# Build MLX42 if the static lib is missing
+$(MLX_DIR)/build/libmlx42.a:
+	@cmake -S $(MLX_DIR) -B $(MLX_DIR)/build > /dev/null || true
+	@cmake --build $(MLX_DIR)/build --config Release > /dev/null || true
 
 clean:
 	@rm -f $(OBJS)
