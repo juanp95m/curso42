@@ -14,6 +14,22 @@
 
 int main(int argc, char **argv)
 {
-    if (parse_arguments(argc, argv));
+    t_program program;
+
+    if (parse_arguments(argc, argv))
+    {
+        printf("invalid arguments\n");
         return (1);
+    }
+   // Inicializamos todo el programa (datos, memoria, mutex).
+    // La propia función se encarga de la limpieza si algo sale mal.
+    if (init_program(&program, argc, argv))
+        return (1);
+    printf("¡Programa inicializado con éxito!\n");
+    printf("¡%d filósofos y %d tenedores listos en la mesa!\n",
+        program.data.num_philos, program.data.num_philos);
+    // Al final, solo llamamos a nuestra función de limpieza.
+    // Le pasamos la dirección de 'program' (&program) porque 'cleanup' espera un puntero.
+    cleanup(&program);
+    return (0);
 }

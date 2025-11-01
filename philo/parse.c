@@ -57,7 +57,7 @@ int parse_arguments(int argc, char **argv)
     int i;
     int num;
 
-    if (argc <= 5 || argc >= 6)
+    if (argc < 5 || argc > 6)
 	{
         printf("invalid arguments number\n");
 		return (1);
@@ -68,11 +68,11 @@ int parse_arguments(int argc, char **argv)
         num = ft_atolmax(argv[i]);
         if (num <= 0)
 		{
-			printf("invalid arguments number\n");
+			printf("argument must be a positive number\n");
 			return (1);
 		}
         i++;
     }
-    return (1);
+    return (0);
 }
 

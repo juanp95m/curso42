@@ -6,6 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c \
 parse.c \
 inits.c \
+utils.c \
 
 # Archivos objeto .o
 OBJS = $(SRCS:.c=.o)

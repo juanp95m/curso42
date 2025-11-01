@@ -33,7 +33,7 @@ typedef struct s_data
 	int	num_meals;
 }	t_data;
 
-// NUEVO: La "ficha" de cada filósofo
+// La "ficha" de cada filósofo
 typedef struct s_philo
 {
 	int				id;              // El número del filósofo (1 a N)
@@ -45,13 +45,17 @@ typedef struct s_philo
 	t_data			*data;           // Puntero a la data general
 }	t_philo;
 
-// NUEVO: La estructura principal que lo contiene todo
+// La estructura principal que lo contiene todo
 typedef struct s_program
 {
 	t_data			data;
 	t_philo			*philos;         // Array de filósofos
 	pthread_mutex_t	*forks;          // Array de mutex (tenedores)
 }	t_program;
+
+//utils.c
+int 	allocate_memory(t_program *program);
+void    cleanup(t_program *program);
 
 //parse.c
 int 	parse_arguments(int argc, char **argv);
@@ -61,4 +65,7 @@ int		ft_isdigit(int c);
 
 //inits.c
 int 	init_data(t_data *data, int argc, char **argv);
+int 	init_forks(t_program *program);
+int 	init_program(t_program *program, int argc, char **argv);
+void 	init_philos(t_program *program);
 #endif
