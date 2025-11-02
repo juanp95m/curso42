@@ -31,7 +31,6 @@ int init_data(t_data *data, int argc, char **argv)
 	return (0); // Devolvemos 0 para indicar ÉXITO.
 }
 
-
 /*
  * Nueva función para inicializar cada tenedor (mutex) en la mesa.
  * Recorremos el array de 'forks' e inicializamos un mutex para cada uno.
@@ -56,6 +55,36 @@ int init_forks(t_program *program)
     return (0); // Devolvemos 0 (éxito).
 }
 
+/*
+ * función para inicializar los datos de cada filósofo.
+ * Asigna un ID a cada uno y les dice cuáles son sus tenedores izquierdo y derecho.
+*/
+void init_philos(t_program *program)
+{
+    int i;
+    t_philo *philo;
+
+    i = 0;
+    while (i < program->data.num_philos)
+    {
+        philo = &program->philos[i]; // Un puntero temporal para que el código sea más legible
+        
+        philo->id = i + 1; // Los IDs van de 1 a N
+        philo->meals_eaten = 0;
+        philo->last_meal_time = 0;
+        philo->data = &program->data; // Damos a cada filósofo acceso a los datos generales
+
+        // Asignación de tenedores
+        // Tenedor izquierdo: el que tiene el mismo índice que el filósofo.
+        philo->left_fork = &program->forks[i];
+        
+        // Tenedor derecho: el del siguiente filósofo. Para el último, es el tenedor 0.
+        // El operador módulo (%) hace esto de forma automática y elegante.
+        philo->right_fork = &program->forks[(i + 1) % program->data.num_philos];
+        
+        i++;
+    }
+}
 
 /*
  * Función maestra que orquesta toda la inicialización del programa.
@@ -84,35 +113,4 @@ int init_program(t_program *program, int argc, char **argv)
     init_philos(program); // No devuelve error, así que no necesita un if.
     // Si todos los pasos fueron exitosos:
     return (0);
-}
-
-/*
- * Nueva función para inicializar los datos de cada filósofo.
- * Asigna un ID a cada uno y les dice cuáles son sus tenedores izquierdo y derecho.
-*/
-void init_philos(t_program *program)
-{
-    int i;
-    t_philo *philo;
-
-    i = 0;
-    while (i < program->data.num_philos)
-    {
-        philo = &program->philos[i]; // Un puntero temporal para que el código sea más legible
-        
-        philo->id = i + 1; // Los IDs van de 1 a N
-        philo->meals_eaten = 0;
-        philo->last_meal_time = 0;
-        philo->data = &program->data; // Damos a cada filósofo acceso a los datos generales
-
-        // Asignación de tenedores
-        // Tenedor izquierdo: el que tiene el mismo índice que el filósofo.
-        philo->left_fork = &program->forks[i];
-        
-        // Tenedor derecho: el del siguiente filósofo. Para el último, es el tenedor 0.
-        // El operador módulo (%) hace esto de forma automática y elegante.
-        philo->right_fork = &program->forks[(i + 1) % program->data.num_philos];
-        
-        i++;
-    }
 }

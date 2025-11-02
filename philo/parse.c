@@ -52,7 +52,7 @@ long	ft_atolmax(const char *nptr)
 	return (result);
 }
 
-int parse_arguments(int argc, char **argv)
+int is_invalid_argument(int argc, char **argv)
 {
     int i;
     int num;

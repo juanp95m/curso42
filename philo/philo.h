@@ -58,7 +58,7 @@ int 	allocate_memory(t_program *program);
 void    cleanup(t_program *program);
 
 //parse.c
-int 	parse_arguments(int argc, char **argv);
+int 	is_invalid_argument(int argc, char **argv);
 long	ft_atolmax(const char *nptr);
 int		ft_isspace(int c);
 int		ft_isdigit(int c);
@@ -68,4 +68,7 @@ int 	init_data(t_data *data, int argc, char **argv);
 int 	init_forks(t_program *program);
 int 	init_program(t_program *program, int argc, char **argv);
 void 	init_philos(t_program *program);
+
+//simulation
+void	*philosopher_routine(void *arg);
 #endif

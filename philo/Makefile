@@ -7,6 +7,7 @@ SRCS = main.c \
 parse.c \
 inits.c \
 utils.c \
+simulation.c \
 
 # Archivos objeto .o
 OBJS = $(SRCS:.c=.o)
@@ -14,13 +15,18 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -o $(NAME)
+	@echo "$(NAME) Compiled successfully"
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "Clean completed"
 
 re: fclean all
 

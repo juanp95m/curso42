@@ -12,24 +12,54 @@
 
 #include "philo.h"
 
+// Esta función lanzará todos los hilos
+static int start_simulation(t_program *program)
+{
+	int i;
+
+	i = 0;
+	while (i < program->data.num_philos)
+	{
+		// pthread_create(puntero_al_hilo, atributos, funcion_rutina, argumento_para_la_rutina)
+		if (pthread_create(&program->philos[i].thread, NULL, &philosopher_routine, &program->philos[i]) != 0)
+		{
+			printf("Error: Fallo al crear un hilo.\n");
+			return (1); // Error
+		}
+		i++;
+	}
+	return (0); // Éxito
+}
+
+
 int main(int argc, char **argv)
 {
     t_program program;
+    int       i;
 
-    if (parse_arguments(argc, argv))
-    {
-        printf("invalid arguments\n");
+    if (is_invalid_argument(argc, argv))
         return (1);
-    }
    // Inicializamos todo el programa (datos, memoria, mutex).
     // La propia función se encarga de la limpieza si algo sale mal.
     if (init_program(&program, argc, argv))
         return (1);
-    printf("¡Programa inicializado con éxito!\n");
-    printf("¡%d filósofos y %d tenedores listos en la mesa!\n",
-        program.data.num_philos, program.data.num_philos);
-    // Al final, solo llamamos a nuestra función de limpieza.
-    // Le pasamos la dirección de 'program' (&program) porque 'cleanup' espera un puntero.
+printf("Iniciando la simulación...\n");
+	if (start_simulation(&program))
+	{
+		cleanup(&program); // Si falla la creación, limpiamos y salimos
+		return (1);
+	}
+
+	// Esperamos a que todos los hilos terminen.
+	// pthread_join es como el director esperando a que cada actor termine su escena
+	// antes de bajar el telón.
+	i = 0;
+	while (i < program.data.num_philos)
+	{
+		pthread_join(program.philos[i].thread, NULL);
+		i++;
+	}
+	
     cleanup(&program);
     return (0);
 }
