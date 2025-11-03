@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 12:37:01 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/09/29 14:46:22 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/09/29 16:23:51 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	sort_three(t_stack **a);
 void	sort_five(t_stack **a, t_stack **b);
 
 // src/main.c
-//void	print_stack(t_stack *stack);
 int		main(int argc, char **argv);
 
 // src/operations/push.c

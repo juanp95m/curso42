@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:29 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/31 17:15:19 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:39:59 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     // La propia función se encarga de la limpieza si algo sale mal.
     if (init_program(&program, argc, argv))
         return (1);
-printf("Iniciando la simulación...\n");
+	printf("Iniciando la simulación...\n");
 	if (start_simulation(&program))
 	{
 		cleanup(&program); // Si falla la creación, limpiamos y salimos
