@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/31 17:48:24 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:16:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,23 @@ typedef struct s_program
 }	t_program;
 
 //utils.c
-int 	allocate_memory(t_program *program);
-void    cleanup(t_program *program);
+int 		allocate_memory(t_program *program);
+void    	cleanup(t_program *program);
+long long	get_time_in_ms(void);
+void		precise_sleep(long long duration_ms);
 
 //parse.c
-int 	is_invalid_argument(int argc, char **argv);
-long	ft_atolmax(const char *nptr);
-int		ft_isspace(int c);
-int		ft_isdigit(int c);
+int 		is_invalid_argument(int argc, char **argv);
+long		ft_atolmax(const char *nptr);
+int			ft_isspace(int c);
+int			ft_isdigit(int c);
 
 //inits.c
-int 	init_data(t_data *data, int argc, char **argv);
-int 	init_forks(t_program *program);
-int 	init_program(t_program *program, int argc, char **argv);
-void 	init_philos(t_program *program);
+int 		init_data(t_data *data, int argc, char **argv);
+int 		init_forks(t_program *program);
+int 		init_program(t_program *program, int argc, char **argv);
+void 		init_philos(t_program *program);
 
 //simulation
-void	*philosopher_routine(void *arg);
+void		*philosopher_routine(void *arg);
 #endif

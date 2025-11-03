@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     // La propia función se encarga de la limpieza si algo sale mal.
     if (init_program(&program, argc, argv))
         return (1);
-	printf("Iniciando la simulación...\n");
+printf("Iniciando la simulación...\n");
 	if (start_simulation(&program))
 	{
 		cleanup(&program); // Si falla la creación, limpiamos y salimos

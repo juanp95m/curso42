@@ -3,14 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:09:12 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/31 17:27:32 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:09:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+/*
+ * Devuelve el tiempo actual en milisegundos.
+ * 'gettimeofday' nos da el tiempo en segundos y microsegundos.
+ * Nosotros lo convertimos todo a un único número en milisegundos.
+*/
+long long	get_time_in_ms(void)
+{
+	struct timeval	tv;
+
+	// Obtenemos el tiempo actual
+	gettimeofday(&tv, NULL);
+	
+	// Convertimos los segundos a milisegundos (tv_sec * 1000)
+	// Convertimos los microsegundos a milisegundos (tv_usec / 1000)
+	// Los sumamos para tener el total de milisegundos desde "el inicio de los tiempos".
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+/*
+ * Nueva función para "dormir" de forma más precisa.
+ * Evita el "oversleeping" de usleep comprobando la hora en un bucle.
+*/
+void	precise_sleep(long long duration_ms)
+{
+	long long	start_time;
+
+	// Obtenemos la hora de inicio
+	start_time = get_time_in_ms();
+
+	// Bucle: Mientras el tiempo actual MENOS el inicio sea MENOR que la duración
+	while ((get_time_in_ms() - start_time) < duration_ms)
+	{
+		// Dormimos en intervalos muy pequeños (ej. 100 microsegundos)
+		// Esto evita que el bucle consuma el 100% de la CPU ("busy-waiting"),
+		// pero nos permite despertar frecuentemente para comprobar la hora.
+		usleep(100);
+	}
+}
 
 /*
  * Nueva función para liberar todos los recursos.
