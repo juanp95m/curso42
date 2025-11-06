@@ -6,29 +6,23 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:58:04 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/31 17:47:30 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/06 19:16:19 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int init_data(t_data *data, int argc, char **argv)
+int init_data(t_program *program, int argc, char **argv)
 {
-	data->num_philos = ft_atolmax(argv[1]);
-	data->time_to_die = ft_atolmax(argv[2]);
-	data->time_to_eat = ft_atolmax(argv[3]);
-	data->time_to_sleep = ft_atolmax(argv[4]);
+	program->num_philos = ft_atolmax(argv[1]);
+	program->time_to_die = ft_atolmax(argv[2]);
+	program->time_to_eat = ft_atolmax(argv[3]);
+	program->time_to_sleep = ft_atolmax(argv[4]);
 	if (argc == 6)
-		data->num_meals = ft_atolmax(argv[5]);
+		program->num_meals = ft_atolmax(argv[5]);
 	else
-		data->num_meals = -1;
-	
-    // Comprobamos si hay un valor inválido (aunque parse_arguments ya lo hace,
-    // una doble comprobación no hace daño y es buena práctica).
-    //if (data->num_philos <= 0)
-      //  return (1); // Devolvemos 1 para indicar ERROR.
-
-	return (0); // Devolvemos 0 para indicar ÉXITO.
+		program->num_meals = -1;
+    return (0);
 }
 
 /*
@@ -40,7 +34,7 @@ int init_forks(t_program *program)
     int i;
 
     i = 0;
-    while (i < program->data.num_philos)
+    while (i < program->num_philos)
     {
         // Inicializamos el mutex en la posición 'i'.
         if (pthread_mutex_init(&program->forks[i], NULL) != 0)
@@ -65,14 +59,14 @@ void init_philos(t_program *program)
     t_philo *philo;
 
     i = 0;
-    while (i < program->data.num_philos)
+    while (i < program->num_philos)
     {
         philo = &program->philos[i]; // Un puntero temporal para que el código sea más legible
         
         philo->id = i + 1; // Los IDs van de 1 a N
         philo->meals_eaten = 0;
         philo->last_meal_time = 0;
-        philo->data = &program->data; // Damos a cada filósofo acceso a los datos generales
+        philo->program = program; // Damos a cada filósofo acceso a la estructura principal
 
         // Asignación de tenedores
         // Tenedor izquierdo: el que tiene el mismo índice que el filósofo.
@@ -80,7 +74,7 @@ void init_philos(t_program *program)
         
         // Tenedor derecho: el del siguiente filósofo. Para el último, es el tenedor 0.
         // El operador módulo (%) hace esto de forma automática y elegante.
-        philo->right_fork = &program->forks[(i + 1) % program->data.num_philos];
+        philo->right_fork = &program->forks[(i + 1) % program->num_philos];
         
         i++;
     }
@@ -94,8 +88,8 @@ void init_philos(t_program *program)
 int init_program(t_program *program, int argc, char **argv)
 {
     // Paso 1: Inicializar los datos de configuración.
-    if (init_data(&program->data, argc, argv))
-        return (1); // Si falla, no hay nada que limpiar.
+    if (init_data(program, argc, argv))
+        return (1);
 
     // Paso 2: Reservar la memoria.
     if (allocate_memory(program))

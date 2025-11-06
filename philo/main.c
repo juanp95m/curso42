@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:29 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/03 10:39:59 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:17:52 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int start_simulation(t_program *program)
 	int i;
 
 	i = 0;
-	while (i < program->data.num_philos)
+	while (i < program->num_philos)
 	{
 		// pthread_create(puntero_al_hilo, atributos, funcion_rutina, argumento_para_la_rutina)
-		if (pthread_create(&program->philos[i].thread, NULL, &philosopher_routine, &program->philos[i]) != 0)
+		if (pthread_create(&(program->philos[i].thread), NULL, &philosopher_routine, &program->philos[i]) != 0)
 		{
 			printf("Error: Fallo al crear un hilo.\n");
 			return (1); // Error
@@ -54,7 +54,7 @@ printf("Iniciando la simulación...\n");
 	// pthread_join es como el director esperando a que cada actor termine su escena
 	// antes de bajar el telón.
 	i = 0;
-	while (i < program.data.num_philos)
+	while (i < program.num_philos)
 	{
 		pthread_join(program.philos[i].thread, NULL);
 		i++;

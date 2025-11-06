@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:09:12 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/10/31 17:27:32 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:10:32 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ long	ft_atolmax(const char *nptr)
 		    sign = -1;
 		nptr ++;
 	}
-	while ((*nptr))
+	while (*nptr)
 	{
 		if (!ft_isdigit(*nptr))
 			return (-1);
@@ -48,8 +48,7 @@ long	ft_atolmax(const char *nptr)
 		if ((result * sign) > INT_MAX)
 			return (result);
 	}
-	result *= sign;
-	return (result);
+	return (result * sign);
 }
 
 int is_invalid_argument(int argc, char **argv)

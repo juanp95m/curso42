@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:09:12 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/03 20:09:47 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/06 16:06:21 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void    cleanup(t_program *program)
     int i;
 
     i = 0;
-    while (i < program->data.num_philos)
+    while (i < program->num_philos)
     {
         // Como 'program' aquí es un puntero, usamos '->'
         pthread_mutex_destroy(&program->forks[i]);
@@ -77,7 +77,7 @@ void    cleanup(t_program *program)
 int allocate_memory(t_program *program)
 {
     // Reservamos memoria para el array de filósofos.
-    program->philos = malloc(sizeof(t_philo) * program->data.num_philos);
+    program->philos = malloc(sizeof(t_philo) * program->num_philos);
     if (!program->philos) // Si malloc falla, devuelve NULL.
     {
         printf("Error: Malloc para filósofos ha fallado.\n");
@@ -85,7 +85,7 @@ int allocate_memory(t_program *program)
     }
 
     // Reservamos memoria para el array de tenedores (mutex).
-    program->forks = malloc(sizeof(pthread_mutex_t) * program->data.num_philos);
+    program->forks = malloc(sizeof(pthread_mutex_t) * program->num_philos);
     if (!program->forks)
     {
         printf("Error: Malloc para tenedores ha fallado.\n");
