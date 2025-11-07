@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:29 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/06 16:17:52 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:21:59 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ static int start_simulation(t_program *program)
 {
 	int i;
 
-	i = 0;
-	while (i < program->num_philos)
+	i = -1;
+	program->start_time = get_time_in_ms();
+	while (++i < program->num_philos)
 	{
 		// pthread_create(puntero_al_hilo, atributos, funcion_rutina, argumento_para_la_rutina)
-		if (pthread_create(&(program->philos[i].thread), NULL, &philosopher_routine, &program->philos[i]) != 0)
+		if (pthread_create(&(program->philos[i].thread), NULL, &philosopher_routine, &program->philos[i]))
 		{
 			printf("Error: Fallo al crear un hilo.\n");
 			return (1); // Error
 		}
-		i++;
 	}
 	return (0); // Éxito
 }
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
         return (1);
    // Inicializamos todo el programa (datos, memoria, mutex).
     // La propia función se encarga de la limpieza si algo sale mal.
-    if (init_program(&program, argc, argv))
+    if (init_all(&program, argc, argv))
         return (1);
 printf("Iniciando la simulación...\n");
 	if (start_simulation(&program))

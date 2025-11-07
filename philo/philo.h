@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/06 19:20:25 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:03:03 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ typedef struct s_philo
 }	t_philo;
 
 // La estructura principal que lo contiene todo
-struct s_program
+typedef struct s_program
 {
-	// Datos de configuración (antes era t_data)
 	int				num_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_meals;
+	long long		start_time;
 	t_philo			*philos;         // Array de filósofos
 	pthread_mutex_t	*forks;          // Array de mutex (tenedores)
-};
+}	t_program;
 
 
 //utils.c
@@ -62,10 +62,10 @@ int			ft_isspace(int c);
 int			ft_isdigit(int c);
 
 //inits.c
-int 		init_data(t_program *program, int argc, char **argv);
+int 		init_program_struct(t_program *program, int argc, char **argv);
 int 		init_forks(t_program *program);
-int 		init_program(t_program *program, int argc, char **argv);
 void 		init_philos(t_program *program);
+int 		init_all(t_program *program, int argc, char **argv);
 
 //simulation
 void		*philosopher_routine(void *arg);

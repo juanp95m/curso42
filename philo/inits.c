@@ -6,13 +6,13 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:58:04 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/06 19:16:19 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/07 12:25:24 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int init_data(t_program *program, int argc, char **argv)
+int init_program_struct(t_program *program, int argc, char **argv)
 {
 	program->num_philos = ft_atolmax(argv[1]);
 	program->time_to_die = ft_atolmax(argv[2]);
@@ -85,10 +85,10 @@ void init_philos(t_program *program)
  * Llama a cada paso de la inicialización en orden.
  * Si un paso falla, se encarga de limpiar la memoria de los pasos anteriores.
 */
-int init_program(t_program *program, int argc, char **argv)
+int init_all(t_program *program, int argc, char **argv)
 {
     // Paso 1: Inicializar los datos de configuración.
-    if (init_data(program, argc, argv))
+    if (init_program_struct(program, argc, argv))
         return (1);
 
     // Paso 2: Reservar la memoria.
