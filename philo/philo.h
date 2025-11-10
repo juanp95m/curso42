@@ -45,15 +45,19 @@ typedef struct s_program
 	int				num_meals;
 	long long		start_time;
 	t_philo			*philos;         // Array de filósofos
-	pthread_mutex_t	*forks;          // Array de mutex (tenedores)
+	pthread_mutex_t	printf_mutex;
+	pthread_mutex_t	*forks;        // Array de mutex (tenedores)
+	pthread_t		boss_thread;
 }	t_program;
 
 
 //utils.c
 int 		allocate_memory(t_program *program);
-void    	cleanup(t_program *program);
+void    	clean_and_destroy(t_program *program);
 long long	get_time_in_ms(void);
 void		precise_sleep(long long duration_ms);
+void		free_philos_forks(t_program *program);
+int 		is_one_philosopher(t_program *program);
 
 //parse.c
 int 		is_invalid_argument(int argc, char **argv);
@@ -69,4 +73,8 @@ int 		init_all(t_program *program, int argc, char **argv);
 
 //simulation
 void		*philosopher_routine(void *arg);
+void    	print_status(t_philo *philo, char *status_message);
+void 		eating(t_philo *philo);
+void 		sleeping(t_philo *philo);
+void		thinking(t_philo *philo);
 #endif

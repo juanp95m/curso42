@@ -17,36 +17,27 @@ void eating(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
-		printf("%d has taken a fork", philo->id);
-		pthread_mutex_lock(philo->left_fork);
-		printf("%d has taken a fork", philo->id);
+        print_status(philo, "has taken a fork");
+        pthread_mutex_lock(philo->left_fork);
+        print_status(philo, "has taken a fork");
 	}
 	else
 	{
 		pthread_mutex_lock(philo->left_fork);
-		printf("%d has taken a fork", philo->id);
-		pthread_mutex_lock(philo->right_fork);
-		printf("%d has taken a fork", philo->id);
+        print_status(philo, "has taken a fork");
+        pthread_mutex_lock(philo->right_fork);
+        print_status(philo, "has taken a fork");
 	}
-// PASO 2: ¡Comer! (Esto te faltaba)
-    // Ahora que tiene AMBOS tenedores, el filósofo come.
-    
-    // 2a. Notificar que está comiendo
-    printf("%d está comiendo\n", philo->id);
-    
+    print_status(philo, "is eating");
     // 2b. Actualizar su hora de última comida
-    // ¿Qué variable de t_philo actualizarías?
-    // ¿Y con qué función de utils.c?
-    // Pista: philo->... = get_time_in_ms();
-    
+	philo->last_meal_time = get_time_in_ms();
+
     // 2c. Dormir el tiempo de comida
-    // ¿Qué función de utils.c usarías?
-    // ¿Y qué variable de programa le pasarías?
-    // Pista: precise_sleep(philo->program->...);
+    precise_sleep(philo->program->time_to_eat);
     
     // 2d. (Opcional, pero necesario para el arg[5])
     // Incrementar el contador de comidas
-    // philo->meals_eaten++;
+    philo->meals_eaten++;
 
     // PASO 3: Soltar tenedores (¡MUY IMPORTANTE!)
     // Después de comer, ¡debe soltarlos para que otros coman!
@@ -55,6 +46,15 @@ void eating(t_philo *philo)
     // (El orden de soltar da igual)
 }
 
+void sleeping(t_philo *philo)
+{
+	print_status(philo, "is sleeping");
+    precise_sleep(philo->program->time_to_sleep);
+}
+void	thinking(t_philo *philo)
+{
+	print_status(philo, "is thinking");
+}
 /*
  * Este es el "guion" que cada filósofo (hilo) ejecutará.
  * Recibe un argumento genérico (void *), que sabemos que es un puntero
@@ -69,7 +69,34 @@ void	*philosopher_routine(void *arg)
 
 	// Por ahora, solo imprimimos un mensaje para saber que el hilo se creó.
 	// Usamos philo->id para saber qué filósofo está hablando.
-	printf("Filósofo %d ha entrado en la simulación.\n", philo->id);
+	while (1)
+	{
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
+	}
 
 	return (NULL); // Los hilos deben devolver algo, NULL está bien para nosotros.
+}
+
+/*
+ * Imprime un mensaje de estado de forma segura (protegido por mutex)
+ * y con el formato de timestamp requerido.
+*/
+void    print_status(t_philo *philo, char *status_message)
+{
+    long long   timestamp;
+
+    // 1. Bloquear el mutex de impresión
+    pthread_mutex_lock(&philo->program->printf_mutex);
+
+    // 2. Calcular el timestamp (Tiempo actual - Tiempo de inicio)
+    // Usamos las funciones que ya tienes
+    timestamp = get_time_in_ms() - philo->program->start_time;
+
+    // 3. Imprimir el mensaje con el formato del subject
+    printf("%lld %d %s\n", timestamp, philo->id, status_message);
+
+    // 4. Desbloquear el mutex
+    pthread_mutex_unlock(&philo->program->printf_mutex);
 }

@@ -12,6 +12,27 @@
 
 #include "philo.h"
 
+int is_one_philosopher(t_program *program)
+{
+    program->start_time = get_time_in_ms();
+    program->philos[0].last_meal_time = program->start_time;
+    print_status(&program->philos[0], "has taken a fork");
+    precise_sleep(program->time_to_die);
+    print_status(&program->philos[0], "died");
+    clean_and_destroy(program);
+    return (0);
+}
+
+void    free_philos_forks(t_program *program)
+{
+    if (program->philos)
+        free(program->philos);
+    if (program->forks)
+        free(program->forks);
+    program->philos = NULL;
+    program->forks = NULL;
+}
+
 /*
  * Devuelve el tiempo actual en milisegundos.
  * 'gettimeofday' nos da el tiempo en segundos y microsegundos.
@@ -55,7 +76,7 @@ void	precise_sleep(long long duration_ms)
  * Nueva función para liberar todos los recursos.
  * Destruye los mutex y libera la memoria de los arrays.
 */
-void    cleanup(t_program *program)
+void    clean_and_destroy(t_program *program)
 {
     int i;
 
@@ -66,8 +87,8 @@ void    cleanup(t_program *program)
         pthread_mutex_destroy(&program->forks[i]);
         i++;
     }
-    free(program->philos);
-    free(program->forks);
+    pthread_mutex_destroy(&program->printf_mutex);
+    free_philos_forks(program);
 }
 
 /*

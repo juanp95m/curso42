@@ -49,6 +49,18 @@ int init_forks(t_program *program)
     return (0); // Devolvemos 0 (éxito).
 }
 
+int init_shared_mutexes(t_program *program)
+{
+    // Usamos & porque 'print_mutex' ES la struct (sin *)
+    if (pthread_mutex_init(&program->printf_mutex, NULL) != 0)
+    {
+        printf("Error: Fallo al inicializar print_mutex\n");
+        return (1);
+    }
+    // ... aquí podrías inicializar futuros mutex ...
+    return (0);
+}
+
 /*
  * función para inicializar los datos de cada filósofo.
  * Asigna un ID a cada uno y les dice cuáles son sus tenedores izquierdo y derecho.
@@ -99,8 +111,13 @@ int init_all(t_program *program, int argc, char **argv)
     if (init_forks(program))
     {
         // Si ESTE paso falla, SÍ tenemos que limpiar la memoria del paso anterior.
-        free(program->philos);
-        free(program->forks);
+        free_philos_forks(program);
+        return (1);
+    }
+    if (init_shared_mutexes(program)) // Inicializa los mutex singulares
+    {
+        // ... (limpieza, incluyendo la destrucción de los forks ya creados) ...
+        free_philos_forks(program);
         return (1);
     }
     // Paso 4: Inicializar los datos de cada filósofo.
