@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:58:04 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/07 12:25:24 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:21:20 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int init_forks(t_program *program)
             printf("Error: Fallo al inicializar un mutex.\n");
             // Aquí podríamos tener una limpieza más compleja si algo falla
             // a mitad de camino, pero por ahora es suficiente.
-            return (1); // Devolvemos 1 (error).
+            return (clean_and_destroy(program, i)); // Devolvemos 1 (error).
         }
         i++;
     }
@@ -51,13 +51,25 @@ int init_forks(t_program *program)
 
 int init_shared_mutexes(t_program *program)
 {
-    // Usamos & porque 'print_mutex' ES la struct (sin *)
     if (pthread_mutex_init(&program->printf_mutex, NULL) != 0)
     {
         printf("Error: Fallo al inicializar print_mutex\n");
         return (1);
     }
-    // ... aquí podrías inicializar futuros mutex ...
+    if (pthread_mutex_init(&program->stop_mutex, NULL) != 0)
+    {
+        printf("Error: Fallo al inicializar stop_mutex\n");
+        pthread_mutex_destroy(&program->printf_mutex);
+        return (1);
+    }
+    if (pthread_mutex_init(&program->meal_mutex, NULL) != 0)
+    {
+        printf("Error: Fallo al inicializar meal_mutex\n");
+        pthread_mutex_destroy(&program->printf_mutex);
+        pthread_mutex_destroy(&program->stop_mutex);
+        return (1);
+    }
+    program->simulation_stop = 0;
     return (0);
 }
 
@@ -117,7 +129,7 @@ int init_all(t_program *program, int argc, char **argv)
     if (init_shared_mutexes(program)) // Inicializa los mutex singulares
     {
         // ... (limpieza, incluyendo la destrucción de los forks ya creados) ...
-        free_philos_forks(program);
+        clean_and_destroy(program, program->num_philos);
         return (1);
     }
     // Paso 4: Inicializar los datos de cada filósofo.

@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/07 19:37:05 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:13:30 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,21 @@ void	*philosopher_routine(void *arg)
 
 /*
  * Imprime un mensaje de estado de forma segura (protegido por mutex)
- * y con el formato de timestamp requerido.
+ * y con el formato de time requerido.
 */
 void    print_status(t_philo *philo, char *status_message)
 {
-    long long   timestamp;
+    long long   time;
 
     // 1. Bloquear el mutex de impresión
     pthread_mutex_lock(&philo->program->printf_mutex);
 
-    // 2. Calcular el timestamp (Tiempo actual - Tiempo de inicio)
+    // 2. Calcular el time (Tiempo actual - Tiempo de inicio)
     // Usamos las funciones que ya tienes
-    timestamp = get_time_in_ms() - philo->program->start_time;
+    time = get_time_in_ms() - philo->program->start_time;
 
     // 3. Imprimir el mensaje con el formato del subject
-    printf("%lld %d %s\n", timestamp, philo->id, status_message);
+    printf("%lld %d %s\n", time, philo->id, status_message);
 
     // 4. Desbloquear el mutex
     pthread_mutex_unlock(&philo->program->printf_mutex);

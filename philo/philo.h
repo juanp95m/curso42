@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/07 17:03:03 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/11 18:14:44 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ typedef struct s_program
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_meals;
+	int				simulation_stop;
 	long long		start_time;
 	t_philo			*philos;         // Array de filósofos
+	pthread_mutex_t	stop_mutex;
+	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	printf_mutex;
 	pthread_mutex_t	*forks;        // Array de mutex (tenedores)
 	pthread_t		boss_thread;
@@ -53,7 +56,7 @@ typedef struct s_program
 
 //utils.c
 int 		allocate_memory(t_program *program);
-void    	clean_and_destroy(t_program *program);
+int    		clean_and_destroy(t_program *program, int size);
 long long	get_time_in_ms(void);
 void		precise_sleep(long long duration_ms);
 void		free_philos_forks(t_program *program);

@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:09:12 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/06 16:06:21 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:25:32 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int is_one_philosopher(t_program *program)
     print_status(&program->philos[0], "has taken a fork");
     precise_sleep(program->time_to_die);
     print_status(&program->philos[0], "died");
-    clean_and_destroy(program);
+    clean_and_destroy(program, program->num_philos);
     return (0);
 }
 
@@ -76,19 +76,21 @@ void	precise_sleep(long long duration_ms)
  * Nueva función para liberar todos los recursos.
  * Destruye los mutex y libera la memoria de los arrays.
 */
-void    clean_and_destroy(t_program *program)
+int    clean_and_destroy(t_program *program, int size)
 {
     int i;
 
     i = 0;
-    while (i < program->num_philos)
+    while (i < size)
     {
-        // Como 'program' aquí es un puntero, usamos '->'
         pthread_mutex_destroy(&program->forks[i]);
         i++;
     }
     pthread_mutex_destroy(&program->printf_mutex);
+    pthread_mutex_destroy(&program->meal_mutex);
+    pthread_mutex_destroy(&program->stop_mutex);
     free_philos_forks(program);
+    return (1);
 }
 
 /*

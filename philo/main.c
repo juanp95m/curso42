@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:29 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/07 17:21:59 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/10 20:32:18 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ static int start_simulation(t_program *program)
 	while (++i < program->num_philos)
 	{
 		// pthread_create(puntero_al_hilo, atributos, funcion_rutina, argumento_para_la_rutina)
-		if (pthread_create(&(program->philos[i].thread), NULL, &philosopher_routine, &program->philos[i]))
-		{
-			printf("Error: Fallo al crear un hilo.\n");
-			return (1); // Error
-		}
+		if (pthread_create(&(program->philos[i].thread), NULL, &philosopher_routine, &program->philos[i]) != 0)
+			return (clean_and_destroy(program, program->num_philos));
 	}
 	return (0); // Éxito
 }
@@ -42,15 +39,12 @@ int main(int argc, char **argv)
    // Inicializamos todo el programa (datos, memoria, mutex).
     // La propia función se encarga de la limpieza si algo sale mal.
     if (init_all(&program, argc, argv))
-        return (1);
+		return (1);
 	if (program.num_philos == 1)
         return (is_one_philosopher(&program));
 printf("Iniciando la simulación...\n");
-	if (start_simulation(&program))
-	{
-		clean_and_destroy(&program); // Si falla la creación, limpiamos y salimos
+	if (start_simulation(&program) == 1)
 		return (1);
-	}
 
 	// Esperamos a que todos los hilos terminen.
 	// pthread_join es como el director esperando a que cada actor termine su escena
@@ -58,10 +52,9 @@ printf("Iniciando la simulación...\n");
 	i = 0;
 	while (i < program.num_philos)
 	{
-		pthread_join(program.philos[i].thread, NULL);
+		if (pthread_join(program.philos[i].thread, NULL) != 0)
+			return (clean_and_destroy(&program, program.num_philos));
 		i++;
 	}
-	
-    clean_and_destroy(&program);
     return (0);
 }
