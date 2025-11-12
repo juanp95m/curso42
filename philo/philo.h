@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/11 18:14:44 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:13:34 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,29 @@ int 		init_forks(t_program *program);
 void 		init_philos(t_program *program);
 int 		init_all(t_program *program, int argc, char **argv);
 
-//simulation
+//simulation.c
 void		*philosopher_routine(void *arg);
 void    	print_status(t_philo *philo, char *status_message);
 void 		eating(t_philo *philo);
 void 		sleeping(t_philo *philo);
 void		thinking(t_philo *philo);
+
+//boss.c
+int         is_someone_died(t_program *program);
+int         check_all_meals_completed(t_program *program);
+void        *boss_routine(void *arg);
+
+//helpersboss.c
+int         should_stop(t_program *program);
+void        set_stop(t_program *program);
+long long   get_last_meal(t_philo *philo);
+int         get_meals_eaten(t_philo *philo);
+
+//main.c
+void 		init_philos_meal_time(t_program *program, long long start_time);
+int 		create_philosopher_threads(t_program *program);
+int 		join_all_threads(t_program *program);
+int 		start_simulation(t_program *program);
+
+
 #endif

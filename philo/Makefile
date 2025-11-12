@@ -8,6 +8,7 @@ parse.c \
 inits.c \
 utils.c \
 simulation.c \
+helpersboss.c \
 boss.c \
 
 # Archivos objeto .o

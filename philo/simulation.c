@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/10 16:13:30 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:40:42 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,13 @@ void eating(t_philo *philo)
         print_status(philo, "has taken a fork");
 	}
     print_status(philo, "is eating");
-    // 2b. Actualizar su hora de última comida
+    pthread_mutex_lock(&philo->program->meal_mutex);
 	philo->last_meal_time = get_time_in_ms();
-
-    // 2c. Dormir el tiempo de comida
-    precise_sleep(philo->program->time_to_eat);
-    
-    // 2d. (Opcional, pero necesario para el arg[5])
-    // Incrementar el contador de comidas
     philo->meals_eaten++;
-
-    // PASO 3: Soltar tenedores (¡MUY IMPORTANTE!)
-    // Después de comer, ¡debe soltarlos para que otros coman!
+    pthread_mutex_unlock(&philo->program->meal_mutex);
+    precise_sleep(philo->program->time_to_eat);
     pthread_mutex_unlock(philo->left_fork);
     pthread_mutex_unlock(philo->right_fork);
-    // (El orden de soltar da igual)
 }
 
 void sleeping(t_philo *philo)
@@ -64,19 +56,15 @@ void	*philosopher_routine(void *arg)
 {
 	t_philo	*philo;
 
-	// Convertimos el puntero genérico de vuelta a un puntero de t_philo
 	philo = (t_philo *)arg;
-
-	// Por ahora, solo imprimimos un mensaje para saber que el hilo se creó.
-	// Usamos philo->id para saber qué filósofo está hablando.
-	while (1)
+	while (!should_stop(philo->program))
 	{
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);
 	}
 
-	return (NULL); // Los hilos deben devolver algo, NULL está bien para nosotros.
+	return (NULL);
 }
 
 /*
