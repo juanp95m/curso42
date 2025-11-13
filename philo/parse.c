@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:09:12 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/04 20:10:32 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:29:55 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int is_invalid_argument(int argc, char **argv)
         num = ft_atolmax(argv[i]);
         if (num <= 0)
 		{
-			printf("argument must be a positive number\n");
+			printf("arguments must be a integer number bigger than 0 \n");
 			return (1);
 		}
         i++;

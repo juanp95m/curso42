@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/12 13:40:42 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/13 13:11:38 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void sleeping(t_philo *philo)
 	print_status(philo, "is sleeping");
     precise_sleep(philo->program->time_to_sleep);
 }
-void	thinking(t_philo *philo)
+void thinking(t_philo *philo)
 {
-	print_status(philo, "is thinking");
+    print_status(philo, "is thinking");
 }
 /*
  * Este es el "guion" que cada filósofo (hilo) ejecutará.
@@ -78,6 +78,11 @@ void    print_status(t_philo *philo, char *status_message)
     // 1. Bloquear el mutex de impresión
     pthread_mutex_lock(&philo->program->printf_mutex);
 
+    if (should_stop(philo->program))
+    {
+        pthread_mutex_unlock(&philo->program->printf_mutex);
+        return;  
+    }
     // 2. Calcular el time (Tiempo actual - Tiempo de inicio)
     // Usamos las funciones que ya tienes
     time = get_time_in_ms() - philo->program->start_time;

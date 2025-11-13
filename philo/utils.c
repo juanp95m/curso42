@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:09:12 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/11 20:25:32 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:04:11 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,29 @@ long long	get_time_in_ms(void)
 	// Los sumamos para tener el total de milisegundos desde "el inicio de los tiempos".
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
-
-/*
- * Nueva función para "dormir" de forma más precisa.
- * Evita el "oversleeping" de usleep comprobando la hora en un bucle.
-*/
+//CON ESTA SI FUNCIONA PRECISE_SLEEP
+void precise_sleep(long long duration_ms)
+{
+    long long start_time;
+    long long elapsed;
+    
+    start_time = get_time_in_ms();
+    
+    while (1)
+    {
+        elapsed = get_time_in_ms() - start_time;
+        
+        if (elapsed >= duration_ms)
+            break;
+        
+        // Si falta más de 10ms, duerme 1ms
+        if ((duration_ms - elapsed) > 10)
+            usleep(1000);
+        else
+            usleep(100);  // Cerca del final, duerme menos
+    }
+}
+/*CON ESTA NO FUNCIONA
 void	precise_sleep(long long duration_ms)
 {
 	long long	start_time;
@@ -72,10 +90,11 @@ void	precise_sleep(long long duration_ms)
 	}
 }
 
-/*
+
  * Nueva función para liberar todos los recursos.
  * Destruye los mutex y libera la memoria de los arrays.
 */
+
 int    clean_and_destroy(t_program *program, int size)
 {
     int i;

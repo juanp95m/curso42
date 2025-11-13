@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:29 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/12 18:12:33 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/13 12:40:55 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,29 @@ int join_all_threads(t_program *program)
 	}
 	return (0);
 }
+
 int start_simulation(t_program *program)
 {
+	int i;
+	
 	program->start_time = get_time_in_ms();
 	
 	init_philos_meal_time(program, program->start_time);
 	if (create_philosopher_threads(program))
 		return (1);
+	if (pthread_create(&program->boss_thread, NULL, boss_routine, program))
+	{	
+		printf("Error: creating boss threads");
+		
+		i = 0;
+		while (i < program->num_philos)
+		{
+			pthread_join(program->philos[i].thread, NULL);
+			i++;
+		}
+		clean_and_destroy(program, program->num_philos);
+		return (1);
+	}
 	return (0);
 }
 
@@ -92,6 +108,12 @@ int main(int argc, char **argv)
 	// antes de bajar el telón.
 	if (join_all_threads(&program))
 		return (1);
+	if (pthread_join(program.boss_thread, NULL))
+	{
+		printf("Error: crearing boss threads in main");
+		clean_and_destroy(&program, program.num_philos);
+		return (1);
+	}
 	clean_and_destroy(&program, program.num_philos);
     return (0);
 }
