@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/13 13:11:38 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:45:10 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ void	*philosopher_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+
+    if (philo->id % 2 == 0)
+    {
+        usleep(1000);
+    }
+        
 	while (!should_stop(philo->program))
 	{
 		eating(philo);
