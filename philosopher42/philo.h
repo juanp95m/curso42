@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/13 16:08:58 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:16:18 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,12 @@ typedef struct s_program
 int			allocate_memory(t_program *program);
 int			clean_and_destroy(t_program *program, int size);
 void		free_philos_forks(t_program *program);
-int			is_one_philosopher(t_program *program);
 
 //time.c
 long long	get_time_in_ms(void);
 void		precise_sleep(long long duration_ms);
 
 //parse.c
-int			is_invalid_argument(int argc, char **argv);
 long		ft_atolmax(const char *nptr);
 int			ft_isspace(int c);
 int			ft_isdigit(int c);
@@ -70,7 +68,8 @@ int			ft_isdigit(int c);
 int			init_program_struct(t_program *program, int argc, char **argv);
 int			init_forks(t_program *program);
 void		init_philos(t_program *program);
-int			init_all(t_program *program, int argc, char **argv);
+int			init_shared_mutexes(t_program *program);
+void		init_philos_meal_time(t_program *program, long long start_time);
 
 //simulation.c
 void		*philosopher_routine(void *arg);
@@ -90,10 +89,13 @@ void		set_stop(t_program *program);
 long long	get_last_meal(t_philo *philo);
 int			get_meals_eaten(t_philo *philo);
 
-//main.c
-void		init_philos_meal_time(t_program *program, long long start_time);
+//thread_manager.c
 int			create_philosopher_threads(t_program *program);
 int			join_all_threads(t_program *program);
 int			start_simulation(t_program *program);
 
+//main.c
+int			is_one_philosopher(t_program *program);
+int			is_invalid_argument(int argc, char **argv);
+int			init_all(t_program *program, int argc, char **argv);
 #endif

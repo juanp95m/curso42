@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:11 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/13 16:32:24 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:14:32 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,4 @@ void	*philosopher_routine(void *arg)
 		thinking(philo);
 	}
 	return (NULL);
-}
-
-void	print_status(t_philo *philo, char *status_message)
-{
-	long long	time;
-
-	pthread_mutex_lock(&philo->program->printf_mutex);
-	if (should_stop(philo->program))
-	{
-		pthread_mutex_unlock(&philo->program->printf_mutex);
-		return ;
-	}
-	time = get_time_in_ms() - philo->program->start_time;
-	printf("%lld %d %s\n", time, philo->id, status_message);
-	pthread_mutex_unlock(&philo->program->printf_mutex);
 }

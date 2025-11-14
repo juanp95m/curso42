@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:58:04 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/13 16:24:03 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:13:43 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,22 +85,14 @@ void	init_philos(t_program *program)
 	}
 }
 
-int	init_all(t_program *program, int argc, char **argv)
+void	init_philos_meal_time(t_program *program, long long start_time)
 {
-	if (init_program_struct(program, argc, argv))
-		return (1);
-	if (allocate_memory(program))
-		return (1);
-	if (init_forks(program))
+	int	i;
+
+	i = 0;
+	while (i < program->num_philos)
 	{
-		free_philos_forks(program);
-		return (1);
+		program->philos[i].last_meal_time = start_time;
+		i++;
 	}
-	if (init_shared_mutexes(program))
-	{
-		clean_and_destroy(program, program->num_philos);
-		return (1);
-	}
-	init_philos(program);
-	return (0);
 }

@@ -10,6 +10,7 @@ time.c \
 simulation.c \
 helpersboss.c \
 boss.c \
+thread_manager.c \
 
 OBJS = $(SRCS:.c=.o)
 

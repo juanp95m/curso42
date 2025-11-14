@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 17:06:55 by marvin            #+#    #+#             */
-/*   Updated: 2025/11/13 16:27:56 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/14 18:25:26 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	is_someone_died(t_program *program)
 		time_since_meal = current_time - last_meal;
 		if (time_since_meal >= program->time_to_die)
 		{
-			print_status(philo, "died");
 			set_stop(program);
+			print_status(philo, "died");
 			return (1);
 		}
 		i++;
