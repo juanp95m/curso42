@@ -23,7 +23,7 @@ int	create_philosopher_threads(t_program *program)
 		if (pthread_create(&program->philos[i].thread, NULL,
 				&philosopher_routine, &program->philos[i]) != 0)
 		{
-			printf("Error: Fallo al crear el hilo del filosofo %d\n", i + 1);
+			printf("Error: Fail to create the philosopher's thread %d\n", i + 1);
 			j = 0;
 			while (j < i)
 			{
@@ -47,7 +47,7 @@ int	join_all_threads(t_program *program)
 	{
 		if (pthread_join(program->philos[i].thread, NULL))
 		{
-			printf("Error: fallo al crear el hilo del filosofo %d\n", i + 1);
+			printf("Error: fail to create the philosopher's thread %d\n", i + 1);
 			clean_and_destroy(program, program->num_philos);
 			return (1);
 		}
