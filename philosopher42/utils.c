@@ -44,13 +44,13 @@ int	allocate_memory(t_program *program)
 	program->philos = malloc(sizeof(t_philo) * program->num_philos);
 	if (!program->philos)
 	{
-		printf("Error: Malloc para filósofos ha fallado.\n");
+		printf("Error:  Malloc for philosophers failed.\n");
 		return (1);
 	}
 	program->forks = malloc(sizeof(pthread_mutex_t) * program->num_philos);
 	if (!program->forks)
 	{
-		printf("Error: Malloc para tenedores ha fallado.\n");
+		printf("Error: Malloc for forks failed.\n");
 		free(program->philos);
 		return (1);
 	}
