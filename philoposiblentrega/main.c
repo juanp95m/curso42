@@ -6,67 +6,11 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:53:29 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/13 16:20:06 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:17:38 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	init_philos_meal_time(t_program *program, long long start_time)
-{
-	int	i;
-
-	i = 0;
-	while (i < program->num_philos)
-	{
-		program->philos[i].last_meal_time = start_time;
-		i++;
-	}
-}
-
-int	create_philosopher_threads(t_program *program)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < program->num_philos)
-	{
-		if (pthread_create(&program->philos[i].thread, NULL,
-				&philosopher_routine, &program->philos[i]) != 0)
-		{
-			printf("Error: Fallo al crear el hilo del filosofo %d\n", i + 1);
-			j = 0;
-			while (j < i)
-			{
-				pthread_join(program->philos[j].thread, NULL);
-				j++;
-			}
-			clean_and_destroy(program, program->num_philos);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	join_all_threads(t_program *program)
-{
-	int	i;
-
-	i = 0;
-	while (i < program->num_philos)
-	{
-		if (pthread_join(program->philos[i].thread, NULL))
-		{
-			printf("Error: fallo al crear el hilo del filosofo %d\n", i + 1);
-			clean_and_destroy(program, program->num_philos);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
 
 int	start_simulation(t_program *program)
 {
@@ -107,7 +51,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (pthread_join(program.boss_thread, NULL))
 	{
-		printf("Error: crearing boss threads in main");
+		printf("Error: creating boss threads in main");
 		clean_and_destroy(&program, program.num_philos);
 		return (1);
 	}

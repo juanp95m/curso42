@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:58:04 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/13 16:24:03 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:17:19 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	init_forks(t_program *program)
 	{
 		if (pthread_mutex_init(&program->forks[i], NULL) != 0)
 		{
-			printf("Error: Fallo al inicializar un mutex.\n");
+			printf("Error: Fail to inicialize a mutex.\n");
 			return (clean_and_destroy(program, i));
 		}
 		i++;
@@ -46,18 +46,18 @@ int	init_shared_mutexes(t_program *program)
 {
 	if (pthread_mutex_init(&program->printf_mutex, NULL) != 0)
 	{
-		printf("Error: Fallo al inicializar print_mutex\n");
+		printf("Error: Fail to inicialize a print_mutex\n");
 		return (1);
 	}
 	if (pthread_mutex_init(&program->stop_mutex, NULL) != 0)
 	{
-		printf("Error: Fallo al inicializar stop_mutex\n");
+		printf("Error: Fail to inicialize a stop_mutex\n");
 		pthread_mutex_destroy(&program->printf_mutex);
 		return (1);
 	}
 	if (pthread_mutex_init(&program->meal_mutex, NULL) != 0)
 	{
-		printf("Error: Fallo al inicializar meal_mutex\n");
+		printf("Error: Fail to inicialize a meal_mutex\n");
 		pthread_mutex_destroy(&program->printf_mutex);
 		pthread_mutex_destroy(&program->stop_mutex);
 		return (1);

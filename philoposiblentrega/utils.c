@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:09:12 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/13 16:11:15 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:02:03 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,30 @@ int	allocate_memory(t_program *program)
 	program->philos = malloc(sizeof(t_philo) * program->num_philos);
 	if (!program->philos)
 	{
-		printf("Error: Malloc para filósofos ha fallado.\n");
+		printf("Error: Malloc failed to create the philosophers.\n");
 		return (1);
 	}
 	program->forks = malloc(sizeof(pthread_mutex_t) * program->num_philos);
 	if (!program->forks)
 	{
-		printf("Error: Malloc para tenedores ha fallado.\n");
+		printf("Error: Malloc failed to create the forks.\n");
 		free(program->philos);
 		return (1);
 	}
 	return (0);
+}
+
+void	print_status(t_philo *philo, char *status_message)
+{
+	long long	time;
+
+	pthread_mutex_lock(&philo->program->printf_mutex);
+	if (should_stop(philo->program))
+	{
+		pthread_mutex_unlock(&philo->program->printf_mutex);
+		return ;
+	}
+	time = get_time_in_ms() - philo->program->start_time;
+	printf("%lld %d %s\n", time, philo->id, status_message);
+	pthread_mutex_unlock(&philo->program->printf_mutex);
 }
