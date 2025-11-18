@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread_manager.c                                   :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 16:19:56 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/14 16:21:11 by jperez-m         ###   ########.fr       */
+/*   Created: 2025/10/30 16:53:29 by jperez-m          #+#    #+#             */
+/*   Updated: 2025/11/13 16:20:06 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	init_philos_meal_time(t_program *program, long long start_time)
+{
+	int	i;
+
+	i = 0;
+	while (i < program->num_philos)
+	{
+		program->philos[i].last_meal_time = start_time;
+		i++;
+	}
+}
 
 int	create_philosopher_threads(t_program *program)
 {
@@ -23,7 +35,7 @@ int	create_philosopher_threads(t_program *program)
 		if (pthread_create(&program->philos[i].thread, NULL,
 				&philosopher_routine, &program->philos[i]) != 0)
 		{
-			printf("Error: Fail to create the philosopher's thread %d\n", i + 1);
+			printf("Error: Fallo al crear el hilo del filosofo %d\n", i + 1);
 			j = 0;
 			while (j < i)
 			{
@@ -47,7 +59,7 @@ int	join_all_threads(t_program *program)
 	{
 		if (pthread_join(program->philos[i].thread, NULL))
 		{
-			printf("Error: fail to create the philosopher's thread %d\n", i + 1);
+			printf("Error: fallo al crear el hilo del filosofo %d\n", i + 1);
 			clean_and_destroy(program, program->num_philos);
 			return (1);
 		}
@@ -76,5 +88,29 @@ int	start_simulation(t_program *program)
 		clean_and_destroy(program, program->num_philos);
 		return (1);
 	}
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_program	program;
+
+	if (is_invalid_argument(argc, argv))
+		return (1);
+	if (init_all(&program, argc, argv))
+		return (1);
+	if (program.num_philos == 1)
+		return (is_one_philosopher(&program));
+	if (start_simulation(&program) == 1)
+		return (1);
+	if (join_all_threads(&program))
+		return (1);
+	if (pthread_join(program.boss_thread, NULL))
+	{
+		printf("Error: crearing boss threads in main");
+		clean_and_destroy(&program, program.num_philos);
+		return (1);
+	}
+	clean_and_destroy(&program, program.num_philos);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:09:12 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/14 17:14:17 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:16:43 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,28 @@ long	ft_atolmax(const char *nptr)
 			return (result);
 	}
 	return (result * sign);
+}
+
+int	is_invalid_argument(int argc, char **argv)
+{
+	int	i;
+	int	num;
+
+	if (argc < 5 || argc > 6)
+	{
+		printf("invalid arguments number\n");
+		return (1);
+	}
+	i = 1;
+	while (i < argc)
+	{
+		num = ft_atolmax(argv[i]);
+		if (num <= 0)
+		{
+			printf("arguments must be a integer number bigger than 0 \n");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

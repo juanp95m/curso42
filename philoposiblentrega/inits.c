@@ -6,7 +6,7 @@
 /*   By: jperez-m <jperez-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 16:58:04 by jperez-m          #+#    #+#             */
-/*   Updated: 2025/11/14 17:13:43 by jperez-m         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:24:03 by jperez-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	init_forks(t_program *program)
 	{
 		if (pthread_mutex_init(&program->forks[i], NULL) != 0)
 		{
-			printf("Error: Failed to initialize a mutex.\n");
+			printf("Error: Fallo al inicializar un mutex.\n");
 			return (clean_and_destroy(program, i));
 		}
 		i++;
@@ -46,18 +46,18 @@ int	init_shared_mutexes(t_program *program)
 {
 	if (pthread_mutex_init(&program->printf_mutex, NULL) != 0)
 	{
-		printf("Error: Failed to initialize print_mutex\n");
+		printf("Error: Fallo al inicializar print_mutex\n");
 		return (1);
 	}
 	if (pthread_mutex_init(&program->stop_mutex, NULL) != 0)
 	{
-		printf("Error: Failed to initialize stop_mutex\n");
+		printf("Error: Fallo al inicializar stop_mutex\n");
 		pthread_mutex_destroy(&program->printf_mutex);
 		return (1);
 	}
 	if (pthread_mutex_init(&program->meal_mutex, NULL) != 0)
 	{
-		printf("Error: Failed to initialize meal_mutex\n");
+		printf("Error: Fallo al inicializar meal_mutex\n");
 		pthread_mutex_destroy(&program->printf_mutex);
 		pthread_mutex_destroy(&program->stop_mutex);
 		return (1);
@@ -85,14 +85,22 @@ void	init_philos(t_program *program)
 	}
 }
 
-void	init_philos_meal_time(t_program *program, long long start_time)
+int	init_all(t_program *program, int argc, char **argv)
 {
-	int	i;
-
-	i = 0;
-	while (i < program->num_philos)
+	if (init_program_struct(program, argc, argv))
+		return (1);
+	if (allocate_memory(program))
+		return (1);
+	if (init_forks(program))
 	{
-		program->philos[i].last_meal_time = start_time;
-		i++;
+		free_philos_forks(program);
+		return (1);
 	}
+	if (init_shared_mutexes(program))
+	{
+		clean_and_destroy(program, program->num_philos);
+		return (1);
+	}
+	init_philos(program);
+	return (0);
 }
