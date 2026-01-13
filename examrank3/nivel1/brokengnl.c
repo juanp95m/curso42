@@ -5,9 +5,10 @@
 //# define BUFFER_SIZE 10
 //#endif
 
-//#include "get_next_line.h" //borrar esta libreria en incluir las siguientes:
+//#include "get_next_line.h" //borrar esta libreria
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 char	*ft_strchr(char *s, int c)
 {
@@ -93,13 +94,13 @@ char	*get_next_line(int fd)
         //  free(ret);
         //  return (NULL);
         //}
-        //temp = ft_strchr(b, '\n');
+        //tmp = ft_strchr(b, '\n');
 	}
 	if (!str_append_mem(&ret, b, tmp - b + 1))
 	{
 		free(ret);
 		return (NULL);
 	}
-    //ft_memmove(b, temp + 1, ft_strlen(temp + 1));
+    //ft_memmove(b, tmp + 1, ft_strlen(tmp + 1));
 	return (ret);
 }

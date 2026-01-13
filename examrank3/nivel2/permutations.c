@@ -1,26 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void swap(char *s1, char *s2)  // Intercambia dos caracteres
+void swap(char *s1, char *s2)  
 {
-	char tmp = *s1;  // Guardamos s1 en temporal
-	*s1 = *s2;       // s1 recibe el valor de s2
-	*s2 = tmp;       // s2 recibe el valor original de s1 (del temporal)
+	char tmp = *s1;
+	*s1 = *s2;       
+	*s2 = tmp;       
 }
 
-void sort(char *str)  // Ordena la cadena alfabéticamente (menor a mayor)
+void sort(char *str)
 {
-	int i = 0;  // Índice para recorrer cada posición
-	while (str[i])  // Mientras no lleguemos al final de la cadena
+	int i = 0;
+	while (str[i])
 	{
-		int j = i + 1;  // j comienza después de i
-		while (str[j])  // Comparamos str[i] con todos los siguientes
+		int j = i + 1;
+		while (str[j])
 		{
-			if (str[i] > str[j])  // Si está desordenado (str[i] debería ser menor)
-				swap(&str[i], &str[j]);  // Intercambiamos para ordenar
-			j++;  // Avanzamos al siguiente carácter
+			if (str[i] > str[j])
+				swap(&str[i], &str[j]);
+			j++;
 		}
-		i++;  // Avanzamos a la siguiente posición base
+		i++;
 	}
 }
 
@@ -47,10 +47,10 @@ void permu(char *str, char *result, int *used, int pos, int size)  // Genera per
 	}
 }
 
-int main(int ac, char **av)  // Programa principal
+int main(int ac, char **av)  
 {
 	if (ac != 2)  // Verificamos que haya exactamente 1 argumento (además del nombre del programa)
-		return (1);  // Error: número incorrecto de argumentos
+		return (1);
 
 	int size = 0;  // Variable para almacenar la longitud de la cadena
 	while (av[1][size])  // Recorremos la cadena hasta encontrar '\0'
@@ -65,5 +65,5 @@ int main(int ac, char **av)  // Programa principal
 	
 	free(result);  // Liberamos la memoria de result
 	free(used);  // Liberamos la memoria de used
-	return (0);  // Éxito
+	return (0); 
 }

@@ -8,7 +8,7 @@ int	actualbuff[100];    // Array que guarda el subconjunto actualbuff que estamo
 
 void	powerset(int posnums, int size, int posact, int sum)  // posnums: posición en nums | size: tamaño de nums | posact: elementos en actualbuff | sum: suma acumulada
 {
-	if (sum == target)                      // Si la suma actualbuff es igual al target
+	if (sum == target)                      // Si la suma de los numeros que hay en actualbuff es igual al target
 	{
 		int	i = 0;                          // Inicializamos contador para imprimir
 		while (i < posact)                  // Recorremos todos los elementos del subconjunto actualbuff
@@ -20,7 +20,7 @@ void	powerset(int posnums, int size, int posact, int sum)  // posnums: posición
 		printf("\n");                       // Saltamos línea al terminar de imprimir el subconjunto
 		return ;                            // Terminamos esta rama de recursión
 	}
-	if ( posnums == size)                   // Si ya procesamos todos los elementos de nums
+	if (posnums == size)                   // Si ya procesamos todos los elementos de nums
 		return ;                            // Terminamos esta rama (caso base)
 	powerset(posnums + 1, size, posact, sum);                        // Rama 1: NO incluimos nums[posnums] en el subconjunto
 	actualbuff[posact] = nums[posnums];                                  // Guardamos el elemento actualbuff en el subconjunto
@@ -29,11 +29,11 @@ void	powerset(int posnums, int size, int posact, int sum)  // posnums: posición
 
 int	main(int ac, char **av)
 {
-	int	i;                                  // Variable contador
-
-	i = -1;                                 // Inicializamos en -1 para usar pre-incremento
-	if (ac < 3 || !(nums = malloc(sizeof(int) * (ac - 2))))  // Si hay menos de 3 args O falla malloc
-		return (1);                         // Retornamos error
+	int	i;
+	
+	i = -1;                                 // -1 para usar pre-incremento
+	if (ac < 3 || !(nums = malloc(sizeof(int) * (ac - 2))))
+		return (1);                         
 	target = atoi(av[1]);                   // Convertimos el primer argumento a int (target)
 	while (++i < ac - 2)                    // Recorremos los argumentos restantes
 		nums[i] = atoi(av[i + 2]);          // Convertimos cada arg a int y lo guardamos en nums
