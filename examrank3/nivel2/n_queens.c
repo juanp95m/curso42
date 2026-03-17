@@ -40,6 +40,7 @@ void	n_queens(int *table, int val, int col, int size)
 		}
 		val++;
 	}
+	return ;
 }
 
 int main(int ac, char **av)
