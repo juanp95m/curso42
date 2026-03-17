@@ -1,0 +1,586 @@
+export _MSDIR=$PWD
+bash$> echo "red" > colors.txt
+bash$> echo "green" >> colors.txt
+bash$> echo "blue" >> colors.txt
+bash$> echo "yellow" >> colors.txt
+bash$> echo hello
+hello
+bash$> echo -n noeol
+noeolbash$> echo -n
+bash$> echo hello world
+hello world
+bash$> echo ""
+
+bash$> echo "  spaces  "
+  spaces  
+bash$> echo -n one -n two
+one -n twobash$> echo one two   three
+one two three
+bash$> echo 
+
+bash$> echo "" hola
+ hola
+bash$> echo -n -n hola
+holabash$> echo -n -nh -n hola
+-nh -n holabash$> echo -nnnnnnnnn hola
+holabash$> echo 'echo "hola'
+echo "hola
+bash$> echo $?hcudshfuewrf ew  wr 4ew""""
+0hcudshfuewrf ew wr 4ew
+bash$> echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'f'f'f''f'f'f'f'f'f'
+uhjkhnkjhjbmb defdjhfkjb iujiouhjfffffffffff
+bash$> echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'a'j'o''i'w'q''q
+uhjkhnkjhjbmb defdjhfkjb iujiouhjffajoiwqq
+bash$> echo ""aaaaaaaa"bbbbb"'''' ccccccccc "dddddddd"e'e'e
+aaaaaaaabbbbb ccccccccc ddddddddeee
+bash$> echo "ho   $USER"  'la   $LESS'   $USER$TERM
+ho   42user la   $LESS 42userxterm
+bash$> echo "ho   $USER"'la   $LESS'$USER$TERM
+ho   42userla   $LESS42userxterm
+bash$> echo"ho   $USER"
+bash: echoho   42user: command not found
+bash$> echo"ho   $USE$LESS"
+bash: echoho   : command not found
+bash$> "echo" "ho   $USER"
+ho   42user
+bash$> e"cho" "ho   $USER"
+ho   42user
+bash$>        echo "ho   $USER"
+ho   42user
+bash$> echo "$HOME '$LESS' $USER"
+/home/42user '' 42user
+bash$> echo '$HOME "$LESS" $USER'
+$HOME "$LESS" $USER
+bash$> echo '$'"HOME"
+$HOME
+bash$> 
+bash$> pwd
+/app
+bash$> cd /tmp
+bash$> pwd
+/tmp
+bash$> cd /
+bash$> pwd
+/
+bash$> cd /usr/bin
+bash$> pwd
+/usr/bin
+bash$> cd ..
+bash$> pwd
+/usr
+bash$> cd .
+bash$> pwd
+/usr
+bash$> cd /nonexistent_directory_xyz
+bash: cd: /nonexistent_directory_xyz: No such file or directory
+bash$> echo $?
+1
+bash$> cd $_MSDIR
+bash$> export _SAVED_HOME=$HOME
+bash$> unset HOME
+bash$> cd
+bash: cd: HOME not set
+bash$> echo $?
+1
+bash$> export HOME=$_SAVED_HOME
+bash$> unset _SAVED_HOME
+bash$> cd $_MSDIR
+bash$> cd -
+/app
+bash$> pwd
+/app
+bash$> cd ~
+bash$> pwd
+/home/42user
+bash$> cd $_MSDIR
+bash$> 
+bash$> echo '$USER'
+$USER
+bash$> echo '$?'
+$?
+bash$> echo 'hello world'
+hello world
+bash$> echo ''
+
+bash$> echo 'no | pipe here'
+no | pipe here
+bash$> echo 'no > redirect'
+no > redirect
+bash$> echo 'spaces   preserved'
+spaces   preserved
+bash$> echo '$USER is not expanded in single quotes'
+$USER is not expanded in single quotes
+bash$> echo "hello world"
+hello world
+bash$> echo "spaces   preserved"
+spaces   preserved
+bash$> echo "cat lol.c | cat > lol.c"
+cat lol.c | cat > lol.c
+bash$> export DQTEST=expanded
+bash$> echo $DQTEST
+expanded
+bash$> echo "$DQTEST"
+expanded
+bash$> echo "value is $DQTEST end"
+value is expanded end
+bash$> echo "$?"
+0
+bash$> echo "'$USER'"
+'42user'
+bash$> echo '"$USER"'
+"$USER"
+bash$> echo "$COMPLICADO"
+
+bash$> echo '$COMPLICADO'
+$COMPLICADO
+bash$> echo "'$COMPLICADO'"
+''
+bash$> echo '"$COMPLICADO"'
+"$COMPLICADO"
+bash$> 
+bash$> echo "first line" > /tmp/ms_test_redir.txt
+bash$> cat /tmp/ms_test_redir.txt
+first line
+bash$> echo "second line" >> /tmp/ms_test_redir.txt
+bash$> cat /tmp/ms_test_redir.txt
+first line
+second line
+bash$> echo "third line" >> /tmp/ms_test_redir.txt
+bash$> wc -l < /tmp/ms_test_redir.txt
+3
+bash$> echo "overwrite" > /tmp/ms_test_redir.txt
+bash$> cat /tmp/ms_test_redir.txt
+overwrite
+bash$> rm /tmp/ms_test_redir.txt
+bash$> echo hola > /tmp/ms_rout1.txt
+bash$> cat /tmp/ms_rout1.txt
+hola
+bash$> echo caracola >> /tmp/ms_rout1.txt
+bash$> cat /tmp/ms_rout1.txt
+hola
+caracola
+bash$> echo hola > /tmp/ms_rout1.txt > /tmp/ms_rout2.txt > /tmp/ms_rout3.txt
+bash$> cat /tmp/ms_rout1.txt
+bash$> cat /tmp/ms_rout2.txt
+bash$> cat /tmp/ms_rout3.txt
+hola
+bash$> rm -f /tmp/ms_rout1.txt /tmp/ms_rout2.txt /tmp/ms_rout3.txt
+bash$> 
+bash$> cat << EOF
+> line one
+> line two
+> line three
+> EOF
+line one
+line two
+line three
+bash$> grep "an" << WORDS
+> apple
+> banana
+> cherry
+> mango
+> WORDS
+banana
+mango
+bash$> wc -l << COUNTER
+> a
+> b
+> c
+> d
+> e
+> COUNTER
+5
+bash$> 
+bash$> echo hello | cat
+hello
+bash$> echo hello | cat | cat
+hello
+bash$> echo hello | wc -c
+6
+bash$> /bin/ls /dev/null | cat
+/dev/null
+bash$> echo "apple banana cherry" | tr ' ' '\n' | sort
+apple
+banana
+cherry
+bash$> echo "abc" | rev | rev
+abc
+bash$> echo "line1" > /tmp/ms_pipe_a.txt
+bash$> echo "line2" >> /tmp/ms_pipe_a.txt
+bash$> echo "line3" >> /tmp/ms_pipe_a.txt
+bash$> cat /tmp/ms_pipe_a.txt | wc -l
+3
+bash$> cat /tmp/ms_pipe_a.txt | grep "line" | wc -l
+3
+bash$> cat /tmp/ms_pipe_a.txt | sort -r > /tmp/ms_pipe_b.txt
+bash$> cat /tmp/ms_pipe_b.txt
+line3
+line2
+line1
+bash$> rm /tmp/ms_pipe_a.txt /tmp/ms_pipe_b.txt
+bash$> mkdir test_ls_pipe_wc
+bash$> cd test_ls_pipe_wc
+bash$> touch file1 file2 file3
+bash$> ls | wc
+      3       3      18
+bash$> ls|wc
+      3       3      18
+bash$> cd ..
+bash$> rm -rf test_ls_pipe_wc
+bash$> wc < colors.txt > /tmp/ms_wc_out.txt
+bash$> cat /tmp/ms_wc_out.txt
+ 4  4 22
+bash$> rm -f /tmp/ms_wc_out.txt
+bash$> cat colors.txt | wc
+      4       4      22
+bash$> 
+bash$> export TESTVAR=hello42
+bash$> echo $TESTVAR
+hello42
+bash$> export TESTVAR=updated
+bash$> echo $TESTVAR
+updated
+bash$> echo $?
+0
+bash$> unset TESTVAR
+bash$> echo $TESTVAR
+
+bash$> export MY_VAR=hello
+bash$> echo $MY_VAR
+hello
+bash$> env | grep MY_VAR
+MY_VAR=hello
+bash$> export MY_VAR=updated
+bash$> echo $MY_VAR
+updated
+bash$> env | grep MY_VAR
+MY_VAR=updated
+bash$> unset MY_VAR
+bash$> echo $MY_VAR
+
+bash$> echo "exit:$?"
+exit:0
+bash$> export A=1
+bash$> echo $A
+1
+bash$> export B=2
+bash$> echo $B
+2
+bash$> export C=3
+bash$> echo $C
+3
+bash$> unset B
+bash$> echo $A
+1
+bash$> echo $B
+
+bash$> echo $C
+3
+bash$> env | grep -E "^A=|^B=|^C=" | sort
+A=1
+C=3
+bash$> export a=b
+bash$> echo $a
+b
+bash$> export b=wawa
+bash$> echo $b
+wawa
+bash$> export b=lala
+bash$> echo $b
+lala
+bash$> export c=lala=kaka
+bash$> echo $c
+lala=kaka
+bash$> export a=
+bash$> echo "|$a|"
+||
+bash$> export a3=l
+bash$> echo $a3
+l
+bash$> export 2a=lala
+bash: export: `2a=lala': not a valid identifier
+bash$> export NUEVA=$TERM
+bash$> echo $NUEVA
+xterm
+bash$> export POLLOS=asados
+bash$> echo $POLLOS
+asados
+bash$> unset POLLOS
+bash$> echo $POLLOS
+
+bash$> export A=1 B=2
+bash$> echo $A $B
+1 2
+bash$> unset A B
+bash$> echo $A $B
+
+bash$> export a= b=o
+bash$> echo $a $b
+o
+bash$> export a===
+bash$> echo $a
+==
+bash$> export ""
+bash: export: `': not a valid identifier
+bash$> env
+_MSDIR=/app
+HOSTNAME=42container
+SSH_AUTH_SOCK=/ssh-agent
+PWD=/app
+C=3
+a3=l
+c=lala=kaka
+HOME=/home/42user
+b=o
+a===
+NUEVA=xterm
+HISTFILE=/home/42user/.bash_history
+DQTEST=expanded
+TERM=xterm
+USER=42user
+SHLVL=2
+LC_CTYPE=en_US.UTF-8
+PS1=bash$> 
+PATH=/home/42user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+DEBIAN_FRONTEND=noninteractive
+OLDPWD=/app/test_ls_pipe_wc
+_=/usr/bin/env
+bash$> env lalal
+env: 'lalal': No such file or directory
+bash$> env directorio
+env: 'directorio': No such file or directory
+bash$> unset
+bash$> unset $HOME $USER
+bash$> 
+bash$> mkdir -p /tmp/ms_wildcard_test
+bash$> echo "c file" > /tmp/ms_wildcard_test/foo.c
+bash$> echo "h file" > /tmp/ms_wildcard_test/foo.h
+bash$> echo "txt file" > /tmp/ms_wildcard_test/bar.txt
+bash$> cd /tmp/ms_wildcard_test
+bash$> echo *.c
+foo.c
+bash$> echo *.h
+foo.h
+bash$> echo *.txt
+bar.txt
+bash$> ls *.c
+foo.c
+bash$> ls *.h
+foo.h
+bash$> echo *
+bar.txt foo.c foo.h
+bash$> cd $_MSDIR
+bash$> rm -rf /tmp/ms_wildcard_test
+bash$> cat < colors.txt
+red
+green
+blue
+yellow
+bash$> cat < colors.txt > copia.txt
+bash$> cat copia.txt
+red
+green
+blue
+yellow
+bash$> rm -f copia.txt
+bash$> cat colors.txt | wc
+      4       4      22
+bash$> 
+bash$> mkdir test_ls_bool
+bash$> cd test_ls_bool
+bash$> touch file1 file2 file3
+bash$> 
+bash$> cd ..
+bash$> rm -rf test_ls_bool
+bash$> rm -f /tmp/ms_logic_a.txt
+bash$> 
+bash$> mkdir -p /tmp/ms_lperalta_test
+bash$> mkdir -p /tmp/ms_lperalta_test/dir_existe
+bash$> touch /tmp/ms_lperalta_test/file_existe
+bash$> mkdir -p /tmp/ms_lperalta_test/dir_noperm
+bash$> chmod 000 /tmp/ms_lperalta_test/dir_noperm
+bash$> echo -e "red\ngreen\nblue\nyellow" > /tmp/ms_lperalta_test/colors.txt
+bash$> cd /tmp/ms_lperalta_test
+bash$> echo $?hcudshfuewrf ew  wr 4ew""
+0hcudshfuewrf ew wr 4ew
+bash$> echo "ho   $USER"  "la   $LESS"   $USER$TERM
+ho   42user la    42userxterm
+bash$> echo "ho   $USER"
+ho   42user
+bash$> echo"ho   $USER"
+bash: echoho   42user: command not found
+bash$> e"cho" "ho   $USER"
+ho   42user
+bash$>        echo "ho   $USER"
+ho   42user
+bash$> echo "$HOME" "$USER"
+/home/42user 42user
+bash$> cd dir_existe
+bash$> pwd
+/tmp/ms_lperalta_test/dir_existe
+bash$> cd directorio_no_existe
+bash: cd: directorio_no_existe: No such file or directory
+bash$> echo $?
+1
+bash$> cd file_existe
+bash: cd: file_existe: No such file or directory
+bash$> echo $?
+1
+bash$> cd /tmp/ms_lperalta_test
+bash$> cd
+bash$> pwd
+/home/42user
+bash$> ls | wc
+      1       1       8
+bash$> ls|wc
+      1       1       8
+bash$> echo "colorinchis" > colors.txt
+bash$> cat colors.txt | sort -r | wc
+      1       1      12
+bash$> cd -
+/tmp/ms_lperalta_test
+bash$> pwd
+/tmp/ms_lperalta_test
+bash$> cd ~
+bash$> pwd
+/home/42user
+bash$> cd $_MSDIR
+bash$> chmod 755 /tmp/ms_lperalta_test/dir_noperm
+bash$> rm -rf /tmp/ms_lperalta_test
+bash$> 
+bash$> export _SAVED_PATH=$PATH
+bash$> unset PATH
+bash$> ls
+bash: ls: No such file or directory
+bash$> echo $?
+127
+bash$> /bin/ls
+Makefile		     colors.txt			       includes        obj		      tester.exp
+README.md		     compare_results.py		       lib	       own_tester
+__pycache__		     comparison_interactive.txt        markdowns       results_bash.log
+bonus_results_bash.log	     comparison_interactive_fails.txt  minishell       results_minishell.log
+bonus_results_minishell.log  compile.sh			       minishell.supp  src
+bash$> echo $?
+0
+bash$> export PATH=$_SAVED_PATH
+bash$> unset _SAVED_PATH
+bash$> ls noexiste
+ls: cannot access 'noexiste': No such file or directory
+bash$> echo $?
+2
+bash$> 
+bash$> 
+bash$> 
+bash$> bash --norc --noprofile
+bash$> exit
+exit
+bash$> echo $?
+0
+bash$> bash --norc --noprofile
+bash$> exit 0
+exit
+bash$> echo $?
+0
+bash$> bash --norc --noprofile
+bash$> exit 42
+exit
+bash$> echo $?
+42
+bash$> bash --norc --noprofile
+bash$> exit -42
+exit
+bash$> echo $?
+214
+bash$> bash --norc --noprofile
+bash$> exit 2147483647
+exit
+bash$> echo $?
+255
+bash$> bash --norc --noprofile
+bash$> exit -2147483648
+exit
+bash$> echo $?
+0
+bash$> bash --norc --noprofile
+bash$> exit 9223372036854775807
+exit
+bash$> echo $?
+255
+bash$> bash --norc --noprofile
+bash$> exit -9223372036854775808
+exit
+bash$> echo $?
+0
+bash$> bash --norc --noprofile
+bash$> exit 9223372036854775808
+exit
+bash: exit: 9223372036854775808: numeric argument required
+bash$> echo $?
+2
+bash$> bash --norc --noprofile
+bash$> exit -9223372036854775809
+exit
+bash: exit: -9223372036854775809: numeric argument required
+bash$> echo $?
+2
+bash$> bash --norc --noprofile
+bash$> exit +100
+exit
+bash$> echo $?
+100
+bash$> bash --norc --noprofile
+bash$> exit ++100
+exit
+bash: exit: ++100: numeric argument required
+bash$> echo $?
+2
+bash$> bash --norc --noprofile
+bash$> exit +++100
+exit
+bash: exit: +++100: numeric argument required
+bash$> echo $?
+2
+bash$> bash --norc --noprofile
+bash$> exit --100
+exit
+bash: exit: --100: numeric argument required
+bash$> echo $?
+2
+bash$> bash --norc --noprofile
+bash$> exit exit
+exit
+bash: exit: exit: numeric argument required
+bash$> echo $?
+2
+bash$> bash --norc --noprofile
+bash$> exit 42 53 64
+exit
+bash: exit: too many arguments
+bash$> echo $?
+1
+bash$> bash --norc --noprofile
+bash$> exit hola mundo
+exit
+bash: exit: hola: numeric argument required
+bash$> echo $?
+2
+bash$> bash --norc --noprofile
+bash$> exit 42hola
+exit
+bash: exit: 42hola: numeric argument required
+bash$> echo $?
+2
+bash$> 
+bash$> mkdir test_ls_syntax
+bash$> cd test_ls_syntax
+bash$> touch file1 file2 file3
+bash$> 
+bash$> ls |   | wc
+bash: syntax error near unexpected token `|'
+bash$> | ls | wc
+bash: syntax error near unexpected token `|'
+bash$> ls | wc |
+> echo "mensaje ignorado"
+mensaje ignorado
+bash$> cd ..
+bash$> 

@@ -1,0 +1,529 @@
+export _MSDIR=$PWD
+Minishell$> echo "red" > colors.txt
+Minishell$> echo "green" >> colors.txt
+Minishell$> echo "blue" >> colors.txt
+Minishell$> echo "yellow" >> colors.txt
+Minishell$> echo hello
+hello
+Minishell$> echo -n noeol
+noeolMinishell$> echo -n
+Minishell$> echo hello world
+hello world
+Minishell$> echo ""
+
+Minishell$> echo "  spaces  "
+  spaces  
+Minishell$> echo -n one -n two
+one -n twoMinishell$> echo one two   three
+one two three
+Minishell$> echo 
+
+Minishell$> echo "" hola
+ hola
+Minishell$> echo -n -n hola
+holaMinishell$> echo -n -nh -n hola
+-nh -n holaMinishell$> echo -nnnnnnnnn hola
+holaMinishell$> echo 'echo "hola'
+echo "hola
+Minishell$> echo $?hcudshfuewrf ew  wr 4ew""""
+0hcudshfuewrf ew wr 4ew
+Minishell$> echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'f'f'f''f'f'f'f'f'f'
+uhjkhnkjhjbmb defdjhfkjb iujiouhjfffffffffff
+Minishell$> echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'a'j'o''i'w'q''q
+uhjkhnkjhjbmb defdjhfkjb iujiouhjffajoiwqq
+Minishell$> echo ""aaaaaaaa"bbbbb"'''' ccccccccc "dddddddd"e'e'e
+aaaaaaaabbbbb ccccccccc ddddddddeee
+Minishell$> echo "ho   $USER"  'la   $LESS'   $USER$TERM
+ho   42user la   $LESS 42userxterm
+Minishell$> echo "ho   $USER"'la   $LESS'$USER$TERM
+ho   42userla   $LESS42userxterm
+Minishell$> echo"ho   $USER"
+minishell: echoho   42user: command not found
+Minishell$> echo"ho   $USE$LESS"
+minishell: echoho   : command not found
+Minishell$> "echo" "ho   $USER"
+ho   42user
+Minishell$> e"cho" "ho   $USER"
+ho   42user
+Minishell$>        echo "ho   $USER"
+ho   42user
+Minishell$> echo "$HOME '$LESS' $USER"
+/home/42user '' 42user
+Minishell$> echo '$HOME "$LESS" $USER'
+$HOME "$LESS" $USER
+Minishell$> echo '$'"HOME"
+$HOME
+Minishell$> 
+Minishell$> pwd
+/app
+Minishell$> cd /tmp
+Minishell$> pwd
+/tmp
+Minishell$> cd /
+Minishell$> pwd
+/
+Minishell$> cd /usr/bin
+Minishell$> pwd
+/usr/bin
+Minishell$> cd ..
+Minishell$> pwd
+/usr
+Minishell$> cd .
+Minishell$> pwd
+/usr
+Minishell$> cd /nonexistent_directory_xyz
+minishell: cd: /nonexistent_directory_xyz: No such file or directory
+Minishell$> echo $?
+1
+Minishell$> cd $_MSDIR
+Minishell$> export _SAVED_HOME=$HOME
+Minishell$> unset HOME
+Minishell$> cd
+minishell: cd: HOME not set
+Minishell$> echo $?
+1
+Minishell$> export HOME=$_SAVED_HOME
+Minishell$> unset _SAVED_HOME
+Minishell$> cd $_MSDIR
+Minishell$> cd -
+/app
+Minishell$> pwd
+/app
+Minishell$> cd ~
+Minishell$> pwd
+/home/42user
+Minishell$> cd $_MSDIR
+Minishell$> 
+Minishell$> echo '$USER'
+$USER
+Minishell$> echo '$?'
+$?
+Minishell$> echo 'hello world'
+hello world
+Minishell$> echo ''
+
+Minishell$> echo 'no | pipe here'
+no | pipe here
+Minishell$> echo 'no > redirect'
+no > redirect
+Minishell$> echo 'spaces   preserved'
+spaces   preserved
+Minishell$> echo '$USER is not expanded in single quotes'
+$USER is not expanded in single quotes
+Minishell$> echo "hello world"
+hello world
+Minishell$> echo "spaces   preserved"
+spaces   preserved
+Minishell$> echo "cat lol.c | cat > lol.c"
+cat lol.c | cat > lol.c
+Minishell$> export DQTEST=expanded
+Minishell$> echo $DQTEST
+expanded
+Minishell$> echo "$DQTEST"
+expanded
+Minishell$> echo "value is $DQTEST end"
+value is expanded end
+Minishell$> echo "$?"
+0
+Minishell$> echo "'$USER'"
+'42user'
+Minishell$> echo '"$USER"'
+"$USER"
+Minishell$> echo "$COMPLICADO"
+
+Minishell$> echo '$COMPLICADO'
+$COMPLICADO
+Minishell$> echo "'$COMPLICADO'"
+''
+Minishell$> echo '"$COMPLICADO"'
+"$COMPLICADO"
+Minishell$> 
+Minishell$> echo "first line" > /tmp/ms_test_redir.txt
+Minishell$> cat /tmp/ms_test_redir.txt
+first line
+Minishell$> echo "second line" >> /tmp/ms_test_redir.txt
+Minishell$> cat /tmp/ms_test_redir.txt
+first line
+second line
+Minishell$> echo "third line" >> /tmp/ms_test_redir.txt
+Minishell$> wc -l < /tmp/ms_test_redir.txt
+3
+Minishell$> echo "overwrite" > /tmp/ms_test_redir.txt
+Minishell$> cat /tmp/ms_test_redir.txt
+overwrite
+Minishell$> rm /tmp/ms_test_redir.txt
+Minishell$> echo hola > /tmp/ms_rout1.txt
+Minishell$> cat /tmp/ms_rout1.txt
+hola
+Minishell$> echo caracola >> /tmp/ms_rout1.txt
+Minishell$> cat /tmp/ms_rout1.txt
+hola
+caracola
+Minishell$> echo hola > /tmp/ms_rout1.txt > /tmp/ms_rout2.txt > /tmp/ms_rout3.txt
+Minishell$> cat /tmp/ms_rout1.txt
+Minishell$> cat /tmp/ms_rout2.txt
+Minishell$> cat /tmp/ms_rout3.txt
+hola
+Minishell$> rm -f /tmp/ms_rout1.txt /tmp/ms_rout2.txt /tmp/ms_rout3.txt
+Minishell$> 
+Minishell$> cat << EOF
+> line one
+> line two
+> line three
+> EOF
+line one
+line two
+line three
+Minishell$> grep "an" << WORDS
+> apple
+> banana
+> cherry
+> mango
+> WORDS
+banana
+mango
+Minishell$> wc -l << COUNTER
+> a
+> b
+> c
+> d
+> e
+> COUNTER
+5
+Minishell$> 
+Minishell$> echo hello | cat
+hello
+Minishell$> echo hello | cat | cat
+hello
+Minishell$> echo hello | wc -c
+6
+Minishell$> /bin/ls /dev/null | cat
+/dev/null
+Minishell$> echo "apple banana cherry" | tr ' ' '\n' | sort
+apple
+banana
+cherry
+Minishell$> echo "abc" | rev | rev
+abc
+Minishell$> echo "line1" > /tmp/ms_pipe_a.txt
+Minishell$> echo "line2" >> /tmp/ms_pipe_a.txt
+Minishell$> echo "line3" >> /tmp/ms_pipe_a.txt
+Minishell$> cat /tmp/ms_pipe_a.txt | wc -l
+3
+Minishell$> cat /tmp/ms_pipe_a.txt | grep "line" | wc -l
+3
+Minishell$> cat /tmp/ms_pipe_a.txt | sort -r > /tmp/ms_pipe_b.txt
+Minishell$> cat /tmp/ms_pipe_b.txt
+line3
+line2
+line1
+Minishell$> rm /tmp/ms_pipe_a.txt /tmp/ms_pipe_b.txt
+Minishell$> mkdir test_ls_pipe_wc
+Minishell$> cd test_ls_pipe_wc
+Minishell$> touch file1 file2 file3
+Minishell$> ls | wc
+      3       3      18
+Minishell$> ls|wc
+      3       3      18
+Minishell$> cd ..
+Minishell$> rm -rf test_ls_pipe_wc
+Minishell$> wc < colors.txt > /tmp/ms_wc_out.txt
+Minishell$> cat /tmp/ms_wc_out.txt
+ 4  4 22
+Minishell$> rm -f /tmp/ms_wc_out.txt
+Minishell$> cat colors.txt | wc
+      4       4      22
+Minishell$> 
+Minishell$> export TESTVAR=hello42
+Minishell$> echo $TESTVAR
+hello42
+Minishell$> export TESTVAR=updated
+Minishell$> echo $TESTVAR
+updated
+Minishell$> echo $?
+0
+Minishell$> unset TESTVAR
+Minishell$> echo $TESTVAR
+
+Minishell$> export MY_VAR=hello
+Minishell$> echo $MY_VAR
+hello
+Minishell$> env | grep MY_VAR
+MY_VAR=hello
+Minishell$> export MY_VAR=updated
+Minishell$> echo $MY_VAR
+updated
+Minishell$> env | grep MY_VAR
+MY_VAR=updated
+Minishell$> unset MY_VAR
+Minishell$> echo $MY_VAR
+
+Minishell$> echo "exit:$?"
+exit:0
+Minishell$> export A=1
+Minishell$> echo $A
+1
+Minishell$> export B=2
+Minishell$> echo $B
+2
+Minishell$> export C=3
+Minishell$> echo $C
+3
+Minishell$> unset B
+Minishell$> echo $A
+1
+Minishell$> echo $B
+
+Minishell$> echo $C
+3
+Minishell$> env | grep -E "^A=|^B=|^C=" | sort
+A=1
+C=3
+Minishell$> export a=b
+Minishell$> echo $a
+b
+Minishell$> export b=wawa
+Minishell$> echo $b
+wawa
+Minishell$> export b=lala
+Minishell$> echo $b
+lala
+Minishell$> export c=lala=kaka
+Minishell$> echo $c
+lala=kaka
+Minishell$> export a=
+Minishell$> echo "|$a|"
+||
+Minishell$> export a3=l
+Minishell$> echo $a3
+l
+Minishell$> export 2a=lala
+minishell: export: `2a=lala': not a valid identifier
+Minishell$> export NUEVA=$TERM
+Minishell$> echo $NUEVA
+xterm
+Minishell$> export POLLOS=asados
+Minishell$> echo $POLLOS
+asados
+Minishell$> unset POLLOS
+Minishell$> echo $POLLOS
+
+Minishell$> export A=1 B=2
+Minishell$> echo $A $B
+1 2
+Minishell$> unset A B
+Minishell$> echo $A $B
+
+Minishell$> export a= b=o
+Minishell$> echo $a $b
+o
+Minishell$> export a===
+Minishell$> echo $a
+==
+Minishell$> export ""
+minishell: export: `': not a valid identifier
+Minishell$> env
+PWD=/app
+USER=42user
+PATH=/home/42user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+SHLVL=2
+HOSTNAME=42container
+TERM=xterm
+LC_CTYPE=en_US.UTF-8
+DEBIAN_FRONTEND=noninteractive
+SSH_AUTH_SOCK=/ssh-agent
+HISTFILE=/home/42user/.bash_history
+OLDPWD=/app/test_ls_pipe_wc
+MAIL=mlermo-j@student.42malaga.com
+_=/usr/bin/env
+PS1=Minishell$> 
+_MSDIR=/app
+HOME=/home/42user
+DQTEST=expanded
+C=3
+a===
+b=o
+c=lala=kaka
+a3=l
+NUEVA=xterm
+Minishell$> env lalal
+env: ‘lalal’: No such file or directory
+Minishell$> env directorio
+env: ‘directorio’: No such file or directory
+Minishell$> unset
+Minishell$> unset $HOME $USER
+Minishell$> 
+Minishell$> mkdir -p /tmp/ms_wildcard_test
+Minishell$> echo "c file" > /tmp/ms_wildcard_test/foo.c
+Minishell$> echo "h file" > /tmp/ms_wildcard_test/foo.h
+Minishell$> echo "txt file" > /tmp/ms_wildcard_test/bar.txt
+Minishell$> cd /tmp/ms_wildcard_test
+Minishell$> echo *.c
+*.c
+Minishell$> echo *.h
+*.h
+Minishell$> echo *.txt
+*.txt
+Minishell$> ls *.c
+ls: cannot access '*.c': No such file or directory
+Minishell$> ls *.h
+ls: cannot access '*.h': No such file or directory
+Minishell$> echo *
+*
+Minishell$> cd $_MSDIR
+Minishell$> rm -rf /tmp/ms_wildcard_test
+Minishell$> cat < colors.txt
+red
+green
+blue
+yellow
+Minishell$> cat < colors.txt > copia.txt
+Minishell$> cat copia.txt
+red
+green
+blue
+yellow
+Minishell$> rm -f copia.txt
+Minishell$> cat colors.txt | wc
+      4       4      22
+Minishell$> 
+Minishell$> mkdir test_ls_bool
+Minishell$> cd test_ls_bool
+Minishell$> touch file1 file2 file3
+Minishell$> 
+Minishell$> cd ..
+Minishell$> rm -rf test_ls_bool
+Minishell$> rm -f /tmp/ms_logic_a.txt
+Minishell$> 
+Minishell$> mkdir -p /tmp/ms_lperalta_test
+Minishell$> mkdir -p /tmp/ms_lperalta_test/dir_existe
+Minishell$> touch /tmp/ms_lperalta_test/file_existe
+Minishell$> mkdir -p /tmp/ms_lperalta_test/dir_noperm
+Minishell$> chmod 000 /tmp/ms_lperalta_test/dir_noperm
+Minishell$> echo -e "red\ngreen\nblue\nyellow" > /tmp/ms_lperalta_test/colors.txt
+Minishell$> cd /tmp/ms_lperalta_test
+Minishell$> echo $?hcudshfuewrf ew  wr 4ew""
+0hcudshfuewrf ew wr 4ew
+Minishell$> echo "ho   $USER"  "la   $LESS"   $USER$TERM
+ho   42user la    42userxterm
+Minishell$> echo "ho   $USER"
+ho   42user
+Minishell$> echo"ho   $USER"
+minishell: echoho   42user: command not found
+Minishell$> e"cho" "ho   $USER"
+ho   42user
+Minishell$>        echo "ho   $USER"
+ho   42user
+Minishell$> echo "$HOME" "$USER"
+/home/42user 42user
+Minishell$> cd dir_existe
+Minishell$> pwd
+/tmp/ms_lperalta_test/dir_existe
+Minishell$> cd directorio_no_existe
+minishell: cd: directorio_no_existe: No such file or directory
+Minishell$> echo $?
+1
+Minishell$> cd file_existe
+minishell: cd: file_existe: No such file or directory
+Minishell$> echo $?
+1
+Minishell$> cd /tmp/ms_lperalta_test
+Minishell$> cd
+Minishell$> pwd
+/home/42user
+Minishell$> ls | wc
+      1       1       8
+Minishell$> ls|wc
+      1       1       8
+Minishell$> echo "colorinchis" > colors.txt
+Minishell$> cat colors.txt | sort -r | wc
+      1       1      12
+Minishell$> cd -
+/tmp/ms_lperalta_test
+Minishell$> pwd
+/tmp/ms_lperalta_test
+Minishell$> cd ~
+Minishell$> pwd
+/home/42user
+Minishell$> cd $_MSDIR
+Minishell$> chmod 755 /tmp/ms_lperalta_test/dir_noperm
+Minishell$> rm -rf /tmp/ms_lperalta_test
+Minishell$> 
+Minishell$> export _SAVED_PATH=$PATH
+Minishell$> unset PATH
+Minishell$> ls
+minishell: ls: No such file or directory
+Minishell$> echo $?
+127
+Minishell$> /bin/ls
+Makefile		     colors.txt			       includes        obj
+README.md		     compare_results.py		       lib	       own_tester
+__pycache__		     comparison_interactive.txt        markdowns       results_minishell.log
+bonus_results_bash.log	     comparison_interactive_fails.txt  minishell       src
+bonus_results_minishell.log  compile.sh			       minishell.supp  tester.exp
+Minishell$> echo $?
+0
+Minishell$> export PATH=$_SAVED_PATH
+Minishell$> unset _SAVED_PATH
+Minishell$> ls noexiste
+ls: cannot access 'noexiste': No such file or directory
+Minishell$> echo $?
+2
+Minishell$> 
+Minishell$> 
+Minishell$> 
+Minishell$> ./minishell
+Minishell$> exit
+Minishell$> echo $?
+0
+Minishell$> ./minishell
+Minishell$> exit 0
+Minishell$> echo $?
+0
+Minishell$> ./minishell
+Minishell$> exit 42
+Minishell$> echo $?
+42
+Minishell$> ./minishell
+Minishell$> exit -42
+Minishell$> echo $?
+214
+Minishell$> ./minishell
+Minishell$> exit 2147483647
+Minishell$> echo $?
+255
+Minishell$> ./minishell
+Minishell$> exit -2147483648
+Minishell$> echo $?
+0
+Minishell$> ./minishell
+Minishell$> exit 9223372036854775807
+Minishell$> echo $?
+255
+Minishell$> ./minishell
+Minishell$> exit -9223372036854775808
+Minishell$> echo $?
+0
+Minishell$> ./minishell
+Minishell$> exit 9223372036854775808
+minishell: exit: 9223372036854775808: numeric argument required
+Minishell$> echo $?
+2
+Minishell$> ./minishell
+Minishell$> exit -9223372036854775809
+minishell: exit: -9223372036854775809: numeric argument required
+Minishell$> echo $?
+2
+Minishell$> ./minishell
+Minishell$> exit +100
+Minishell$> echo $?
+100
+Minishell$> ./minishell
+Minishell$> exit ++100
+minishell: exit: ++100: numeric argument required
+Minishell$> echo $?
+2
+Minishell$> ./minishell
+Minishell$> exit +++100
+minishell: exit: +++100: numeric argument required
+Minishell$> 

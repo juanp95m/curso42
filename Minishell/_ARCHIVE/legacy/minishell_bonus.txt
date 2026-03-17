@@ -1,0 +1,75 @@
+#ifndef MINISHELL_BONUS_H
+# define MINISHELL_BONUS_H
+
+# include "minishell.h" // Incluimos la cabecera base
+
+// -----------------------------------------------------------------------------
+// NUEVAS ESTRUCTURAS DE DATOS PARA EL MODO BONUS
+// -----------------------------------------------------------------------------
+
+// Nuevos tipos de token para el lexer en modo bonus
+typedef enum e_tokentype_bonus
+{
+	WORD_BONUS,
+	PIPE_BONUS,
+	REDIRECT_IN_BONUS,
+	REDIRECT_OUT_BONUS,
+	APPEND_BONUS,
+	HEREDOC_BONUS,
+	AND_IF,				// &&
+	OR_IF,				// ||
+	L_PAREN,			// (
+	R_PAREN				// )
+}						t_tokentype_bonus;
+
+// Si decides usar una nueva estructura de token para el bonus
+// typedef struct s_token_bonus
+// {
+// 	char				*value;
+// 	t_tokentype_bonus	type;
+// 	struct s_token_bonus *next;
+// 	struct s_token_bonus *prev;
+// }						t_token_bonus;
+
+
+// Tipos de nodos para el Árbol de Sintaxis Abstracta (AST)
+typedef enum e_ast_node_type
+{
+	NODE_COMMAND,		// Un comando simple (ls -l)
+	NODE_PIPE,			// Una tubería (cmd1 | cmd2)
+	NODE_AND,			// Operador lógico &&
+	NODE_OR,			// Operador lógico ||
+	NODE_SUBSHELL		// Un comando entre paréntesis ( (cmd) )
+}						t_ast_node_type;
+
+// Estructura general para los nodos del AST
+typedef struct s_ast_node
+{
+	t_ast_node_type		type;
+	struct s_ast_node	*left;	// Hijo izquierdo
+	struct s_ast_node	*right;	// Hijo derecho
+	t_command			*command; // Si `type` es NODE_COMMAND, este es el comando simple.
+	// Opcional: Si necesitas un token list para subshells:
+	// t_token_bonus		*subshell_tokens; 
+}						t_ast_node;
+
+// -----------------------------------------------------------------------------
+// PROTOTIPOS DE FUNCIONES PARA EL MODO BONUS
+// -----------------------------------------------------------------------------
+
+// --- lexer_bonus.c ---
+t_token					*lexer_bonus(char *line); // Asumo que el token base sigue siendo t_token
+
+// --- parser_bonus.c ---
+t_ast_node				*parser_bonus(t_token *tokens); // Devuelve la raíz del AST
+
+// --- executor_bonus.c ---
+int						executor_bonus(t_ast_node *ast, t_shell *shell);
+
+// --- expander_bonus.c (para wildcard '*') ---
+void					expand_wildcards(t_command *command);
+
+// --- Funciones para liberar el AST ---
+void					free_ast(t_ast_node *node);
+
+#endif

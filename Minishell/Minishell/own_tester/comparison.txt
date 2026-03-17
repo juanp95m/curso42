@@ -1,0 +1,1148 @@
+COMMAND                                                            |  BASH                                                                    |   MINISHELL
+========================================================================================================================================================================================================================
+  00_echo  [PASS]
+========================================================================================================================================================================================================================
+echo hello                                                         |  hello                                                                   |   hello
+
+echo -n noeol                                                      |  noeol                                                                   |   noeol
+
+echo -n                                                            |                                                                          |   
+
+echo hello world                                                   |  hello world                                                             |   hello world
+
+echo ""                                                            |                                                                          |   
+
+echo "  spaces  "                                                  |    spaces                                                                |     spaces  
+
+echo -n one -n two                                                 |  one -n two                                                              |   one -n two
+
+echo one two   three                                               |  one two three                                                           |   one two three
+
+echo                                                               |                                                                          |   
+
+echo "" hola                                                       |   hola                                                                   |    hola
+
+echo -n -n hola                                                    |  hola                                                                    |   hola
+
+echo -n -nh -n hola                                                |  -nh -n hola                                                             |   -nh -n hola
+
+echo -nnnnnnnnn hola                                               |  hola                                                                    |   hola
+
+echo 'echo "hola'                                                  |  echo "hola                                                              |   echo "hola
+
+echo $?hcudshfuewrf ew  wr 4ew""""                                 |  0hcudshfuewrf ew wr 4ew                                                 |   0hcudshfuewrf ew wr 4ew
+
+echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'f'f'f''f'f'f~  |  uhjkhnkjhjbmb defdjhfkjb iujiouhjfffffffffff                            |   uhjkhnkjhjbmb defdjhfkjb iujiouhjfffffffffff
+
+echo ""uhjkhnkj"hjbmb"'''' defdjhfkjb "iujiouhj"f'f'a'j'o''i'w'q~  |  uhjkhnkjhjbmb defdjhfkjb iujiouhjffajoiwqq                              |   uhjkhnkjhjbmb defdjhfkjb iujiouhjffajoiwqq
+
+echo ""aaaaaaaa"bbbbb"'''' ccccccccc "dddddddd"e'e'e               |  aaaaaaaabbbbb ccccccccc ddddddddeee                                     |   aaaaaaaabbbbb ccccccccc ddddddddeee
+
+echo "ho   $USER"  'la   $LESS'   $USER$TERM                       |  ho   jperez-m la   $LESS jperez-mxterm-256color                         |   ho   jperez-m la   $LESS jperez-mxterm-256color
+
+echo "ho   $USER"'la   $LESS'$USER$TERM                            |  ho   jperez-mla   $LESSjperez-mxterm-256color                           |   ho   jperez-mla   $LESSjperez-mxterm-256color
+
+echo"ho   $USER"                                                   |  shell: echoho   jperez-m: command not found                             |   shell: echoho   jperez-m: command not found
+
+echo"ho   $USE$LESS"                                               |  shell: echoho   -R: command not found                                   |   shell: echoho   -R: command not found
+
+"echo ho   $USER"                                                  |  shell: echo ho   jperez-m: command not found                            |   shell: echo ho   jperez-m: command not found
+
+"echo" "ho   $USER"                                                |  ho   jperez-m                                                           |   ho   jperez-m
+
+e"cho" "ho   $USER"                                                |  ho   jperez-m                                                           |   ho   jperez-m
+
+       echo "ho   $USER"                                           |  ho   jperez-m                                                           |   ho   jperez-m
+
+echo "$HOME '$LESS' $USER"                                         |  /home/jperez-m '-R' jperez-m                                            |   /home/jperez-m '-R' jperez-m
+
+echo '$HOME "$LESS" $USER'                                         |  $HOME "$LESS" $USER                                                     |   $HOME "$LESS" $USER
+
+echo "$HOME '$LESS "pa $TERM" na' $USER"                           |  /home/jperez-m '-R pa xterm-256color na' jperez-m                       |   /home/jperez-m '-R pa xterm-256color na' jperez-m
+
+echo '$HOME "$LESS 'pa $TERM' na" $USER'                           |  $HOME "$LESS pa xterm-256color na" $USER                                |   $HOME "$LESS pa xterm-256color na" $USER
+
+echo '$'"HOME"                                                     |  $HOME                                                                   |   $HOME
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  01_cd_pwd  [PASS]
+========================================================================================================================================================================================================================
+pwd                                                                |  /home/jperez-m/Minishell/Minishell/own_tester                           |   /home/jperez-m/Minishell/Minishell/own_tester
+
+cd /tmp                                                            |                                                                          |   
+
+pwd                                                                |  /tmp                                                                    |   /tmp
+
+cd /                                                               |                                                                          |   
+
+pwd                                                                |  /                                                                       |   /
+
+cd /usr/bin                                                        |                                                                          |   
+
+pwd                                                                |  /usr/bin                                                                |   /usr/bin
+
+cd ..                                                              |                                                                          |   
+
+pwd                                                                |  /usr                                                                    |   /usr
+
+cd .                                                               |                                                                          |   
+
+pwd                                                                |  /usr                                                                    |   /usr
+
+cd /nonexistent_directory_xyz                                      |  shell: cd: /nonexistent_directory_xyz: No such file or directory        |   shell: cd: /nonexistent_directory_xyz: No such file or directory
+
+echo $?                                                            |  0                                                                       |   0
+
+unset HOME                                                         |                                                                          |   
+
+cd                                                                 |  shell: cd: HOME not set                                                 |   shell: cd: HOME not set
+
+echo $?                                                            |  0                                                                       |   0
+
+directorio existe                                                  |  shell: directorio: command not found                                    |   shell: directorio: command not found
+
+directorio no existe                                               |  shell: directorio: command not found                                    |   shell: directorio: command not found
+
+file existe                                                        |  existe: cannot open `existe' (No such file or directory)                |   existe: cannot open `existe' (No such file or directory)
+
+cd                                                                 |  shell: cd: HOME not set                                                 |   shell: cd: HOME not set
+
+           cd                                                      |  shell: cd: HOME not set                                                 |   shell: cd: HOME not set
+
+cd - = $OLDPWD                                                     |  shell: cd: too many arguments                                           |   shell: cd: too many arguments
+
+cd ~ = $HOME                                                       |  shell: cd: too many arguments                                           |   shell: cd: too many arguments
+
+cd $HOME si $HOME no existe                                        |  shell: cd: too many arguments                                           |   shell: cd: too many arguments
+
+cd directorio con distintos permisos                               |  shell: cd: too many arguments                                           |   shell: cd: too many arguments
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  02_export_unset_env marina  [FAIL]
+========================================================================================================================================================================================================================
+export a=b                                                         |                                                                          |   
+
+export b=wawa                                                      |                                                                          |   
+
+export b=lala                                                      |                                                                          |   
+
+export c=lala=kaka                                                 |                                                                          |   
+
+export a                                                           |                                                                          |   
+
+export a=                                                          |                                                                          |   
+
+export a= b=o                                                      |                                                                          |   
+
+export a===                                                        |                                                                          |   
+
+export a3=l                                                        |                                                                          |   
+
+export 2a=lala                                                     |  shell: export: `2a=lala': not a valid identifier                        |   shell: export: `2a=lala': not a valid identifier
+
+export !a=ma                                                       |  shell: export: `!a=ma': not a valid identifier                          |   shell: export: `!a=ma': not a valid identifier
+
+export $USER=la                                                    |  shell: export: `jperez-m=la': not a valid identifier                    |   shell: export: `jperez-m=la': not a valid identifier
+
+export $USER=$TERM                                                 |  shell: export: `jperez-m=xterm-256color': not a valid identifier        |   shell: export: `jperez-m=xterm-256color': not a valid identifier
+
+export $USER=$TERM$HOME                                            |  shell: export: `jperez-m=xterm-256color/home/jperez-m': not a valid i~  |   shell: export: `jperez-m=xterm-256color/home/jperez-m': not a valid identifier
+
+export $USER=$TERM$HOM                                             |  shell: export: `jperez-m=xterm-256color': not a valid identifier        |   shell: export: `jperez-m=xterm-256color': not a valid identifier
+
+export $HOME=$USER                                                 |  shell: export: `/home/jperez-m=jperez-m': not a valid identifier        |   shell: export: `/home/jperez-m=jperez-m': not a valid identifier
+
+export $USER$SHLVL                                                 |  shell: export: `jperez-m4': not a valid identifier                      |   shell: export: `jperez-m4': not a valid identifier
+
+export ""                                                          |  shell: export: `': not a valid identifier                               |   shell: export: `': not a valid identifier
+
+export a b=$LESS $USER $HOME=la $COLORTERM=pa c=d                  |  shell: export: `jperez-m': not a valid identifier                       |   shell: export: `jperez-m': not a valid identifier
+                                                                   |  shell: export: `/home/jperez-m=la': not a valid identifier              |   shell: export: `/home/jperez-m=la': not a valid identifier
+
+env                                                                |  SHELL=/bin/zsh                                                          |   SHELL=/bin/zsh
+                                                                   |  LSCOLORS=Gxfxcxdxbxegedabagacad                                         |   LSCOLORS=Gxfxcxdxbxegedabagacad
+                                                                   |  SESSION_MANAGER=local/c2r5s5.42malaga.com:@/tmp/.ICE-unix/1941543,uni~  |   SESSION_MANAGER=local/c2r5s5.42malaga.com:@/tmp/.ICE-unix/1941543,unix/c2r5s5.42malaga.com:/tmp/.ICE-unix/1941543
+                                                                   |  QT_ACCESSIBILITY=1                                                      |   QT_ACCESSIBILITY=1
+                                                                   |  COLORTERM=truecolor                                                     |   COLORTERM=truecolor
+                                                                   |  XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg                            |   XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+                                                                   |  SSH_AGENT_LAUNCHER=gnome-keyring                                        |   SSH_AGENT_LAUNCHER=gnome-keyring
+                                                                   |  LESS=-R                                                                 |   LESS=-R
+                                                                   |  XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1               |   XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session1
+                                                                   |  XDG_MENU_PREFIX=gnome-                                                  |   XDG_MENU_PREFIX=gnome-
+                                                                   |  GNOME_DESKTOP_SESSION_ID=this-is-deprecated                             |   GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+                                                                   |  GTK_IM_MODULE=ibus                                                      |   GTK_IM_MODULE=ibus
+                                                                   |  LANGUAGE=en                                                             |   LANGUAGE=en
+                                                                   |  SSH_AUTH_SOCK=/run/user/105945/keyring/ssh                              |   SSH_AUTH_SOCK=/run/user/105945/keyring/ssh
+                                                                   |  XMODIFIERS=@im=ibus                                                     |   XMODIFIERS=@im=ibus
+                                                                   |  DESKTOP_SESSION=ubuntu                                                  |   DESKTOP_SESSION=ubuntu
+                                                                   |  FT_HOOK_NAME=login-user                                                 |   FT_HOOK_NAME=login-user
+                                                                   |  GTK_MODULES=gail:atk-bridge                                             |   GTK_MODULES=gail:atk-bridge
+                                                                   |  FT_HOOK_PATHNAME=login-user.d                                           |   FT_HOOK_PATHNAME=login-user.d
+                                                                   |  PWD=/home/jperez-m/Minishell/Minishell/own_tester                       |  !KRB5CCNAME=FILE:/tmp/krb5cc_105945_92mXYC
+                                                                   |  KRB5CCNAME=FILE:/tmp/krb5cc_105945_92mXYC                               |  !PWD=/home/jperez-m/Minishell/Minishell/own_tester
+                                                                   |  XDG_SESSION_DESKTOP=ubuntu                                              |  !LOGNAME=jperez-m
+                                                                   |  LOGNAME=jperez-m                                                        |  !XDG_SESSION_DESKTOP=ubuntu
+                                                                   |  XDG_SESSION_TYPE=x11                                                    |   XDG_SESSION_TYPE=x11
+                                                                   |  OPAMSWITCH=default                                                      |   OPAMSWITCH=default
+                                                                   |  GPG_AGENT_INFO=/run/user/105945/gnupg/S.gpg-agent:0:1                   |   GPG_AGENT_INFO=/run/user/105945/gnupg/S.gpg-agent:0:1
+                                                                   |  SYSTEMD_EXEC_PID=1941573                                                |   SYSTEMD_EXEC_PID=1941573
+                                                                   |  XAUTHORITY=/home/jperez-m/.Xauthority                                   |   XAUTHORITY=/home/jperez-m/.Xauthority
+                                                                   |  XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/jperez-m                     |   XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/jperez-m
+                                                                   |  a3=l                                                                    |  !GDM_LANG=en
+                                                                   |  GDM_LANG=en                                                             |  !HOME=/home/jperez-m
+                                                                   |  c=d                                                                     |  !IM_CONFIG_PHASE=1
+                                                                   |  HOME=/home/jperez-m                                                     |  !LANG=en_US.UTF-8
+                                                                   |  b=-R                                                                    |  !LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+                                                                   |  a===                                                                    |  !CARGO_HOME=/home/jperez-m/.cargo
+                                                                   |  IM_CONFIG_PHASE=1                                                       |  !XDG_CURRENT_DESKTOP=ubuntu:GNOME
+                                                                   |  LANG=en_US.UTF-8                                                        |  !VTE_VERSION=6800
+                                                                   |  LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=~  |  !XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+                                                                   |  XDG_CURRENT_DESKTOP=ubuntu:GNOME                                        |  !GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/78cbd49b_10f3_439a_befc_b5488a7dc27b
+                                                                   |  CARGO_HOME=/home/jperez-m/.cargo                                        |  !DOTNET_BUNDLE_EXTRACT_BASE_DIR=/home/jperez-m/.cache/dotnet_bundle_extract
+                                                                   |  VTE_VERSION=6800                                                        |  !XDG_SESSION_CLASS=user
+                                                                   |  XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0                     |  !TERM=xterm-256color
+                                                                   |  GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/78cbd49b_10f3_439a_b~  |  !ZSH=/home/jperez-m/.oh-my-zsh
+                                                                   |  DOTNET_BUNDLE_EXTRACT_BASE_DIR=/home/jperez-m/.cache/dotnet_bundle_ex~  |  !RUSTUP_HOME=/usr/local/rustup
+                                                                   |  XDG_SESSION_CLASS=user                                                  |  !LIBVIRT_DEFAULT_URI=qemu:///system
+                                                                   |  TERM=xterm-256color                                                     |  !USER=jperez-m
+                                                                   |  ZSH=/home/jperez-m/.oh-my-zsh                                           |  !GNOME_TERMINAL_SERVICE=:1.97
+                                                                   |  RUSTUP_HOME=/usr/local/rustup                                           |  !DISPLAY=:0
+                                                                   |  LIBVIRT_DEFAULT_URI=qemu:///system                                      |  !SHLVL=4
+                                                                   |  USER=jperez-m                                                           |  !PAGER=less
+                                                                   |  GNOME_TERMINAL_SERVICE=:1.97                                            |  !QT_IM_MODULE=ibus
+                                                                   |  DISPLAY=:0                                                              |  !XDG_RUNTIME_DIR=/run/user/105945
+                                                                   |  SHLVL=4                                                                 |  !DOCKER_HOST=unix:///run/user/105945/docker.sock
+                                                                   |  PAGER=less                                                              |  !XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/jperez-m/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+                                                                   |  QT_IM_MODULE=ibus                                                       |  !PATH=/home/jperez-m/bin:/home/jperez-m/.cargo/bin:/usr/local/cargo/bin:/home/jperez-m/.opam/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jperez-m/.dotnet/tools:/usr/local/go/bin
+                                                                   |  XDG_RUNTIME_DIR=/run/user/105945                                        |  !MACADDRESS=3c:7d:0a:1c:17:bb
+                                                                   |  DOCKER_HOST=unix:///run/user/105945/docker.sock                         |  !GDMSESSION=ubuntu
+                                                                   |  XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/jperez-m/.loca~  |  !DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/105945/bus
+                                                                   |  PATH=/home/jperez-m/bin:/home/jperez-m/.cargo/bin:/usr/local/cargo/bi~  |  !OPAMROOT=/home/jperez-m/.opam
+                                                                   |  MACADDRESS=3c:7d:0a:1c:17:bb                                            |  !OLDPWD=/home/jperez-m
+                                                                   |  GDMSESSION=ubuntu                                                       |  !_=/usr/bin/python3
+                                                                   |  DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/105945/bus                 |  !MAIL=mlermo-j@student.42malaga.com
+                                                                   |  truecolor=pa                                                            |  !PS1=[1;32mMinishell[0m[1;34m$> [0m
+                                                                   |  OPAMROOT=/home/jperez-m/.opam                                           |  !a===
+                                                                   |  OLDPWD=/home/jperez-m                                                   |  !b=-R
+                                                                   |  _=/usr/bin/env                                                          |  !c=d
+                                                                   |                                                                          |  !a3=l
+                                                                   |                                                                          |  !truecolor=pa
+
+env lalal                                                          |  env: ‘lalal’: No such file or directory                                 |   env: ‘lalal’: No such file or directory
+
+env directorio                                                     |  env: ‘directorio’: No such file or directory                            |   env: ‘directorio’: No such file or directory
+
+unset                                                              |                                                                          |   
+
+unset $HOME $USER                                                  |                                                                          |  !shell: unset: not a valid identifier
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  02_export_unset_env  [PASS]
+========================================================================================================================================================================================================================
+export TESTVAR=hello42                                             |                                                                          |   
+
+echo $TESTVAR                                                      |  hello42                                                                 |   hello42
+
+export TESTVAR=updated                                             |                                                                          |   
+
+echo $TESTVAR                                                      |  updated                                                                 |   updated
+
+echo $?                                                            |  0                                                                       |   0
+
+echo $USER                                                         |  jperez-m                                                                |   jperez-m
+
+unset TESTVAR                                                      |                                                                          |   
+
+echo $TESTVAR                                                      |                                                                          |   
+
+export MY_VAR=hello                                                |                                                                          |   
+
+echo $MY_VAR                                                       |  hello                                                                   |   hello
+
+env | grep MY_VAR                                                  |  MY_VAR=hello                                                            |   MY_VAR=hello
+
+export MY_VAR=updated                                              |                                                                          |   
+
+env | grep MY_VAR                                                  |  MY_VAR=updated                                                          |   MY_VAR=updated
+
+unset MY_VAR                                                       |                                                                          |   
+
+env | grep MY_VAR                                                  |                                                                          |   
+
+echo "exit:$?"                                                     |  exit:0                                                                  |   exit:0
+
+export A=1                                                         |                                                                          |   
+
+export B=2                                                         |                                                                          |   
+
+export C=3                                                         |                                                                          |   
+
+unset B                                                            |                                                                          |   
+
+env | grep -E "^A=|^B=|^C=" | sort                                 |  A=1                                                                     |   A=1
+                                                                   |  C=3                                                                     |   C=3
+
+export $USER=la                                                    |  shell: export: `jperez-m=la': not a valid identifier                    |   shell: export: `jperez-m=la': not a valid identifier
+
+echo $USER                                                         |  jperez-m                                                                |   jperez-m
+
+export a b=$LESS c=d                                               |                                                                          |   
+
+echo $a $b $c                                                      |  -R d                                                                    |   -R d
+
+export ""                                                          |  shell: export: `': not a valid identifier                               |   shell: export: `': not a valid identifier
+
+echo "before whitespace only line"                                 |  before whitespace only line                                             |   before whitespace only line
+
+echo "after"                                                       |  after                                                                   |   after
+
+echo "testing dollar in various positions"                         |  testing dollar in various positions                                     |   testing dollar in various positions
+
+export EDGE_VAR=42                                                 |                                                                          |   
+
+echo "value=$EDGE_VAR"                                             |  value=42                                                                |   value=42
+
+echo $EDGE_VAR$EDGE_VAR                                            |  4242                                                                    |   4242
+
+echo "$EDGE_VAR""$EDGE_VAR"                                        |  4242                                                                    |   4242
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  03_external  [PASS]
+========================================================================================================================================================================================================================
+ls                                                                 |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+
+/bin/ls -la /dev/null                                              |  crw-rw-rw- 1 root root 1, 3 Mar  6 18:35 /dev/null                      |   crw-rw-rw- 1 root root 1, 3 Mar  6 18:35 /dev/null
+
+ls | grep ".c"                                                     |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+
+/bin/echo hello world                                              |  hello world                                                             |   hello world
+
+/bin/echo -n noeol                                                 |  noeol                                                                   |   noeol
+
+/bin/echo                                                          |                                                                          |   
+
+/bin/echo hello                                                    |  hello                                                                   |   hello
+
+/bin/ls /dev/null                                                  |  /dev/null                                                               |   /dev/null
+
+/usr/bin/true                                                      |                                                                          |   
+
+/usr/bin/false                                                     |                                                                          |   
+
+/bin/echo done                                                     |  done                                                                    |   done
+
+echo $?                                                            |  0                                                                       |   0
+
+ls noexiste                                                        |  ls: cannot access 'noexiste': No such file or directory                 |   ls: cannot access 'noexiste': No such file or directory
+
+unset PATH                                                         |                                                                          |   
+
+ls                                                                 |  shell: ls: No such file or directory                                    |   shell: ls: No such file or directory
+
+echo $?                                                            |  0                                                                       |   0
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  04_pipes  [PASS]  (bash_exit=2  mini_exit=0)
+========================================================================================================================================================================================================================
+echo hello | cat                                                   |  hello                                                                   |   hello
+
+echo hello | cat | cat                                             |  hello                                                                   |   hello
+
+echo hello | wc -c                                                 |  6                                                                       |   6
+
+printf "b\na\nc\n" | sort                                          |  a                                                                       |   a
+                                                                   |  b                                                                       |   b
+                                                                   |  c                                                                       |   c
+
+/bin/ls /dev/null | cat                                            |  /dev/null                                                               |   /dev/null
+
+echo "apple banana cherry" | tr ' ' '\n' | sort                    |  apple                                                                   |   apple
+                                                                   |  banana                                                                  |   banana
+                                                                   |  cherry                                                                  |   cherry
+
+echo "abc" | rev | rev                                             |  abc                                                                     |   abc
+
+echo "line1" > /tmp/ms_complex_a.txt                               |                                                                          |   
+
+echo "line2" >> /tmp/ms_complex_a.txt                              |                                                                          |   
+
+echo "line3" >> /tmp/ms_complex_a.txt                              |                                                                          |   
+
+cat /tmp/ms_complex_a.txt | wc -l                                  |  3                                                                       |   3
+
+cat /tmp/ms_complex_a.txt | grep "line" | wc -l                    |  3                                                                       |   3
+
+cat /tmp/ms_complex_a.txt | sort -r > /tmp/ms_complex_b.txt        |                                                                          |   
+
+cat /tmp/ms_complex_b.txt                                          |  line3                                                                   |   line3
+                                                                   |  line2                                                                   |   line2
+                                                                   |  line1                                                                   |   line1
+
+ls /tmp/ms_complex_a.txt | wc -l                                   |  1                                                                       |   1
+
+rm /tmp/ms_complex_a.txt /tmp/ms_complex_b.txt                     |                                                                          |   
+
+ls | wc                                                            |       20      21     407                                                 |        20      21     407
+
+ls|wc                                                              |       20      21     407                                                 |        20      21     407
+
+sort colors.txt | uniq | sort -r | wc                              |  sort: cannot read: colors.txt: No such file or directory                |   sort: cannot read: colors.txt: No such file or directory
+                                                                   |        0       0       0                                                 |         0       0       0
+
+|                                                                  |  shell: syntax error near unexpected token `|'                           |   shell: syntax error near unexpected token `|'
+                                                                   |  shell: `|'                                                              |   shell: `|'
+
+"" | ""                                                            |                                                                          |   
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  05_quotes_and_expansion  [PASS]
+========================================================================================================================================================================================================================
+echo '$USER'                                                       |  $USER                                                                   |   $USER
+
+echo '$?'                                                          |  $?                                                                      |   $?
+
+echo 'hello world'                                                 |  hello world                                                             |   hello world
+
+echo ''                                                            |                                                                          |   
+
+echo 'no | pipe here'                                              |  no | pipe here                                                          |   no | pipe here
+
+echo 'no > redirect'                                               |  no > redirect                                                           |   no > redirect
+
+echo 'spaces   preserved'                                          |  spaces   preserved                                                      |   spaces   preserved
+
+echo '$USER is not expanded in single quotes'                      |  $USER is not expanded in single quotes                                  |   $USER is not expanded in single quotes
+
+echo "hello world"                                                 |  hello world                                                             |   hello world
+
+echo "spaces   preserved"                                          |  spaces   preserved                                                      |   spaces   preserved
+
+echo "cat lol.c | cat > lol.c"                                     |  cat lol.c | cat > lol.c                                                 |   cat lol.c | cat > lol.c
+
+export DQTEST=expanded                                             |                                                                          |   
+
+echo "$DQTEST"                                                     |  expanded                                                                |   expanded
+
+echo "value is $DQTEST end"                                        |  value is expanded end                                                   |   value is expanded end
+
+echo "$?"                                                          |  0                                                                       |   0
+
+echo "'$USER'"                                                     |  'jperez-m'                                                              |   'jperez-m'
+
+echo '"$USER"'                                                     |  "$USER"                                                                 |   "$USER"
+
+export USER=estudiante42                                           |                                                                          |   
+
+echo "'$USER'"                                                     |  'estudiante42'                                                          |   'estudiante42'
+
+echo '"$USER"'                                                     |  "$USER"                                                                 |   "$USER"
+
+echo "$COMPLICADO"                                                 |                                                                          |   
+
+echo '$COMPLICADO'                                                 |  $COMPLICADO                                                             |   $COMPLICADO
+
+echo "'$COMPLICADO'"                                               |  ''                                                                      |   ''
+
+echo '"$COMPLICADO"'                                               |  "$COMPLICADO"                                                           |   "$COMPLICADO"
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  06_redirections  [PASS]
+========================================================================================================================================================================================================================
+echo "first line" > /tmp/ms_test_redir.txt                         |                                                                          |   
+
+cat /tmp/ms_test_redir.txt                                         |  first line                                                              |   first line
+
+echo "second line" >> /tmp/ms_test_redir.txt                       |                                                                          |   
+
+cat /tmp/ms_test_redir.txt                                         |  first line                                                              |   first line
+                                                                   |  second line                                                             |   second line
+
+echo "third line" >> /tmp/ms_test_redir.txt                        |                                                                          |   
+
+wc -l < /tmp/ms_test_redir.txt                                     |  3                                                                       |   3
+
+echo "overwrite" > /tmp/ms_test_redir.txt                          |                                                                          |   
+
+cat /tmp/ms_test_redir.txt                                         |  overwrite                                                               |   overwrite
+
+rm /tmp/ms_test_redir.txt                                          |                                                                          |   
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  07_heredoc  [PASS]
+========================================================================================================================================================================================================================
+cat << EOF                                                         |  line one                                                                |   line one
+line one                                                           |  line two                                                                |   line two
+line two                                                           |  line three                                                              |   line three
+line three                                                         |                                                                          |   
+EOF                                                                |                                                                          |   
+
+grep "an" << WORDS                                                 |  banana                                                                  |   banana
+apple                                                              |  mango                                                                   |   mango
+banana                                                             |                                                                          |   
+cherry                                                             |                                                                          |   
+mango                                                              |                                                                          |   
+WORDS                                                              |                                                                          |   
+
+wc -l << COUNTER                                                   |  5                                                                       |   5
+a                                                                  |                                                                          |   
+b                                                                  |                                                                          |   
+c                                                                  |                                                                          |   
+d                                                                  |                                                                          |   
+e                                                                  |                                                                          |   
+COUNTER                                                            |                                                                          |   
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  08_bonus_wildcards  [PASS]
+========================================================================================================================================================================================================================
+mkdir -p /tmp/ms_wildcard_test                                     |                                                                          |   
+
+echo "c file" > /tmp/ms_wildcard_test/foo.c                        |                                                                          |   
+
+echo "h file" > /tmp/ms_wildcard_test/foo.h                        |                                                                          |   
+
+echo "txt file" > /tmp/ms_wildcard_test/bar.txt                    |                                                                          |   
+
+cd /tmp/ms_wildcard_test                                           |                                                                          |   
+
+echo *.c                                                           |  foo.c                                                                   |   foo.c
+
+echo *.h                                                           |  foo.h                                                                   |   foo.h
+
+echo *.txt                                                         |  bar.txt                                                                 |   bar.txt
+
+ls *.c                                                             |  foo.c                                                                   |   foo.c
+
+ls *.h                                                             |  foo.h                                                                   |   foo.h
+
+echo *                                                             |  bar.txt foo.c foo.h                                                     |   bar.txt foo.c foo.h
+
+rm -rf /tmp/ms_wildcard_test                                       |                                                                          |   
+
+echo hola > out1                                                   |  shell: out1: No such file or directory                                  |   shell: out1: No such file or directory
+
+cat out1                                                           |  cat: out1: No such file or directory                                    |   cat: out1: No such file or directory
+
+echo caracola >> out1                                              |  shell: out1: No such file or directory                                  |   shell: out1: No such file or directory
+
+cat out1                                                           |  cat: out1: No such file or directory                                    |   cat: out1: No such file or directory
+
+echo hola > out1 > out2 > out3                                     |  shell: out1: No such file or directory                                  |   shell: out1: No such file or directory
+
+ls out*                                                            |  ls: cannot access 'out*': No such file or directory                     |   ls: cannot access 'out*': No such file or directory
+
+cat < colors.txt                                                   |  shell: colors.txt: No such file or directory                            |   shell: colors.txt: No such file or directory
+
+cat < colors.txt > copia.txt                                       |  shell: colors.txt: No such file or directory                            |   shell: colors.txt: No such file or directory
+
+cat copia.txt                                                      |  cat: copia.txt: No such file or directory                               |   cat: copia.txt: No such file or directory
+
+cat colors.txt | wc                                                |  cat: colors.txt: No such file or directory                              |   cat: colors.txt: No such file or directory
+                                                                   |        0       0       0                                                 |         0       0       0
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  09_bonus_logical_operators  [PASS]
+========================================================================================================================================================================================================================
+echo "extra" > /tmp/ms_complex_a.txt && cat /tmp/ms_complex_a.txt  |  extra                                                                   |   extra
+
+echo one && echo two                                               |  one                                                                     |   one
+                                                                   |  two                                                                     |   two
+
+(echo one && echo two)                                             |  one                                                                     |   one
+                                                                   |  two                                                                     |   two
+
+true && echo "true_passed"                                         |  true_passed                                                             |   true_passed
+
+(true && echo "true_passed")                                       |  true_passed                                                             |   true_passed
+
+false && echo "SHOULD_NOT_PRINT"                                   |                                                                          |   
+
+(false && echo "SHOULD_NOT_PRINT")                                 |                                                                          |   
+
+false || echo "false_recovered"                                    |  false_recovered                                                         |   false_recovered
+
+(false || echo "false_recovered")                                  |  false_recovered                                                         |   false_recovered
+
+true || echo "SHOULD_NOT_PRINT"                                    |                                                                          |   
+
+(true || echo "SHOULD_NOT_PRINT")                                  |                                                                          |   
+
+echo "start" && false || echo "fallback"                           |  start                                                                   |   start
+                                                                   |  fallback                                                                |   fallback
+
+(echo "start" && false) || echo "fallback"                         |  start                                                                   |   start
+                                                                   |  fallback                                                                |   fallback
+
+false || false || echo "last_resort"                               |  last_resort                                                             |   last_resort
+
+(false || false || echo "last_resort")                             |  last_resort                                                             |   last_resort
+
+true && true && echo "all_true"                                    |  all_true                                                                |   all_true
+
+(true && true && echo "all_true")                                  |  all_true                                                                |   all_true
+
+false || true && echo "chain_ok"                                   |  chain_ok                                                                |   chain_ok
+
+(false || true && echo "chain_ok")                                 |  chain_ok                                                                |   chain_ok
+
+(echo uno && (false || echo dos)) && echo tres                     |  uno                                                                     |   uno
+                                                                   |  dos                                                                     |   dos
+                                                                   |  tres                                                                    |   tres
+
+(false && echo "nope") || (true && echo "ok")                      |  ok                                                                      |   ok
+
+(echo "A" && (false || (echo "B" && true))) || echo "C"            |  A                                                                       |   A
+                                                                   |  B                                                                       |   B
+
+(false && (echo "no1" || echo "no2")) && echo "no3"                |                                                                          |   
+
+(true && (false || (true && echo "deep"))) && echo "final"         |  deep                                                                    |   deep
+                                                                   |  final                                                                   |   final
+
+(false || (echo "X" && false) || (echo "Y" && true)) && echo "Z"   |  X                                                                       |   X
+                                                                   |  Y                                                                       |   Y
+                                                                   |  Z                                                                       |   Z
+
+(echo "start" && (false || (echo "mid" && false)) && echo "never~  |  start                                                                   |   start
+                                                                   |  mid                                                                     |   mid
+                                                                   |  end                                                                     |   end
+
+(false || (false && echo "no") || (true && echo "yes")) && echo ~  |  yes                                                                     |   yes
+                                                                   |  done                                                                    |   done
+
+ls && echo "éxito"                                                 |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  éxito                                                                   |   éxito
+
+ls archivo_que_no_existe && echo "no se ve"                        |  ls: cannot access 'archivo_que_no_existe': No such file or directory    |   ls: cannot access 'archivo_que_no_existe': No such file or directory
+
+ls || echo "no se ve"                                              |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+
+ls archivo_que_no_existe || echo "se ve"                           |  ls: cannot access 'archivo_que_no_existe': No such file or directory    |   ls: cannot access 'archivo_que_no_existe': No such file or directory
+                                                                   |  se ve                                                                   |   se ve
+
+true && echo "éxito" || echo "fallo"                               |  éxito                                                                   |   éxito
+
+false && echo "no se ve" || echo "se ve"                           |  se ve                                                                   |   se ve
+
+ls && ls && ls && ls && echo "todos exitosos"                      |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  todos exitosos                                                          |   todos exitosos
+
+ls && ls archivo_que_no_existe && ls && ls                         |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  ls: cannot access 'archivo_que_no_existe': No such file or directory    |   ls: cannot access 'archivo_que_no_existe': No such file or directory
+
+ls || ls || ls || ls                                               |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+
+ls archivo_que_no_existe || echo "recuperación" && echo "continú~  |  ls: cannot access 'archivo_que_no_existe': No such file or directory    |   ls: cannot access 'archivo_que_no_existe': No such file or directory
+                                                                   |  recuperación                                                            |   recuperación
+                                                                   |  continúa                                                                |   continúa
+
+(ls && echo "dentro de paréntesis") && echo "fuera de paréntesis"  |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  dentro de paréntesis                                                    |   dentro de paréntesis
+                                                                   |  fuera de paréntesis                                                     |   fuera de paréntesis
+
+(ls archivo_que_no_existe || echo "recuperado") && echo "continú~  |  ls: cannot access 'archivo_que_no_existe': No such file or directory    |   ls: cannot access 'archivo_que_no_existe': No such file or directory
+                                                                   |  recuperado                                                              |   recuperado
+                                                                   |  continúa                                                                |   continúa
+
+false || (true && echo "esto se ve")                               |  esto se ve                                                              |   esto se ve
+
+true && (false || echo "esto también")                             |  esto también                                                            |   esto también
+
+true && true || false && false                                     |                                                                          |   
+
+false && false || true && true                                     |                                                                          |   
+
+(ls && echo a) && (ls && echo b) || (ls && echo c)                 |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  a                                                                       |   a
+                                                                   |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+                                                                   |  b                                                                       |   b
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  10_bonus_pipe_consec1  [PASS]
+========================================================================================================================================================================================================================
+ls || wc                                                           |  00_echo.sh                                                              |   00_echo.sh
+                                                                   |  01_cd_pwd.sh                                                            |   01_cd_pwd.sh
+                                                                   |  02_export_unset_env marina.sh                                           |   02_export_unset_env marina.sh
+                                                                   |  02_export_unset_env.sh                                                  |   02_export_unset_env.sh
+                                                                   |  03_external.sh                                                          |   03_external.sh
+                                                                   |  04_pipes.sh                                                             |   04_pipes.sh
+                                                                   |  05_quotes_and_expansion.sh                                              |   05_quotes_and_expansion.sh
+                                                                   |  06_redirections.sh                                                      |   06_redirections.sh
+                                                                   |  07_heredoc.sh                                                           |   07_heredoc.sh
+                                                                   |  08_bonus_wildcards.sh                                                   |   08_bonus_wildcards.sh
+                                                                   |  09_bonus_logical_operators.sh                                           |   09_bonus_logical_operators.sh
+                                                                   |  10_bonus_pipe_consec1.sh                                                |   10_bonus_pipe_consec1.sh
+                                                                   |  11_pipe_consec2.sh                                                      |   11_pipe_consec2.sh
+                                                                   |  12_pipe_leading.sh                                                      |   12_pipe_leading.sh
+                                                                   |  13_pipe_trailing_dif_behaviour.sh                                       |   13_pipe_trailing_dif_behaviour.sh
+                                                                   |  14_lperalta.sh                                                          |   14_lperalta.sh
+                                                                   |  15_exit.sh                                                              |   15_exit.sh
+                                                                   |  comparison.txt                                                          |   comparison.txt
+                                                                   |  interactive_18_exit_codes_signals.sh                                    |   interactive_18_exit_codes_signals.sh
+                                                                   |  run_tests_v2.sh                                                         |   run_tests_v2.sh
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  11_pipe_consec2  [PASS]  (bash_exit=2  mini_exit=0)
+========================================================================================================================================================================================================================
+ls |   | wc                                                        |  shell: syntax error near unexpected token `|'                           |   shell: syntax error near unexpected token `|'
+                                                                   |  shell: `ls |   | wc'                                                    |   shell: `ls |   | wc'
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  12_pipe_leading  [PASS]  (bash_exit=2  mini_exit=0)
+========================================================================================================================================================================================================================
+| ls | wc                                                          |  shell: syntax error near unexpected token `|'                           |   shell: syntax error near unexpected token `|'
+                                                                   |  shell: `| ls | wc'                                                      |   shell: `| ls | wc'
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  13_pipe_trailing_dif_behaviour  [FAIL]
+========================================================================================================================================================================================================================
+echo "It doesnt work as bash because BASH waits for next line"     |  It doesnt work as bash because BASH waits for next line                 |   It doesnt work as bash because BASH waits for next line
+
+echo "Our minishell prints an error message and returns to promp~  |  Our minishell prints an error message and returns to prompt             |   Our minishell prints an error message and returns to prompt
+
+ls | wc |                                                          |                                                                          |  !shell: syntax error near unexpected token `newline'
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  14_lperalta  [PASS]
+========================================================================================================================================================================================================================
+mkdir -p /tmp/ms_lperalta_test                                     |                                                                          |   
+
+mkdir -p /tmp/ms_lperalta_test/dir_existe                          |                                                                          |   
+
+touch /tmp/ms_lperalta_test/file_existe                            |                                                                          |   
+
+mkdir -p /tmp/ms_lperalta_test/dir_noperm                          |                                                                          |   
+
+chmod 000 /tmp/ms_lperalta_test/dir_noperm                         |                                                                          |   
+
+echo -e "red\ngreen\nblue\nyellow" > /tmp/ms_lperalta_test/color~  |                                                                          |   
+
+cd /tmp/ms_lperalta_test                                           |                                                                          |   
+
+echo $?hcudshfuewrf ew  wr 4ew""                                   |  0hcudshfuewrf ew wr 4ew                                                 |   0hcudshfuewrf ew wr 4ew
+
+echo "ho   $USER"  "la   $LESS"   $USER$TERM                       |  ho   jperez-m la   -R jperez-mxterm-256color                            |   ho   jperez-m la   -R jperez-mxterm-256color
+
+echo "ho   $USER"                                                  |  ho   jperez-m                                                           |   ho   jperez-m
+
+echo"ho   $USER"                                                   |  shell: echoho   jperez-m: command not found                             |   shell: echoho   jperez-m: command not found
+
+e"cho" "ho   $USER"                                                |  ho   jperez-m                                                           |   ho   jperez-m
+
+       echo "ho   $USER"                                           |  ho   jperez-m                                                           |   ho   jperez-m
+
+echo "$HOME" "$USER"                                               |  /home/jperez-m jperez-m                                                 |   /home/jperez-m jperez-m
+
+cd dir_existe                                                      |                                                                          |   
+
+pwd                                                                |  /tmp/ms_lperalta_test/dir_existe                                        |   /tmp/ms_lperalta_test/dir_existe
+
+cd directorio_no_existe                                            |  shell: cd: directorio_no_existe: No such file or directory              |   shell: cd: directorio_no_existe: No such file or directory
+
+cd file_existe                                                     |  shell: cd: file_existe: No such file or directory                       |   shell: cd: file_existe: No such file or directory
+
+cd /tmp/ms_lperalta_test                                           |                                                                          |   
+
+cd                                                                 |                                                                          |   
+
+pwd                                                                |  /home/jperez-m                                                          |   /home/jperez-m
+
+env lalal                                                          |  env: ‘lalal’: No such file or directory                                 |   env: ‘lalal’: No such file or directory
+
+env dir_existe                                                     |  env: ‘dir_existe’: No such file or directory                            |   env: ‘dir_existe’: No such file or directory
+
+export a=b                                                         |                                                                          |   
+
+echo $a                                                            |  b                                                                       |   b
+
+export b=wawa                                                      |                                                                          |   
+
+echo $b                                                            |  wawa                                                                    |   wawa
+
+export c=lala=kaka                                                 |                                                                          |   
+
+echo $c                                                            |  lala=kaka                                                               |   lala=kaka
+
+export a=                                                          |                                                                          |   
+
+echo "|$a|"                                                        |  ||                                                                      |   ||
+
+export 2a=lala                                                     |  shell: export: `2a=lala': not a valid identifier                        |   shell: export: `2a=lala': not a valid identifier
+
+export NUEVA=$TERM                                                 |                                                                          |   
+
+echo $NUEVA                                                        |  xterm-256color                                                          |   xterm-256color
+
+export POLLOS=asados                                               |                                                                          |   
+
+unset POLLOS                                                       |                                                                          |   
+
+echo $POLLOS                                                       |                                                                          |   
+
+export A=1 B=2                                                     |                                                                          |   
+
+unset A B                                                          |                                                                          |   
+
+echo $A $B                                                         |                                                                          |   
+
+export a= b=o                                                      |                                                                          |   
+
+echo $a $b                                                         |  o                                                                       |   o
+
+export a===                                                        |                                                                          |   
+
+echo $a                                                            |  ==                                                                      |   ==
+
+echo $?                                                            |  0                                                                       |   0
+
+ls noexiste                                                        |  ls: cannot access 'noexiste': No such file or directory                 |   ls: cannot access 'noexiste': No such file or directory
+
+echo $?                                                            |  0                                                                       |   0
+
+ls | wc                                                            |       27      27     245                                                 |        27      27     245
+
+ls|wc                                                              |       27      27     245                                                 |        27      27     245
+
+echo "colorinchis" > colors.txt                                    |                                                                          |   
+
+cat colors.txt | sort -r | wc                                      |        1       1      12                                                 |         1       1      12
+
+cd -                                                               |  /tmp/ms_lperalta_test                                                   |   /tmp/ms_lperalta_test
+
+pwd                                                                |  /tmp/ms_lperalta_test                                                   |   /tmp/ms_lperalta_test
+
+cd ~                                                               |                                                                          |   
+
+pwd                                                                |  /home/jperez-m                                                          |   /home/jperez-m
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  15_exit  [PASS]
+========================================================================================================================================================================================================================
+exit                                                               |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit 0                                                             |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit 42                                                            |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit -42                                                           |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit 2147483647                                                    |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit -2147483648                                                   |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit 9223372036854775807                                           |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit -9223372036854775808                                          |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit 9223372036854775808                                           |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit -9223372036854775809                                          |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit +100                                                          |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit ++100                                                         |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit +++100                                                        |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit --100                                                         |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit exit                                                          |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit 42 53 64                                                      |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit hola mundo                                                    |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+exit 42hola                                                        |                                                                          |   
+
+echo $?                                                            |                                                                          |   
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

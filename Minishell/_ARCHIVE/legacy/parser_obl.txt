@@ -1,0 +1,230 @@
+#include "minishell.h"
+
+/**
+ * @brief Create a new command node
+ * @return Pointer to the new command node
+ */
+t_command *create_cmd_node(void)
+{
+	t_command	*new_cmd;
+
+	new_cmd = malloc(sizeof(t_command));
+	if (!new_cmd)
+		return (NULL);
+	new_cmd->args = ft_calloc(1024, sizeof(char *));
+	new_cmd->fullpath = NULL;
+	new_cmd->infile = NULL;
+	new_cmd->heredoc_delimiter = NULL;
+	new_cmd->outfile = NULL;
+	new_cmd->append_mode = FALSE;
+	new_cmd->builtin_type = WORD;
+	new_cmd->nesting = -1;
+	new_cmd->next = NULL;
+	return (new_cmd);
+}
+
+/**
+ * @brief Add an argument to the command with builtin_type included
+ * @param command Pointer to the command
+ * @param token Pointer to the token
+*/
+void add_arg(t_command *command, t_token *token)
+{
+	int	i;
+	i = 0;
+	while (command->args[i])
+		i++;
+	if (i < 1023)
+	{
+		if (i == 0 && token->type > BUILTIN)
+			command->builtin_type = token->type;
+		else if (i == 0 && token->type < BUILTIN)
+			command->builtin_type = EXTERNAL;
+		command->args[i] = token->value;
+	}
+}
+
+/**
+ * @brief Parsea la redirección de entrada
+ * @param command Puntero al comando
+ * @param tokens Pointer to the pointer of the current token
+ * @return TRUE if parsed successfully, FALSE otherwise
+ */
+int parse_infile(t_command *command , t_token **tokens)
+{
+	t_token	*tmp;
+
+	tmp = *tokens;
+	if (!tmp->next || tmp->next->type != WORD)
+		return (FALSE);
+	command->infile = tmp->next->value;
+	*tokens = tmp->next;
+	return (TRUE);
+}
+
+/**
+ * @brief Parse the output redirection
+ * @param command Pointer to the command
+ * @param tokens Pointer to the pointer of the current token
+ * @return TRUE if parsed successfully, FALSE otherwise
+ */
+int 	parser_outfile(t_command *command , t_token **tokens)
+{
+	t_token *tmp;
+
+
+	tmp = *tokens;
+	if (!tmp->next || tmp->next->type != WORD)
+		return (FALSE);
+	command->outfile = tmp->next->value;
+	if (tmp->type == APPEND)
+		command->append_mode = TRUE;
+	else
+		command->append_mode = FALSE;
+	*tokens = tmp->next;
+	return (TRUE);
+}
+/**
+ * @brief Parse the heredoc redirection
+ * @param command Pointer to the command
+ * @param tokens Pointer to the pointer of the current token
+ * @return TRUE if parsed successfully, FALSE otherwise
+ */
+int parse_heredoc(t_command *command , t_token **tokens)
+{
+	t_token *tmp;
+
+	tmp = *tokens;
+	if (!tmp->next || tmp->next->type != WORD)
+		return (FALSE);
+	command->heredoc_delimiter = tmp->next->value;
+	*tokens = tmp->next;
+	return (TRUE);
+}
+/**
+ * @brief Dispatch redirection parsing based on token type
+ * @param cmd Pointer to the command
+ * @param tokens Pointer to the pointer of the current token
+ * @return TRUE if parsed successfully, FALSE otherwise
+ */
+int	dispatch_redirections(t_command *cmd, t_token **tokens)
+{
+	if ((*tokens)->type == REDIRECT_IN)
+		return (parse_infile(cmd, tokens));
+	else if ((*tokens)->type == REDIRECT_OUT || (*tokens)->type == APPEND)
+		return (parser_outfile(cmd, tokens));
+	else if ((*tokens)->type == HEREDOC)
+		return (parse_heredoc(cmd, tokens));
+	return (TRUE);
+}
+
+/**
+ * @brief Handle pipe token by creating a new command node
+ * @param current Pointer to the current command
+ * @return Pointer to the new command node
+ */
+t_command	*handle_pipe(t_command *current)
+{
+	current->next = create_cmd_node();
+	return (current->next);
+}
+
+/**
+ * @brief Handle parsing error by freeing commands and printing error message
+ * @param head Pointer to the head of the command list
+ * @param is_syntax_error Flag indicating if it's a syntax error
+ * @return NULL
+ */
+t_command	*handle_error(t_command *head, int is_syntax_error)
+{
+	free_commands(head);
+	if (is_syntax_error)
+		ft_putstr_fd("minishell: syntax error near unexpected token\n", 2);
+	return (NULL);
+}
+
+/**
+ * @brief Main parser function that converts tokens into commands
+ * @param tokens Pointer to the head of the token list
+ * @return Pointer to the head of the command list
+ */
+t_command	*parser(t_token *tokens)
+{
+	t_command	*head;
+	t_command	*curr;
+
+	head = create_cmd_node();
+	if (!head)
+		return (NULL);
+	curr = head;
+	while (tokens)
+	{
+		if (tokens->type == L_PAREN || tokens->type == R_PAREN)
+		{
+			tokens = tokens->next;
+			continue;
+		}
+		if (curr->nesting == -1 && tokens->type != PIPE &&
+			 tokens->type != AND && tokens->type != OR)
+			 curr->nesting = tokens->nesting;
+		if (tokens->type == WORD || tokens->type >= BUILTIN)
+			add_arg(curr, tokens);
+		else if (tokens->type == PIPE || tokens->type == AND ||
+			 tokens->type == OR)
+		{
+			curr = handle_pipe(curr);
+			if (!curr)
+				return (handle_error(head, FALSE));
+		}
+		else if (!dispatch_redirections(curr, &tokens))
+			return (handle_error(head, TRUE));
+		if (tokens)
+			tokens = tokens->next;
+	}
+	return (head);
+}
+
+char	*find_command(char *cmd, t_shell *shell)
+{
+	char *path;
+	char **paths;
+	char *cmd_slash;
+	char *cmd_abs;
+	int	i;
+
+	if (ft_strchr(cmd, '/') && access(cmd, X_OK) == 0)
+		return (ft_strdup(cmd));
+	path = get_env_var("PATH", shell);
+	if (!path)
+		return (NULL);
+	paths = ft_split(path, ':');
+	i = 0;
+	while(paths[i])
+	{
+		cmd_slash = ft_strjoin(paths[i], "/");
+		cmd_abs = ft_strjoin(cmd_slash, cmd);
+		free(cmd_slash);
+		if (access(cmd_abs, X_OK) == 0)
+		{
+			free_array(paths);
+			return (cmd_abs);
+		}
+		free(cmd_abs);
+		i++;
+	}
+	free_array(paths);
+	return(NULL);
+}
+
+void	assign_fullpath(t_command *command, t_shell *shell)
+{
+	t_command *curr;
+
+	curr = command;
+	while (curr)
+	{
+		if (curr->args && curr->args[0])
+			curr->fullpath = find_command(curr->args[0], shell);
+		curr = curr->next;
+	}
+}

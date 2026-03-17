@@ -1,0 +1,58 @@
+#include "minishell.h"
+
+/**
+ * @brief Ejecuta una lista de comandos.
+ *
+ * Proceso:
+ * 1.  Verifica si hay un solo comando y si es un built-in. Si es así,
+ *     lo ejecuta en el proceso principal (p. ej., `cd`, `exit`, `export`, `unset`).
+ * 2.  Si hay uno o más comandos (posiblemente con tuberías), crea un proceso
+ *     hijo para cada comando.
+ * 3.  Configura las tuberías (`pipe`) entre los procesos hijos para que la
+ *     salida de uno sea la entrada del siguiente.
+ * 4.  En cada proceso hijo, gestiona las redirecciones de entrada/salida (`dup2`).
+ * 5.  Ejecuta el comando correspondiente (usando `execve` para comandos externos,
+ *     o llamando a la función del built-in).
+ * 6.  El proceso padre (la shell) espera a que todos los hijos terminen.
+ *
+ * @param commands La lista enlazada de comandos del parser.
+ * @param shell El estado de la shell (para acceder/modificar variables de entorno).
+ *
+ * @return El código de salida del último comando ejecutado.
+ */
+int	executor(t_command *commands, t_shell *shell)
+{
+	(void)shell;
+	(void)commands;
+	// TODO: Si hay un solo comando y es un built-in como `cd`, `exit`, `export`
+	// o `unset`, ejecutarlo directamente en el proceso principal y retornar.
+	
+	// TODO: Iniciar el bucle para iterar a través de la lista de `commands`.
+	
+	// TODO: Dentro del bucle, para cada comando:
+	//       1. Crear una tubería (`pipe()`) si no es el último comando.
+	//       2. Hacer un `fork()` para crear un proceso hijo.
+	
+	// --- En el proceso hijo ---
+	// TODO: 1. Gestionar las tuberías: conectar la salida del comando anterior
+	//          a la entrada de este (`dup2`), y la salida de este a la
+	//          siguiente tubería si existe.
+	//       2. Gestionar las redirecciones de fichero (`<`, `>`, `>>`). Abrir
+	//          los ficheros y usar `dup2` para redirigir `stdin` y `stdout`.
+	//       3. Comprobar si es un built-in (p. ej. `echo`, `pwd`, `env`).
+	//          Si lo es, ejecutarlo y salir (`exit`).
+	//       4. Si no es un built-in, usar `execve` para ejecutar el comando
+	//          externo. Hay que encontrar el path completo del ejecutable.
+	//          Si `execve` falla, gestionar el error.
+	
+	// --- En el proceso padre ---
+	// TODO: 1. Cerrar los extremos de la tubería que no necesita.
+	//       2. Guardar el extremo de lectura de la tubería para la
+	//          siguiente iteración.
+	
+	// TODO: Después del bucle, el padre debe esperar (`waitpid`) a que todos
+	// los procesos hijos terminen.
+	
+	// TODO: Devolver el código de salida del último comando.
+	return (0);
+}

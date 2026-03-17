@@ -1,0 +1,293 @@
+{
+   <ignore_readline>
+   Memcheck:Leak
+   ...
+   fun:readline
+   ...
+}
+{
+   <ignore_add_history>
+   Memcheck:Leak
+   ...
+   fun:add_history
+   ...
+}
+{
+   <ignore_all_grep_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/grep
+   ...
+}
+{
+   <ignore_all_gawk_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/gawk
+   ...
+}
+{
+   <ignore_all_sort_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/sort
+   ...
+}
+{
+   <ignore_all_ls_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/ls
+   ...
+}
+{
+   <ignore_all_date_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/date
+   ...
+}
+{
+   <ignore_all_clear_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/clear
+   ...
+}
+{
+   <ignore_all_cat_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/cat
+   ...
+}
+{
+   <ignore_all_head_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/head
+}
+{
+   <ignore_all_sleep_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/sleep
+   ...
+}
+{
+   <ignore_all_yes_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/yes
+   ...
+}
+{
+   <ignore_all_wc_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/wc
+   ...
+}
+{
+   <ignore_all_tr_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/tr
+   ...
+}
+{
+   <ignore_all_sed_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/sed
+   ...
+}
+{
+   <ignore_all_cut_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/cut
+   ...
+}
+{
+   <ignore_all_uniq_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/uniq
+   ...
+}
+{
+   <ignore_all_tee_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/tee
+   ...
+}
+{
+   <ignore_all_find_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/find
+   ...
+}
+{
+   <ignore_all_diff_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/diff
+   ...
+}
+{
+   <ignore_all_cp_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/cp
+   ...
+}
+{
+   <ignore_all_mv_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/mv
+   ...
+}
+{
+   <ignore_all_rm_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/rm
+   ...
+}
+{
+   <ignore_all_mkdir_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/mkdir
+   ...
+}
+{
+   <ignore_all_touch_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/touch
+   ...
+}
+{
+   <ignore_all_chmod_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/chmod
+   ...
+}
+{
+   <ignore_all_env_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/env
+   ...
+}
+{
+   <ignore_all_which_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/which
+   ...
+}
+{
+   <ignore_all_whoami_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/whoami
+   ...
+}
+{
+   <ignore_all_id_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/id
+   ...
+}
+{
+   <ignore_all_uname_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/uname
+   ...
+}
+{
+   <ignore_all_pwd_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/pwd
+   ...
+}
+{
+   <ignore_all_basename_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/basename
+   ...
+}
+{
+   <ignore_all_dirname_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/dirname
+   ...
+}
+{
+   <ignore_all_printf_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/printf
+   ...
+}
+{
+   <ignore_all_true_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/true
+   ...
+}
+{
+   <ignore_all_false_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/false
+   ...
+}
+{
+   <ignore_all_expr_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/expr
+   ...
+}
+{
+   <ignore_all_xargs_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/xargs
+   ...
+}
+{
+   <ignore_all_tail_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/tail
+   ...
+}
+{
+   <ignore_all_shuf_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/shuf
+   ...
+}
+{
+   <ignore_all_nl_errors>
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/nl
+   ...
+}

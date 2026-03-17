@@ -1,0 +1,83 @@
+_This project has been created as part of the 42 curriculum by mlermo-j and jperez-m._
+
+# Description
+
+The goal of this project is to create a simple shell in C that mimics the behavior of a Unix shell.
+The shell supports basic commands, environment variables, and some built-in functions 
+(like `cd`, `echo`, `env`, `exit`, `export`, `pwd`, `unset`), as well as handling signals, pipes, 
+redirections and heredocs. If it is compiled with bonus features, it will supports wildcard expansion and logical operators.
+
+The shell uses a lexer to tokenize the input, a parser to build an abstract syntax tree (AST), 
+and an executor to run the commands.
+
+```
+Scheme of 
+lexer -> tokens -> nodes (AST) -> execution
+```
+
+The project is structured in a modular way, with separate files for each component 
+(lexer, parser, executor, built-in commands, etc.) and a Makefile to manage the compilation process.
+
+The separation between compilation of mandatory and bonus features is achieved through 
+conditional compilation using the `BONUS` macro, which encapsulates the bonus 
+code and allows for flexible builds based on the desired features.
+
+## Feature list
+- Command execution (with PATH resolution)
+- Built-in commands: `cd`, `echo`, `env`, `exit`, `export`, `pwd`, `unset`
+- Environment variable expansion (`$VAR`, `$?`)
+- Single and double quote handling
+- Pipes (`|`)
+- Redirections (`<`, `>`, `>>`, `<<` heredoc)
+- Signal handling (`Ctrl+C`, `Ctrl+D`, `Ctrl+\`)
+- **Bonus:** Wildcard expansion (`*`)
+- **Bonus:** Logical operators (`&&`, `||`) with parentheses
+
+# Instructions
+> **Prerequisites:** `readline` library must be installed (`sudo apt install libreadline-dev` on Debian/Ubuntu).
+
+- To compile basic features, run the following command in the terminal: `make` or `make re` for a clean build.
+- To compile with bonus features, use `make bonus` or `make re_bonus` for a clean bonus build.
+
+# Resources
+
+
+## Websites
+
+[https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218](https://m4nnb3ll.medium.com/minishell-building-a-mini-bash-a-42-project-b55a10598218)
+
+## Books
+
+- Kernighan, Ritchie - "The C Programming Language", 2nd Edition, 1988.
+- Michael Kerrisk - "The linux programming interface", 2018.
+
+## AI usage
+We used gemini to assit with:
+- Planning and learning project approach
+- Understanding memory leaks
+- Documentation of functions
+
+## Usage examples
+
+### Interactive
+
+```bash
+$ ./minishell
+Minishell$> echo "Hello, World!"
+Hello, World!
+Minishell$> ls -la | grep src
+Minishell$> cat < infile > outfile
+Minishell$> export MY_VAR=42 && echo $MY_VAR
+42
+Minishell$> ls |   | wc
+minishell: syntax error near unexpected token `|'
+```
+
+### Non-interactive
+```bash
+echo "Hello, World!" | ./minishell
+Hello, World!
+echo "ls |   | wc" | ./minishell
+minishell: syntax error near unexpected token `|'
+minishell: `ls |   | wc' 
+```

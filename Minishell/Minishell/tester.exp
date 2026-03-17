@@ -1,0 +1,103 @@
+#!/usr/bin/expect -f
+
+if {$argc > 0} {
+    set shell [lindex $argv 0]
+} else {
+    set shell "minishell"
+}
+
+if {$shell eq "bash"} {
+    set spawn_cmd [list env "PS1=bash\$> " bash --norc --noprofile]
+    set prompt    "bash\$> "
+    set logname   "results_bash.log"
+    set testfile  "own_tester/interactive/interactive_test_bash.sh"
+} else {
+    set spawn_cmd [list ./minishell]
+    set prompt    "Minishell\$> "
+    set logname   "results_minishell.log"
+    set testfile  "own_tester/interactive/interactive_test_minishell.sh"
+}
+
+set timeout 5
+eval spawn $spawn_cmd
+
+# Preamble
+expect {
+    -ex $prompt { }
+    -ex "> "    { }
+    timeout     { puts "Timeout preamble" ; exit 1 }
+}
+send "export _MSDIR=\$PWD\r"
+expect -ex $prompt
+
+log_file -noappend $logname
+
+set slow_cmds {cat grep wc sort env}
+proc is_slow {line} {
+    global slow_cmds
+    foreach cmd $slow_cmds {
+        if {[string match "*$cmd*" $line]} { return 1 }
+    }
+    return 0
+}
+
+set f [open $testfile]
+set linenum 0
+set trailing_pipe 0
+while {[gets $f line] != -1} {
+    incr linenum
+
+    if {[is_slow $line]} { set timeout 12 } else { set timeout 5 }
+
+    expect {
+        -ex $prompt { }
+        -ex "> "    {
+            # CORRECCIÓN 1: En lugar de ^C, mandamos Enters para cerrar el pipe
+            if {$trailing_pipe} {
+                send "\r"
+                expect -ex "> "
+                send "\r"
+                set trailing_pipe 0
+                exp_continue
+            }
+        }
+        eof  {
+            # CORRECCIÓN 2: Capturar el código de salida real antes de reiniciar
+            set wait_res [wait]
+            set exit_code [lindex $wait_res 3]
+            send_log "$exit_code\n"
+            
+            log_user 0
+            eval spawn $spawn_cmd
+            log_user 1
+            expect {
+                -ex $prompt { }
+                timeout { break }
+            }
+        }
+        timeout {
+            puts "WARN: timeout at line $linenum"
+            log_file
+            log_file $logname
+        }
+    }
+
+    if {[catch {send "$line\r"} err]} {
+        eval spawn $spawn_cmd
+        expect -ex $prompt
+    }
+    
+    set trailing_pipe [regexp {\|\s*$} $line]
+    sleep 0.3
+}
+close $f
+
+log_file
+
+# CORRECCIÓN 3: Limpieza extra para evitar ruidos de "exit" en el diff
+exec sed -i "s/\r//g" $logname
+exec sed -i "s/\x1b\\\[?2004\[hl\]//g" $logname
+exec sed -i {s/\x1b\[[0-9;]*[mKHJABCDEFGnsuhl]//g} $logname
+exec sed -i "/^exit$/d" $logname
+
+interact
