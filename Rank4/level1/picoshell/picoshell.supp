@@ -1,0 +1,36 @@
+{
+   ignore_libc_leaks
+   Memcheck:Leak
+   ...
+   obj:*/libc-*.so
+}
+{
+   ignore_ld_so_leaks
+   Memcheck:Leak
+   ...
+   obj:*/ld-*.so
+}
+{
+   ignore_sed_leaks
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/sed
+}
+{
+   ignore_grep_leaks
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/grep
+}
+{
+   ignore_cat_leaks
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/cat
+}
+{
+   ignore_bash_leaks
+   Memcheck:Leak
+   ...
+   obj:/usr/bin/bash
+}

@@ -1,0 +1,520 @@
+==1301301== Memcheck, a memory error detector
+==1301301== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1301301== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1301301== Command: /usr/bin/sed s/c/z/g
+==1301301== Parent PID: 1301279
+==1301301== 
+==1301301== 
+==1301301== FILE DESCRIPTORS: 6 open (2 std) at exit.
+==1301301== Open file descriptor 6: /home/mlermo-j/42_Polo/42Repos/42Malaga/Exams/Rank4/level1/picoshell/valgrind_report.log
+==1301301==    <inherited from parent>
+==1301301== 
+==1301301== Open file descriptor 5:
+==1301301==    <inherited from parent>
+==1301301== 
+==1301301== Open file descriptor 4: /dev/pts/0
+==1301301==    <inherited from parent>
+==1301301== 
+==1301301== Open file descriptor 3: /home/mlermo-j/42_Polo/42Repos/42Malaga/Exams/Rank4/level1/picoshell/valgrind_report.log
+==1301301==    <inherited from parent>
+==1301301== 
+==1301301== 
+==1301301== HEAP SUMMARY:
+==1301301==     in use at exit: 18,507 bytes in 47 blocks
+==1301301==   total heap usage: 125 allocs, 78 frees, 37,261 bytes allocated
+==1301301== 
+==1301301== 1 bytes in 1 blocks are still reachable in loss record 1 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x1161C4: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 1 bytes in 1 blocks are still reachable in loss record 2 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgprelo==1301279== 
+==1301279== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==1301279== Open file descriptor 3: /home/mlermo-j/42_Polo/42Repos/42Malaga/Exams/Rank4/level1/picoshell/valgrind_report.log
+==1301279==    <inherited from parent>
+==1301279== 
+==1301279== 
+==1301279== HEAP SUMMARY:
+==1301279==     in use at exit: 0 bytes in 0 blocks
+==1301279==   total heap usage: 17 allocs, 17 frees, 526,080 bytes allocated
+==1301279== 
+==1301279== All heap blocks were freed -- no leaks are possible
+==1301279== 
+==1301279== For lists of detected and suppressed errors, rerun with: -s
+==1301279== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+1==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49A5262: re_node_set_init_copy (regex_internal.c:1034)
+==1301301==    by 0x49A5262: create_cd_newstate (regex_internal.c:1690)
+==1301301==    by 0x49A5262: re_acquire_state_context (regex_internal.c:1562)
+==1301301==    by 0x49AF221: create_initial_state (regcomp.c:1050)
+==1301301==    by 0x49AF221: re_compile_internal (regcomp.c:806)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 4 bytes in 1 blocks are still reachable in loss record 5 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x499E622: re_node_set_alloc (regex_internal.c:973)
+==1301301==    by 0x499E622: register_state (regex_internal.c:1583)
+==1301301==    by 0x49A5445: create_cd_newstate (regex_internal.c:1746)
+==1301301==    by 0x49A5445: re_acquire_state_context (regex_internal.c:1562)
+==1301301==    by 0x49AF221: create_initial_state (regcomp.c:1050)
+==1301301==    by 0x49AF221: re_compile_internal (regcomp.c:806)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 4 bytes in 1 blocks are still reachable in loss record 6 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49A5262: re_node_set_init_copy (regex_internal.c:1034)
+==1301301==    by 0x49A5262: create_cd_newstate (regex_internal.c:1690)
+==1301301==    by 0x49A5262: re_acquire_state_context (regex_internal.c:1562)
+==1301301==    by 0x49A5863: build_trtable (regexec.c:3331)
+==1301301==    by 0x49A9C09: transit_state (regexec.c:2257)
+==1301301==    by 0x49A9C09: check_matching (regexec.c:1120)
+==1301301==    by 0x49A9C09: re_search_internal (regexec.c:792)
+==1301301==    by 0x49AFAD8: re_search_stub (regexec.c:426)
+==1301301==    by 0x49B0823: re_search (regexec.c:290)
+==1301301==    by 0x113692: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 4 bytes in 1 blocks are still reachable in loss record 7 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x499E622: re_node_set_alloc (regex_internal.c:973)
+==1301301==    by 0x499E622: register_state (regex_internal.c:1583)
+==1301301==    by 0x49A5445: create_cd_newstate (regex_internal.c:1746)
+==1301301==    by 0x49A5445: re_acquire_state_context (regex_internal.c:1562)
+==1301301==    by 0x49A5863: build_trtable (regexec.c:3331)
+==1301301==    by 0x49A9C09: transit_state (regexec.c:2257)
+==1301301==    by 0x49A9C09: check_matching (regexec.c:1120)
+==1301301==    by 0x49A9C09: re_search_internal (regexec.c:792)
+==1301301==    by 0x49AFAD8: re_search_stub (regexec.c:426)
+==1301301==    by 0x49B0823: re_search (regexec.c:290)
+==1301301==    by 0x113692: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 8 bytes in 1 blocks are still reachable in loss record 8 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49AE5B5: analyze (regcomp.c:1169)
+==1301301==    by 0x49AE5B5: re_compile_internal (regcomp.c:795)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 8 bytes in 1 blocks are still reachable in loss record 9 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x118B3D: ??? (in /usr/bin/sed)
+==1301301==    by 0x112E51: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 8 bytes in 1 blocks are still reachable in loss record 10 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49AFE8B: re_copy_regs (regexec.c:489)
+==1301301==    by 0x49AFE8B: re_search_stub (regexec.c:437)
+==1301301==    by 0x49B0823: re_search (regexec.c:290)
+==1301301==    by 0x113692: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 8 bytes in 1 blocks are still reachable in loss record 11 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49AFEA3: re_copy_regs (regexec.c:493)
+==1301301==    by 0x49AFEA3: re_search_stub (regexec.c:437)
+==1301301==    by 0x49B0823: re_search (regexec.c:290)
+==1301301==    by 0x113692: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 8 bytes in 2 blocks are still reachable in loss record 12 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49A36FF: re_node_set_alloc (regex_internal.c:973)
+==1301301==    by 0x49A36FF: calc_eclosure_iter (regcomp.c:1699)
+==1301301==    by 0x49AED83: calc_eclosure (regcomp.c:1677)
+==1301301==    by 0x49AED83: analyze (regcomp.c:1204)
+==1301301==    by 0x49AED83: re_compile_internal (regcomp.c:795)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 14 bytes in 1 blocks are still reachable in loss record 13 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x118F2E: ??? (in /usr/bin/sed)
+==1301301==    by 0x11B5C4: ??? (in /usr/bin/sed)
+==1301301==    by 0x11376E: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 16 bytes in 1 blocks are still reachable in loss record 14 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x499E713: register_state (regex_internal.c:1598)
+==1301301==    by 0x49A5445: create_cd_newstate (regex_internal.c:1746)
+==1301301==    by 0x49A5445: re_acquire_state_context (regex_internal.c:1562)
+==1301301==    by 0x49AF221: create_initial_state (regcomp.c:1050)
+==1301301==    by 0x49AF221: re_compile_internal (regcomp.c:806)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 16 bytes in 1 blocks are still reachable in loss record 15 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x117C2C: ??? (in /usr/bin/sed)
+==1301301==    by 0x118C23: ??? (in /usr/bin/sed)
+==1301301==    by 0x112E51: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 16 bytes in 1 blocks are still reachable in loss record 16 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x499E713: register_state (regex_internal.c:1598)
+==1301301==    by 0x49A5445: create_cd_newstate (regex_internal.c:1746)
+==1301301==    by 0x49A5445: re_acquire_state_context (regex_internal.c:1562)
+==1301301==    by 0x49A5863: build_trtable (regexec.c:3331)
+==1301301==    by 0x49A9C09: transit_state (regexec.c:2257)
+==1301301==    by 0x49A9C09: check_matching (regexec.c:1120)
+==1301301==    by 0x49A9C09: re_search_internal (regexec.c:792)
+==1301301==    by 0x49AFAD8: re_search_stub (regexec.c:426)
+==1301301==    by 0x49B0823: re_search (regexec.c:290)
+==1301301==    by 0x113692: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 20 bytes in 1 blocks are still reachable in loss record 17 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x118225: ??? (in /usr/bin/sed)
+==1301301==    by 0x112E51: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 24 bytes in 1 blocks are still reachable in loss record 18 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x116DEA: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 32 bytes in 1 blocks are still reachable in loss record 19 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49AE2DA: init_dfa (regcomp.c:859)
+==1301301==    by 0x49AE2DA: re_compile_internal (regcomp.c:758)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 32 bytes in 1 blocks are still reachable in loss record 20 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49AE307: init_dfa (regcomp.c:866)
+==1301301==    by 0x49AE307: re_compile_internal (regcomp.c:758)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 32 bytes in 1 blocks are still reachable in loss record 21 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49AE5D6: analyze (regcomp.c:1171)
+==1301301==    by 0x49AE5D6: re_compile_internal (regcomp.c:795)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 32 bytes in 1 blocks are still reachable in loss record 22 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49AE5E5: analyze (regcomp.c:1172)
+==1301301==    by 0x49AE5E5: re_compile_internal (regcomp.c:795)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 32 bytes in 1 blocks are still reachable in loss record 23 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x117C2C: ??? (in /usr/bin/sed)
+==1301301==    by 0x119BD8: ??? (in /usr/bin/sed)
+==1301301==    by 0x11B2AB: ??? (in /usr/bin/sed)
+==1301301==    by 0x11376E: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 51 bytes in 1 blocks are still reachable in loss record 24 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x10E52A: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C5BA: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 51 bytes in 1 blocks are still reachable in loss record 25 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x114DB1: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 88 bytes in 1 blocks are still reachable in loss record 26 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49A522B: create_cd_newstate (regex_internal.c:1687)
+==1301301==    by 0x49A522B: re_acquire_state_context (regex_internal.c:1562)
+==1301301==    by 0x49AF221: create_initial_state (regcomp.c:1050)
+==1301301==    by 0x49AF221: re_compile_internal (regcomp.c:806)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 88 bytes in 1 blocks are still reachable in loss record 27 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49A522B: create_cd_newstate (regex_internal.c:1687)
+==1301301==    by 0x49A522B: re_acquire_state_context (regex_internal.c:1562)
+==1301301==    by 0x49A5863: build_trtable (regexec.c:3331)
+==1301301==    by 0x49A9C09: transit_state (regexec.c:2257)
+==1301301==    by 0x49A9C09: check_matching (regexec.c:1120)
+==1301301==    by 0x49A9C09: re_search_internal (regexec.c:792)
+==1301301==    by 0x49AFAD8: re_search_stub (regexec.c:426)
+==1301301==    by 0x49B0823: re_search (regexec.c:290)
+==1301301==    by 0x113692: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 96 bytes in 1 blocks are still reachable in loss record 28 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x112F88: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 112 bytes in 1 blocks are still reachable in loss record 29 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x118EF6: ??? (in /usr/bin/sed)
+==1301301==    by 0x11B5C4: ??? (in /usr/bin/sed)
+==1301301==    by 0x11376E: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 112 bytes in 1 blocks are still reachable in loss record 30 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x118F60: ??? (in /usr/bin/sed)
+==1301301==    by 0x11B5C4: ??? (in /usr/bin/sed)
+==1301301==    by 0x11376E: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 120 bytes in 1 blocks are still reachable in loss record 31 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x117E9E: ??? (in /usr/bin/sed)
+==1301301==    by 0x112E51: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 120 bytes in 1 blocks are still reachable in loss record 32 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x492A122: getdelim (iogetdelim.c:62)
+==1301301==    by 0x11030D: ??? (in /usr/bin/sed)
+==1301301==    by 0x110A05: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C653: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 128 bytes in 1 blocks are still reachable in loss record 33 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x110C99: ??? (in /usr/bin/sed)
+==1301301==    by 0x11218C: ??? (in /usr/bin/sed)
+==1301301==    by 0x1128A3: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 128 bytes in 1 blocks are possibly lost in loss record 34 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x110C99: ??? (in /usr/bin/sed)
+==1301301==    by 0x118E85: ??? (in /usr/bin/sed)
+==1301301==    by 0x11B5C4: ??? (in /usr/bin/sed)
+==1301301==    by 0x11376E: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 160 bytes in 1 blocks are still reachable in loss record 35 of 45
+==1301301==    at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x110C99: ??? (in /usr/bin/sed)
+==1301301==    by 0x117CC0: ??? (in /usr/bin/sed)
+==1301301==    by 0x119BD8: ??? (in /usr/bin/sed)
+==1301301==    by 0x11B2AB: ??? (in /usr/bin/sed)
+==1301301==    by 0x11376E: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 224 bytes in 1 blocks are still reachable in loss record 36 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49AF599: re_compile_internal (regcomp.c:750)
+==1301301==    by 0x49AF89E: re_compile_pattern (regcomp.c:230)
+==1301301==    by 0x112679: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 256 bytes in 1 blocks are still reachable in loss record 37 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x112D37: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 256 bytes in 2 blocks are still reachable in loss record 38 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x110C99: ??? (in /usr/bin/sed)
+==1301301==    by 0x117433: ??? (in /usr/bin/sed)
+==1301301==    by 0x1184CC: ??? (in /usr/bin/sed)
+==1301301==    by 0x112E51: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 1,600 bytes in 1 blocks are still reachable in loss record 39 of 45
+==1301301==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x1166F5: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 2,048 bytes in 1 blocks are still reachable in loss record 40 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x119B0A: ??? (in /usr/bin/sed)
+==1301301==    by 0x11B27F: ??? (in /usr/bin/sed)
+==1301301==    by 0x11376E: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 2,048 bytes in 1 blocks are still reachable in loss record 41 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49A5901: build_trtable (regexec.c:3367)
+==1301301==    by 0x49A9C09: transit_state (regexec.c:2257)
+==1301301==    by 0x49A9C09: check_matching (regexec.c:1120)
+==1301301==    by 0x49A9C09: re_search_internal (regexec.c:792)
+==1301301==    by 0x49AFAD8: re_search_stub (regexec.c:426)
+==1301301==    by 0x49B0823: re_search (regexec.c:290)
+==1301301==    by 0x113692: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 2,048 bytes in 1 blocks are still reachable in loss record 42 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x49A6230: build_trtable (regexec.c:3295)
+==1301301==    by 0x49A9C09: transit_state (regexec.c:2257)
+==1301301==    by 0x49A9C09: check_matching (regexec.c:1120)
+==1301301==    by 0x49A9C09: re_search_internal (regexec.c:792)
+==1301301==    by 0x49AFAD8: re_search_stub (regexec.c:426)
+==1301301==    by 0x49B0823: re_search (regexec.c:290)
+==1301301==    by 0x113692: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 2,048 bytes in 1 blocks are possibly lost in loss record 43 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x119B0A: ??? (in /usr/bin/sed)
+==1301301==    by 0x11B27F: ??? (in /usr/bin/sed)
+==1301301==    by 0x11376E: ??? (in /usr/bin/sed)
+==1301301==    by 0x114384: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C63A: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 2,336 bytes in 1 blocks are still reachable in loss record 44 of 45
+==1301301==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x1126DE: ??? (in /usr/bin/sed)
+==1301301==    by 0x112FC3: ??? (in /usr/bin/sed)
+==1301301==    by 0x1168B0: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== 4,064 bytes in 1 blocks are still reachable in loss record 45 of 45
+==1301301==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==1301301==    by 0x119C36: ??? (in /usr/bin/sed)
+==1301301==    by 0x119D24: ??? (in /usr/bin/sed)
+==1301301==    by 0x116E2D: ??? (in /usr/bin/sed)
+==1301301==    by 0x1170DA: ??? (in /usr/bin/sed)
+==1301301==    by 0x10C847: ??? (in /usr/bin/sed)
+==1301301==    by 0x48D3D8F: (below main) (libc_start_call_main.h:58)
+==1301301== 
+==1301301== LEAK SUMMARY:
+==1301301==    definitely lost: 0 bytes in 0 blocks
+==1301301==    indirectly lost: 0 bytes in 0 blocks
+==1301301==      possibly lost: 2,176 bytes in 2 blocks
+==1301301==    still reachable: 16,331 bytes in 45 blocks
+==1301301==         suppressed: 0 bytes in 0 blocks
+==1301301== 
+==1301301== For lists of detected and suppressed errors, rerun with: -s
+==1301301== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
