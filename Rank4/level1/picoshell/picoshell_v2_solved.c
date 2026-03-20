@@ -21,7 +21,7 @@ int    picoshell(char **cmds[])
 		pid = fork();   //create a child process
 		if(pid == -1)    //if fork fails
 		{
-			if(cmds[ i+ 1])  // if a pipe was created, close it
+			if(cmds[i + 1])  // if a pipe was created, close it
 			{
 				close(fd[0]);
 				close(fd[1]);
