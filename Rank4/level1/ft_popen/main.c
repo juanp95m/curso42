@@ -6,6 +6,9 @@
 #include <fcntl.h>
 #include <dirent.h>
 
+#define PURPLE "\033[0;32m"
+#define RESET  "\033[0m"
+
 // Include the ft_popen function prototype
 int ft_popen(const char *file, char *const argv[], char type);
 
@@ -30,7 +33,7 @@ int count_open_fds() {
 }
 
 void test_fd_leaks() {
-    printf("=== Testing FILE DESCRIPTOR LEAKS ===\n");
+    printf("%s=== Testing FILE DESCRIPTOR LEAKS ===%s\n", PURPLE, RESET);
     
     int initial_fd_count = count_open_fds();
     printf("Initial FD count: %d\n", initial_fd_count);
@@ -75,7 +78,7 @@ void test_fd_leaks() {
 }
 
 void test_child_process_cleanup() {
-    printf("\n=== Testing CHILD PROCESS CLEANUP ===\n");
+    printf("\n%s=== Testing CHILD PROCESS CLEANUP ===%s\n", PURPLE, RESET);
     
     // Test 1: Verify children exit properly
     pid_t test_pid = fork();
@@ -100,7 +103,7 @@ void test_child_process_cleanup() {
 }
 
 void test_pipe_closure_on_errors() {
-    printf("\n=== Testing PIPE CLOSURE ON ERRORS ===\n");
+    printf("\n%s=== Testing PIPE CLOSURE ON ERRORS ===%s\n", PURPLE, RESET);
     
     int initial_fd_count = count_open_fds();
     
@@ -135,7 +138,7 @@ void test_pipe_closure_on_errors() {
 }
 
 void test_dup2_failure_simulation() {
-    printf("\n=== Testing DUP2 FAILURE HANDLING ===\n");
+    printf("\n%s=== Testing DUP2 FAILURE HANDLING ===%s\n", PURPLE, RESET);
     
     // This is harder to test directly, but we can test the code path
     // by checking that the function handles edge cases properly
@@ -149,7 +152,7 @@ void test_dup2_failure_simulation() {
 }
 
 void test_stress_multiple_operations() {
-    printf("\n=== STRESS TEST: Multiple Simultaneous Operations ===\n");
+    printf("\n%s=== STRESS TEST: Multiple Simultaneous Operations ===%s\n", PURPLE, RESET);
     
     int initial_fd_count = count_open_fds();
     const int num_ops = 5;
@@ -187,8 +190,8 @@ void test_stress_multiple_operations() {
 }
 
 void run_comprehensive_valgrind_test() {
-    printf("\n=== COMPREHENSIVE VALGRIND ANALYSIS ===\n");
-    printf("Running with flags: --leak-check=full --show-leak-kinds=all --track-origins=yes -s --track-fds=yes\n");
+    printf("\n%s=== COMPREHENSIVE VALGRIND ANALYSIS ===%s\n", PURPLE, RESET);
+    printf("%sRunning with flags: --leak-check=full --show-leak-kinds=all --track-origins=yes -s --track-fds=yes%s\n", PURPLE, RESET);
     
     // Check if we're already running under valgrind
     if (getenv("VALGRIND_OPTS") != NULL) {
@@ -254,6 +257,72 @@ void run_comprehensive_valgrind_test() {
     }
 }
 
+// --- PRUEBA 1: Verificar Lectura ('r') ---
+void test_read_mode() {
+    printf("\n%s=== TEST DE LECTURA (ft_popen 'r') ===%s\n", PURPLE, RESET);
+    
+    // Vamos a ejecutar "ls -la" y leer su resultado
+    char *args[] = {"/bin/ls", "-la", NULL};
+    int fd = ft_popen("/bin/ls", args, 'r');
+    
+    if (fd == -1) {
+        printf("❌ Error: ft_popen devolvió -1\n");
+        return;
+    }
+
+    // Leemos del file descriptor
+    char buffer[1024];
+    int bytes = read(fd, buffer, sizeof(buffer) - 1);
+    
+    if (bytes > 0) {
+        buffer[bytes] = '\0';
+        printf("✅ Éxito: Se leyeron %d bytes del comando 'ls'.\n", bytes);
+        printf("--- Inicio de salida capturada ---\n");
+        printf("%s", buffer);
+        printf("--- Fin de salida capturada ---\n");
+    } else {
+        printf("⚠️ Advertencia: No se leyó nada o hubo error en read.\n");
+    }
+
+    close(fd);
+    wait(NULL); // Esperar al hijo para evitar zombies
+}
+
+// --- PRUEBA 2: Verificar Escritura ('w') ---
+void test_write_mode() {
+    printf("\n%s=== TEST DE ESCRITURA (ft_popen 'w') ===%s\n", PURPLE, RESET);
+    
+    // Vamos a ejecutar "grep hola"
+    // Este comando esperará a que le escribamos algo para filtrar
+    char *args[] = {"/bin/grep", "hola", NULL};
+    int fd = ft_popen("/bin/grep", args, 'w');
+    
+    if (fd == -1) {
+        printf("❌ Error: ft_popen devolvió -1\n");
+        return;
+    }
+
+    printf("ℹ️ Escribiendo al hijo: 'esto no sale\\nhola mundo\\nadios mundo'...\n");
+    
+    // Escribimos datos al comando grep a través del pipe
+    // Solo debería imprimir en pantalla "hola mundo"
+    dprintf(fd, "esto no sale\n");
+    dprintf(fd, "hola mundo\n");
+    dprintf(fd, "adios mundo\n");
+
+    // AL cerrar el fd, grep detecta EOF, procesa lo último y termina
+    close(fd);
+    
+    int status;
+    wait(&status);
+    
+    if (WIFEXITED(status) && WEXITSTATUS(status) == 0) {
+        printf("✅ Éxito: grep terminó correctamente (encontró una coincidencia).\n");
+    } else {
+        printf("❌ Fallo: grep devolvió error o no encontró nada.\n");
+    }
+}
+
 int main() {
     printf("🧪 Comprehensive ft_popen Testing (Memory & FD Management)\n");
     printf("=========================================================\n");
@@ -264,7 +333,8 @@ int main() {
     test_dup2_failure_simulation();
     test_stress_multiple_operations();
     run_comprehensive_valgrind_test();
-    
+    test_read_mode();
+    test_write_mode();
     printf("\n🏁 Comprehensive testing completed!\n");
     
     return 0;
