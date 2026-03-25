@@ -32,9 +32,9 @@ int accept(char **s, char c)
 {
     if (**s)
     {
-        if (*(*s) != c)
+        if (**s != c)
             return (0);
-        else if (*(*s) == c)
+        else if (**s == c)
         {
             (*s)++;
             return (1);
